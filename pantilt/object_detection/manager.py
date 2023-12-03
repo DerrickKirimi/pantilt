@@ -9,6 +9,8 @@ from pantilt.pid import PIDController
 from threading import Threadi
 from imutils.video import VideoStream
 import argparse
+import importlib.util
+import os
 
 logging.basicConfig()
 LOGLEVEL = logging.getLogger().getEffectiveLevel()
@@ -23,6 +25,17 @@ CENTER = (
     RESOLUTION[1] // 2
 )
 
+
+GPIO.setmode(GPIO.BCM)
+tilt_pin = 13
+pan_pin = 5
+GPIO.setup(tilt_pin, GPIO.OUT)
+GPIO.setup(pan_pin, GPIO.OUT)
+tilt_servo = GPIO.PWM(tilt_pin, 50)
+pan_servo = GPIO.PWM(pan_pin, 50)
+
+servoRange = (-90, 90)
+
 # Replace with your actual paths and parameters
 # Define and parse input arguments
 parser = argparse.ArgumentParser()
@@ -35,7 +48,7 @@ parser.add_argument('--labels', help='Name of the labelmap file, if different th
 parser.add_argument('--threshold', help='Minimum confidence threshold for displaying detected objects',
                     default=0.5)
 parser.add_argument('--resolution', help='Desired webcam resolution in WxH. If the webcam does not support the resolution entered, errors may occur.',
-                    default='1280x720')
+                    default='640*480')
 parser.add_argument('--edgetpu', help='Use Coral Edge TPU Accelerator to speed up detection',
                     action='store_true')
 
@@ -51,13 +64,69 @@ use_TPU = args.edgetpu
 MIN_CONF_THRESHOLD = 0.5
 use_TPU = False
 
-GPIO.setmode(GPIO.BCM)
-tilt_pin = 13
-pan_pin = 5
-GPIO.setup(tilt_pin, GPIO.OUT)
-GPIO.setup(pan_pin, GPIO.OUT)
-tilt_servo = GPIO.PWM(tilt_pin, 50)
-pan_servo = GPIO.PWM(pan_pin, 50)
+# Import TensorFlow libraries
+# If tflite_runtime is installed, import interpreter from tflite_runtime, else import from regular tensorflow
+# If using Coral Edge TPU, import the load_delegate library
+pkg = importlib.util.find_spec('tflite_runtime')
+if pkg:
+    from tflite_runtime.interpreter import Interpreter
+    if use_TPU:
+        from tflite_runtime.interpreter import load_delegate
+else:
+    from tensorflow.lite.python.interpreter import Interpreter
+    if use_TPU:
+        from tensorflow.lite.python.interpreter import load_delegate
+
+# If using Edge TPU, assign filename for Edge TPU model
+if use_TPU:
+    # If user has specified the name of the .tflite file, use that name, otherwise use default 'edgetpu.tflite'
+    if (GRAPH_NAME == 'detect.tflite'):
+        GRAPH_NAME = 'edgetpu.tflite'       
+
+# Get path to current working directory
+CWD_PATH = os.getcwd()
+
+# Path to .tflite file, which contains the model that is used for object detection
+PATH_TO_CKPT = os.path.join(CWD_PATH,MODEL_NAME,GRAPH_NAME)
+
+# Path to label map file
+PATH_TO_LABELS = os.path.join(CWD_PATH,MODEL_NAME,LABELMAP_NAME)
+
+# Load the label map
+with open(PATH_TO_LABELS, 'r') as f:
+    labels = [line.strip() for line in f.readlines()]
+
+# Have to do a weird fix for label map if using the COCO "starter model" from
+# https://www.tensorflow.org/lite/models/object_detection/overview
+# First label is '???', which has to be removed.
+if labels[0] == '???':
+    del(labels[0])
+
+# Load the Tensorflow Lite model.
+# If using Edge TPU, use special load_delegate argument
+if use_TPU:
+    interpreter = Interpreter(model_path=PATH_TO_CKPT,
+                              experimental_delegates=[load_delegate('libedgetpu.so.1.0')])
+    print(PATH_TO_CKPT)
+else:
+    interpreter = Interpreter(model_path=PATH_TO_CKPT)
+
+interpreter.allocate_tensors()
+
+# Get model details
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
+height = input_details[0]['shape'][1]
+width = input_details[0]['shape'][2]
+
+floating_model = (input_details[0]['dtype'] == np.float32)
+
+input_mean = 127.5
+input_std = 127.5
+
+# Initialize frame rate calculation
+frame_rate_calc = 1
+freq = cv2.getTickFrequency()
 
 def signal_handler(sig, frame):
     # Print a status message
@@ -76,6 +145,7 @@ def run_detect(center_x, center_y, labels, edge_tpu, interpreter, input_mean, in
     fps_counter = 0
 
     while True:
+        t1 = cv2.getTickCount()
         frame = videostream.read()
         frame = cv2.flip(frame, 1)
 
@@ -139,6 +209,10 @@ def set_servo(servo, angle):
     servo.ChangeDutyCycle(dutyCycle)
     time.sleep(0.3)
     servo.stop()
+
+def in_range(val, start, end):
+    # Determine if the input value is in the supplied range
+    return start <= val <= end
 
 def set_servos(tlt, pan):
     signal.signal(signal.SIGINT, signal_handler)
