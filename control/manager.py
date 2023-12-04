@@ -5,20 +5,21 @@ import sys
 import time
 import cv2
 import numpy as np
-from pantilt.pid import PIDController
-from threading import Threadi
+from pid import PIDController
+from threading import Thread
 from imutils.video import VideoStream
 import argparse
 import importlib.util
 import os
+import RPi.GPIO as GPIO
 
 logging.basicConfig()
 LOGLEVEL = logging.getLogger().getEffectiveLevel()
 
 RESOLUTION = (320, 320)
 
-SERVO_MIN = -90
-SERVO_MAX = 90
+SERVO_MIN = 30
+SERVO_MAX = 145
 
 CENTER = (
     RESOLUTION[0] // 2,
@@ -34,7 +35,7 @@ GPIO.setup(pan_pin, GPIO.OUT)
 tilt_servo = GPIO.PWM(tilt_pin, 50)
 pan_servo = GPIO.PWM(pan_pin, 50)
 
-servoRange = (-90, 90)
+servoRange = (130, 145)
 
 # Replace with your actual paths and parameters
 # Define and parse input arguments
@@ -48,7 +49,7 @@ parser.add_argument('--labels', help='Name of the labelmap file, if different th
 parser.add_argument('--threshold', help='Minimum confidence threshold for displaying detected objects',
                     default=0.5)
 parser.add_argument('--resolution', help='Desired webcam resolution in WxH. If the webcam does not support the resolution entered, errors may occur.',
-                    default='640*480')
+                    default='640x480')
 parser.add_argument('--edgetpu', help='Use Coral Edge TPU Accelerator to speed up detection',
                     action='store_true')
 
@@ -146,10 +147,19 @@ def run_detect(center_x, center_y, labels, edge_tpu, interpreter, input_mean, in
 
     while True:
         t1 = cv2.getTickCount()
-        frame = videostream.read()
-        frame = cv2.flip(frame, 1)
+        frame1 = videostream.read()
+        frame1 = cv2.flip(frame1, 1)
 
-        input_data = preprocess_frame(frame, height, width, input_mean, input_std)
+        # Acquire frame and resize to expected shape [1xHxWx3]
+        frame = frame1.copy()
+        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        frame_resized = cv2.resize(frame_rgb, (width, height))
+        input_data = np.expand_dims(frame_resized, axis=0)
+
+    # Normalize pixel values if using a floating model (i.e. if model is non-quantized)
+        if floating_model:
+            input_data = (np.float32(input_data) - input_mean) / input_std
+        
         interpreter.set_tensor(input_details[0]['index'], input_data)
         interpreter.invoke()
         boxes = interpreter.get_tensor(output_details[0]['index'])[0]
@@ -157,7 +167,7 @@ def run_detect(center_x, center_y, labels, edge_tpu, interpreter, input_mean, in
         scores = interpreter.get_tensor(output_details[2]['index'])[0]
 
         for i in range(len(scores)):
-            if ((scores[i] > min_conf_threshold) and (scores[i] <= 1.0)):
+            if ((0 <= int(classes[i]) < len(labels)) and (scores[i] > min_conf_threshold) and (scores[i] <= 1.0)):
                 ymin = int(max(1,(boxes[i][0] * imH)))
                 xmin = int(max(1,(boxes[i][1] * imW)))
                 ymax = int(min(imH,(boxes[i][2] * imH)))
@@ -172,7 +182,9 @@ def run_detect(center_x, center_y, labels, edge_tpu, interpreter, input_mean, in
                 cv2.rectangle(frame, (xmin, label_ymin - labelSize[1] - 10), (xmin + labelSize[0], label_ymin + baseLine - 10), (255, 255, 255), cv2.FILLED)
                 cv2.putText(frame, label, (xmin, label_ymin - 7), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2)
 
-                xcenter, ycenter = (xmin + int(round((xmax - xmin) / 2))), (ymin + int(round((ymax - ymin) / 2)))
+                 # Draw circle in center
+                xcenter = xmin + (int(round((xmax - xmin) / 2)))
+                ycenter = ymin + (int(round((ymax - ymin) / 2)))
                 cv2.circle(frame, (xcenter, ycenter), 5, (0, 0, 255), thickness=-1)
 
                 center_x.value = xcenter
@@ -199,13 +211,6 @@ def run_detect(center_x, center_y, labels, edge_tpu, interpreter, input_mean, in
     cv2.destroyAllWindows()
     videostream.stop()
 
-def preprocess_frame(frame, height, width, input_mean, input_std):
-    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-    frame_resized = cv2.resize(frame_rgb, (width, height))
-    input_data = np.expand_dims(frame_resized, axis=0)
-    if floating_model:
-        input_data = (np.float32(input_data) - input_mean) / input_std
-    return input_data
 
 def set_servo(servo, angle):
     dutyCycle = angle / 18. + 3.
