@@ -28,20 +28,17 @@ CENTER = (
 
 
 GPIO.setmode(GPIO.BCM)
-tilt_pin = 13
+GPIO.setwarnings(False)
 pan_pin = 5
-GPIO.setup(tilt_pin, GPIO.OUT)
+tilt_pin = 13
 GPIO.setup(pan_pin, GPIO.OUT)
-tilt_servo = GPIO.PWM(tilt_pin, 50)
+GPIO.setup(tilt_pin, GPIO.OUT)
 pan_servo = GPIO.PWM(pan_pin, 50)
+tilt_servo = GPIO.PWM(tilt_pin, 50)
 
-servoRange = (130, 145)
 
-def signal_handler(sig, frame):
-    # Print a status message
-    print("[INFO] You pressed `ctrl + c`! Exiting...")
-    # Exit
-    sys.exit()
+#servoRange = (130, 145)
+servoRange = (40, 130)
 
 # Replace with your actual paths and parameters
 # Define and parse input arguments
@@ -135,8 +132,13 @@ input_std = 127.5
 frame_rate_calc = 1
 freq = cv2.getTickFrequency()
 
+def signal_handler(sig, frame):
+    # Print a status message
+    print("[INFO] You pressed `ctrl + c`! Exiting...")
+    # Exit
+    sys.exit()
+
 def run_detect(center_x, center_y, labels, edge_tpu, interpreter, input_mean, input_std, imW, imH, min_conf_threshold, output_details):
-    signal.signal(signal.SIGINT, signal_handler)
     videostream = VideoStream(resolution=(imW, imH), framerate=30).start()
     time.sleep(1)
     cv2.namedWindow('Object detector', cv2.WINDOW_NORMAL)
@@ -251,12 +253,11 @@ def pid_process(output, p, i, d, box_coord, origin_coord, action):
         output.value = p.update(error)
         # logging.info(f'{action} error {error} angle: {output.value}')
 
-#def pantilt_process_manager(
-  #  edge_tpu=False,
-  #  labels=('person',)
-#):
+def pantilt_process_manager(
+    edge_tpu=False,
+    #labels=('person',)
+):
 
-if __name__ == '__main__':
     tilt_servo.start(8)
     pan_servo.start(8)
     with Manager() as manager:
@@ -278,7 +279,7 @@ if __name__ == '__main__':
         tilt_d = manager.Value('f', 0)
 
         detect_processr = Process(target=run_detect,
-                                  args=(center_x, center_y, labels, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, output_details))
+                                  args=(center_x, center_y, labels, edge_tpu, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, output_details))
 
         pan_process = Process(target=pid_process,
                               args=(pan, pan_p, pan_i, pan_d, center_x, CENTER[0], 'pan'))
@@ -293,17 +294,10 @@ if __name__ == '__main__':
         tilt_process.start()
         servo_process.start()
 
-    try:
         detect_processr.join()
         pan_process.join()
         tilt_process.join()
         servo_process.join()
-    except KeyboardInterrupt:
-        print("Program stopped")
-    finally:
-        tilt_servo.ChangeDutyCycle(5)
-        pan_servo.ChangeDutyCycle(5)
-        pan_servo.stop()
-        tilt_servo.stop()
-        GPIO.cleanup()
-    #pantilt_process_manager()
+
+if __name__ == '__main__':
+    pantilt_process_manager()
