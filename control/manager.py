@@ -37,6 +37,12 @@ pan_servo = GPIO.PWM(pan_pin, 50)
 
 servoRange = (130, 145)
 
+def signal_handler(sig, frame):
+    # Print a status message
+    print("[INFO] You pressed `ctrl + c`! Exiting...")
+    # Exit
+    sys.exit()
+
 # Replace with your actual paths and parameters
 # Define and parse input arguments
 parser = argparse.ArgumentParser()
@@ -129,13 +135,8 @@ input_std = 127.5
 frame_rate_calc = 1
 freq = cv2.getTickFrequency()
 
-def signal_handler(sig, frame):
-    # Print a status message
-    print("[INFO] You pressed `ctrl + c`! Exiting...")
-    # Exit
-    sys.exit()
-
 def run_detect(center_x, center_y, labels, edge_tpu, interpreter, input_mean, input_std, imW, imH, min_conf_threshold, output_details):
+    signal.signal(signal.SIGINT, signal_handler)
     videostream = VideoStream(resolution=(imW, imH), framerate=30).start()
     time.sleep(1)
     cv2.namedWindow('Object detector', cv2.WINDOW_NORMAL)
@@ -291,10 +292,19 @@ def pantilt_process_manager(
         tilt_process.start()
         servo_process.start()
 
+    try:
         detect_processr.join()
         pan_process.join()
         tilt_process.join()
         servo_process.join()
+    except KeyboardInterrupt:
+        print("Program stopped")
+    finally:
+        tilt_servo.ChangeDutyCycle(5)
+        pan_servo.ChangeDutyCycle(5)
+        pan_servo.stop()
+        tilt_servo.stop()
+        GPIO.cleanup()
 
 if __name__ == '__main__':
     pantilt_process_manager()
