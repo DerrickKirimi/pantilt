@@ -251,11 +251,12 @@ def pid_process(output, p, i, d, box_coord, origin_coord, action):
         output.value = p.update(error)
         # logging.info(f'{action} error {error} angle: {output.value}')
 
-def pantilt_process_manager(
-    edge_tpu=False,
-    labels=('person',)
-):
+#def pantilt_process_manager(
+  #  edge_tpu=False,
+  #  labels=('person',)
+#):
 
+if __name__ == '__main__':
     tilt_servo.start(8)
     pan_servo.start(8)
     with Manager() as manager:
@@ -277,7 +278,7 @@ def pantilt_process_manager(
         tilt_d = manager.Value('f', 0)
 
         detect_processr = Process(target=run_detect,
-                                  args=(center_x, center_y, labels, edge_tpu, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, output_details))
+                                  args=(center_x, center_y, labels, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, output_details))
 
         pan_process = Process(target=pid_process,
                               args=(pan, pan_p, pan_i, pan_d, center_x, CENTER[0], 'pan'))
@@ -305,6 +306,4 @@ def pantilt_process_manager(
         pan_servo.stop()
         tilt_servo.stop()
         GPIO.cleanup()
-
-if __name__ == '__main__':
-    pantilt_process_manager()
+    #pantilt_process_manager()
