@@ -38,7 +38,8 @@ tilt_servo = GPIO.PWM(tilt_pin, 50)
 
 
 #servoRange = (130, 145)
-servoRange = (40, 130)
+#servoRange = (40, 130)
+servoRange = (40, 80)
 
 # Replace with your actual paths and parameters
 # Define and parse input arguments
@@ -132,11 +133,6 @@ input_std = 127.5
 frame_rate_calc = 1
 freq = cv2.getTickFrequency()
 
-def signal_handler(sig, frame):
-    # Print a status message
-    print("[INFO] You pressed `ctrl + c`! Exiting...")
-    # Exit
-    sys.exit()
 
 def run_detect(center_x, center_y, labels, edge_tpu, interpreter, input_mean, input_std, imW, imH, min_conf_threshold, output_details):
     videostream = VideoStream(resolution=(imW, imH), framerate=30).start()
@@ -214,8 +210,16 @@ def run_detect(center_x, center_y, labels, edge_tpu, interpreter, input_mean, in
     cv2.destroyAllWindows()
     videostream.stop()
 
-
-def set_servo(servo, angle):
+def signal_handler(sig, frame):
+    # Print a status message
+    print("[INFO] You pressed `ctrl + c`! Exiting...")
+    # Exit
+    setServoAngle(pan_servo, 100)
+    setServoAngle(tilt_servo, 90)  
+    GPIO.cleanup()
+    sys.exit()
+    
+def setServoAngle(servo, angle):
     dutyCycle = angle / 18. + 3.
     servo.ChangeDutyCycle(dutyCycle)
     time.sleep(0.3)
@@ -233,12 +237,12 @@ def set_servos(tlt, pan):
         tilt_angle = tlt.value
 
         if in_range(pan_angle, servoRange[0], servoRange[1]):
-            set_servo(pan_servo, pan_angle)
+            setServoAngle(pan_servo, pan_angle)
         else:
             logging.info(f'pan_angle not in range {pan_angle}')
 
         if in_range(tilt_angle, servoRange[0], servoRange[1]):
-            set_servo(tilt_servo, tilt_angle)
+            setServoAngle(tilt_servo, tilt_angle)
         else:
             logging.info(f'tilt_angle not in range {tilt_angle}')
 
