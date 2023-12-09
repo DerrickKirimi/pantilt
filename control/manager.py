@@ -29,10 +29,13 @@ CENTER = (
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
+
 pan_pin = 5
 tilt_pin = 13
+
 GPIO.setup(pan_pin, GPIO.OUT)
 GPIO.setup(tilt_pin, GPIO.OUT)
+
 pan_servo = GPIO.PWM(pan_pin, 50)
 tilt_servo = GPIO.PWM(tilt_pin, 50)
 
@@ -214,37 +217,41 @@ def signal_handler(sig, frame):
     # Print a status message
     print("[INFO] You pressed `ctrl + c`! Exiting...")
     # Exit
-    setServoAngle(pan_servo, 100)
-    setServoAngle(tilt_servo, 90)  
+    #setServoAngle(pan_servo, 100)
+    #setServoAngle(tilt_servo, 90)  
     GPIO.cleanup()
     sys.exit()
     
 def setServoAngle(servo, angle):
+    print("Set servo angle:", angle)
+    sys.stdout.flush()
+    servo.start(0)
     dutyCycle = angle / 18. + 3.
     servo.ChangeDutyCycle(dutyCycle)
     time.sleep(0.3)
     servo.stop()
 
-def in_range(val, start, end):
+def limit_range(val, start, end):
     # Determine if the input value is in the supplied range
-    return start <= val <= end
+    return max(start, min(val,end))
 
 def set_servos(tlt, pan):
     signal.signal(signal.SIGINT, signal_handler)
-
+    print("Inside set_servos function")
     while True:
+        print("Inside set_servos loop")
+        sys.stdout.flush()
         pan_angle = pan.value
         tilt_angle = tlt.value
 
-        if in_range(pan_angle, servoRange[0], servoRange[1]):
-            setServoAngle(pan_servo, pan_angle)
-        else:
-            logging.info(f'pan_angle not in range {pan_angle}')
+        pan_angle = limit_range(pan_angle, servoRange[0], servoRange[1])
+        setServoAngle(pan_servo, pan_angle)
+        print(f"Limited Pan angle is {pan_angle}")
+        tilt_angle = limit_range(tilt_angle, servoRange[0], servoRange[1])
+        setServoAngle(tilt_servo, tilt_angle)
+        print(f"Limited Tilt angle is {tilt_angle}")
+        logging.info(f"Limited Pan angle is {tilt_angle}")
 
-        if in_range(tilt_angle, servoRange[0], servoRange[1]):
-            setServoAngle(tilt_servo, tilt_angle)
-        else:
-            logging.info(f'tilt_angle not in range {tilt_angle}')
 
 def pid_process(output, p, i, d, box_coord, origin_coord, action):
     signal.signal(signal.SIGINT, signal_handler)
@@ -255,16 +262,18 @@ def pid_process(output, p, i, d, box_coord, origin_coord, action):
     while True:
         error = origin_coord - box_coord.value
         output.value = p.update(error)
-        # logging.info(f'{action} error {error} angle: {output.value}')
+        logging.info(f'{action} error {error} angle: {output.value}')
 
 def pantilt_process_manager(
     edge_tpu=False,
     #labels=('person',)
 ):
 
-    tilt_servo.start(8)
-    pan_servo.start(8)
+    #tilt_servo.start(8)
+    #pan_servo.start(8)
     with Manager() as manager:
+        start_time = time.time()
+        print(f"Program started at: {start_time}")
         center_x = manager.Value('i', 0)
         center_y = manager.Value('i', 0)
 
@@ -282,7 +291,7 @@ def pantilt_process_manager(
         tilt_i = manager.Value('f', 0.2)
         tilt_d = manager.Value('f', 0)
 
-        detect_processr = Process(target=run_detect,
+        detect_process = Process(target=run_detect,
                                   args=(center_x, center_y, labels, edge_tpu, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, output_details))
 
         pan_process = Process(target=pid_process,
@@ -293,12 +302,12 @@ def pantilt_process_manager(
 
         servo_process = Process(target=set_servos, args=(pan, tilt))
 
-        detect_processr.start()
+        detect_process.start()
         pan_process.start()
         tilt_process.start()
         servo_process.start()
 
-        detect_processr.join()
+        detect_process.join()
         pan_process.join()
         tilt_process.join()
         servo_process.join()
