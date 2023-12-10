@@ -14,6 +14,7 @@ import os
 import RPi.GPIO as GPIO
 
 logging.basicConfig()
+logging.getLogger().setLevel(logging.DEBUG)
 LOGLEVEL = logging.getLogger().getEffectiveLevel()
 
 RESOLUTION = (320, 320)
@@ -185,13 +186,15 @@ def run_detect(center_x, center_y, labels, edge_tpu, interpreter, input_mean, in
                 cv2.putText(frame, label, (xmin, label_ymin - 7), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2)
 
                  # Draw circle in center
-                xcenter = xmin + (int(round((xmax - xmin) / 2)))
-                ycenter = ymin + (int(round((ymax - ymin) / 2)))
-                cv2.circle(frame, (xcenter, ycenter), 5, (0, 0, 255), thickness=-1)
+                obj_center_x = xmin + (int(round((xmax - xmin) / 2)))
+                obj_center_y = ymin + (int(round((ymax - ymin) / 2)))
+                cv2.circle(frame, (obj_center_x, obj_center_y), 5, (0, 0, 255), thickness=-1)
 
-                center_x.value = xcenter
-                center_y.value = ycenter
-                logging.info(f'Tracking {object_name} center_x {xcenter} center_y {ycenter}')
+                #center_x.value = obj_Xcenter
+                #center_y.value = obj_Ycenter
+
+                logging.info(f'Tracking {object_name} Object Center X {obj_center_x} Object Center Y {obj_center_y}')
+                print(f'Tracking {object_name} Object Center X {obj_center_x} Object Center Y {obj_center_y}')
 
         cv2.putText(frame, 'FPS: {0:.2f}'.format(frame_rate_calc), (30, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0), 2, cv2.LINE_AA)
         cv2.imshow('Object detector', frame)
@@ -206,7 +209,10 @@ def run_detect(center_x, center_y, labels, edge_tpu, interpreter, input_mean, in
         if LOGLEVEL is logging.DEBUG and (time.time() - start_time) > 1:
             fps_counter += 1
             fps = fps_counter / (time.time() - start_time)
+
             logging.debug(f'FPS: {fps}')
+            print(f"FPS: {fps}")
+
             fps_counter = 0
             start_time = time.time()
 
@@ -217,8 +223,6 @@ def signal_handler(sig, frame):
     # Print a status message
     print("[INFO] You pressed `ctrl + c`! Exiting...")
     # Exit
-    #setServoAngle(pan_servo, 100)
-    #setServoAngle(tilt_servo, 90)  
     GPIO.cleanup()
     sys.exit()
     
@@ -249,6 +253,7 @@ def set_servos(tlt, pan):
         print(f"Limited Pan angle is {pan_angle}")
         tilt_angle = limit_range(tilt_angle, servoRange[0], servoRange[1])
         setServoAngle(tilt_servo, tilt_angle)
+
         print(f"Limited Tilt angle is {tilt_angle}")
         logging.info(f"Limited Pan angle is {tilt_angle}")
 
@@ -261,8 +266,14 @@ def pid_process(output, p, i, d, box_coord, origin_coord, action):
 
     while True:
         error = origin_coord - box_coord.value
+
+        print(f"Error is: {error}")
+
         output.value = p.update(error)
-        logging.info(f'{action} error {error} angle: {output.value}')
+
+        print(f"PID output is: {output.value}")
+
+        #logging.info(f'{action} error {error} angle: {output.value}')
 
 def pantilt_process_manager(
     edge_tpu=False,
@@ -274,11 +285,11 @@ def pantilt_process_manager(
     with Manager() as manager:
         start_time = time.time()
         print(f"Program started at: {start_time}")
-        center_x = manager.Value('i', 0)
-        center_y = manager.Value('i', 0)
+        frame_center_x = manager.Value('i', 0)
+        frame_center_y = manager.Value('i', 0)
 
-        center_x.value = RESOLUTION[0] // 2
-        center_y.value = RESOLUTION[1] // 2
+        frame_center_x.value = RESOLUTION[0] // 2
+        frame_center_y.value = RESOLUTION[1] // 2
 
         pan = manager.Value('i', 0)
         tilt = manager.Value('i', 0)
@@ -292,13 +303,13 @@ def pantilt_process_manager(
         tilt_d = manager.Value('f', 0)
 
         detect_process = Process(target=run_detect,
-                                  args=(center_x, center_y, labels, edge_tpu, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, output_details))
+                                  args=(frame_center_x, frame_center_y, labels, edge_tpu, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, output_details))
 
         pan_process = Process(target=pid_process,
-                              args=(pan, pan_p, pan_i, pan_d, center_x, CENTER[0], 'pan'))
+                              args=(pan, pan_p, pan_i, pan_d, frame_center_x, CENTER[0], 'pan'))
 
         tilt_process = Process(target=pid_process,
-                               args=(tilt, tilt_p, tilt_i, tilt_d, center_y, CENTER[1], 'tilt'))
+                               args=(tilt, tilt_p, tilt_i, tilt_d, frame_center_y, CENTER[1], 'tilt'))
 
         servo_process = Process(target=set_servos, args=(pan, tilt))
 
