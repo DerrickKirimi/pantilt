@@ -19,8 +19,8 @@ LOGLEVEL = logging.getLogger().getEffectiveLevel()
 
 RESOLUTION = (320, 320)
 
-SERVO_MIN = 30
-SERVO_MAX = 145
+#SERVO_MIN = 30
+#SERVO_MAX = 145
 
 CENTER = (
     RESOLUTION[0] // 2,
@@ -138,7 +138,7 @@ frame_rate_calc = 1
 freq = cv2.getTickFrequency()
 
 
-def run_detect(center_x, center_y, labels, edge_tpu, interpreter, input_mean, input_std, imW, imH, min_conf_threshold, output_details):
+def run_detect(obj_center_x, obj_center_y, labels, edge_tpu, interpreter, input_mean, input_std, imW, imH, min_conf_threshold, output_details):
     videostream = VideoStream(resolution=(imW, imH), framerate=30).start()
     time.sleep(1)
     cv2.namedWindow('Object detector', cv2.WINDOW_NORMAL)
@@ -193,8 +193,8 @@ def run_detect(center_x, center_y, labels, edge_tpu, interpreter, input_mean, in
                 #center_x.value = obj_Xcenter
                 #center_y.value = obj_Ycenter
 
-                logging.info(f'Tracking {object_name} Object Center X {obj_center_x} Object Center Y {obj_center_y}')
-                print(f'Tracking {object_name} Object Center X {obj_center_x} Object Center Y {obj_center_y}')
+                logging.info(f'Tracking {object_name} X {obj_center_x} Y {obj_center_y}')
+                print(f'Tracking {object_name} X {obj_center_x} Y {obj_center_y}')
 
         cv2.putText(frame, 'FPS: {0:.2f}'.format(frame_rate_calc), (30, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0), 2, cv2.LINE_AA)
         cv2.imshow('Object detector', frame)
@@ -251,21 +251,22 @@ def set_servos(tlt, pan):
         pan_angle = limit_range(pan_angle, servoRange[0], servoRange[1])
         setServoAngle(pan_servo, pan_angle)
         print(f"Limited Pan angle is {pan_angle}")
+        logging.info(f"Limited Pan angle is {pan_angle}")
         tilt_angle = limit_range(tilt_angle, servoRange[0], servoRange[1])
         setServoAngle(tilt_servo, tilt_angle)
 
         print(f"Limited Tilt angle is {tilt_angle}")
-        logging.info(f"Limited Pan angle is {tilt_angle}")
+        logging.info(f"Limited Tilt angle is {tilt_angle}")
 
 
-def pid_process(output, p, i, d, box_coord, origin_coord, action):
+def pid_process(output, p, i, d, obj_center, frame_center, action):
     signal.signal(signal.SIGINT, signal_handler)
 
     p = PIDController(p.value, i.value, d.value)
     p.reset()
 
     while True:
-        error = origin_coord - box_coord.value
+        error = frame_center - obj_center.value
 
         print(f"Error is: {error}")
 
@@ -291,6 +292,9 @@ def pantilt_process_manager(
         frame_center_x.value = RESOLUTION[0] // 2
         frame_center_y.value = RESOLUTION[1] // 2
 
+        obj_center_x = manager.Value('i', 0)
+        obj_center_y = manager.Value('i', 0)
+
         pan = manager.Value('i', 0)
         tilt = manager.Value('i', 0)
 
@@ -303,13 +307,13 @@ def pantilt_process_manager(
         tilt_d = manager.Value('f', 0)
 
         detect_process = Process(target=run_detect,
-                                  args=(frame_center_x, frame_center_y, labels, edge_tpu, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, output_details))
+                                  args=(obj_center_x, obj_center_y, labels, edge_tpu, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, output_details))
 
         pan_process = Process(target=pid_process,
-                              args=(pan, pan_p, pan_i, pan_d, frame_center_x, CENTER[0], 'pan'))
+                              args=(pan, pan_p, pan_i, pan_d, obj_center_x, CENTER[0], 'pan'))
 
         tilt_process = Process(target=pid_process,
-                               args=(tilt, tilt_p, tilt_i, tilt_d, frame_center_y, CENTER[1], 'tilt'))
+                               args=(tilt, tilt_p, tilt_i, tilt_d,obj_center_y, CENTER[1], 'tilt'))
 
         servo_process = Process(target=set_servos, args=(pan, tilt))
 
