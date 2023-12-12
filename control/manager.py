@@ -43,7 +43,7 @@ tilt_servo = GPIO.PWM(tilt_pin, 50)
 
 #servoRange = (130, 145)
 #servoRange = (40, 130)
-servoRange = (40, 80)
+servoRange = (0, 180)
 
 # Replace with your actual paths and parameters
 # Define and parse input arguments
@@ -145,7 +145,7 @@ def run_detect(obj_center_x, obj_center_y, labels, edge_tpu, interpreter, input_
 
     frame_rate_calc = 1
     freq = cv2.getTickFrequency()
-    start_time = time.time()
+    detect_start_time = time.time()
     fps_counter = 0
 
     while True:
@@ -203,18 +203,24 @@ def run_detect(obj_center_x, obj_center_y, labels, edge_tpu, interpreter, input_
         time1 = (t2 - t1) / freq
         frame_rate_calc = 1 / time1
 
+        timeofDetection = time.time() - detect_start_time
+        print(f'DETECTION TIME: {timeofDetection}')
+
         if cv2.waitKey(1) == ord('q'):
             break
 
-        if LOGLEVEL is logging.DEBUG and (time.time() - start_time) > 1:
+        if LOGLEVEL is logging.DEBUG and (time.time() - detect_start_time) > 1:
             fps_counter += 1
-            fps = fps_counter / (time.time() - start_time)
+            fps = fps_counter / (time.time() - detect_start_time)
 
             logging.debug(f'FPS: {fps}')
             print(f"FPS: {fps}")
 
             fps_counter = 0
-            start_time = time.time()
+            detect_start_time = time.time()
+
+            timeofDetection = time.time() - detect_start_time
+            print(f"DETECTION TIME: {timeofDetection}")
 
     cv2.destroyAllWindows()
     videostream.stop()
@@ -318,12 +324,12 @@ def pantilt_process_manager(
         servo_process = Process(target=set_servos, args=(pan, tilt))
 
         detect_process.start()
-        pan_process.start()
+        #pan_process.start()
         tilt_process.start()
         servo_process.start()
 
         detect_process.join()
-        pan_process.join()
+        #pan_process.join()
         tilt_process.join()
         servo_process.join()
 
