@@ -1,6 +1,13 @@
 Problem: Error automatically starts at 160 rather than zero independent of cam orientation
 Pan angle starts automatically at 40 deg
- python control/manager.py --modeldir object_detection/coco_ssd_mobilenet_v1
+
+Error = objcenterx - framecenterx
+As cam orientation doesnt matter, should be framecenter problem due to selection of resolution.
+
+
+motors into spin: too many floats in angle or angle/18. + 3. >> max dutycycle
+ 
+python control/manager.py --modeldir object_detection/coco_ssd_mobilenet_v1
 Program started at: 1702341813.4730642
 Error is: 160
 PID output is: 40.03834533691406

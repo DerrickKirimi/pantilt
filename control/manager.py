@@ -17,7 +17,8 @@ logging.basicConfig()
 logging.getLogger().setLevel(logging.DEBUG)
 LOGLEVEL = logging.getLogger().getEffectiveLevel()
 
-RESOLUTION = (320, 320)
+#RESOLUTION = (320, 320)
+RESOLUTION = (640, 480)
 
 #SERVO_MIN = 30
 #SERVO_MAX = 145
@@ -138,7 +139,7 @@ frame_rate_calc = 1
 freq = cv2.getTickFrequency()
 
 
-def run_detect(obj_center_x, obj_center_y, labels, edge_tpu, interpreter, input_mean, input_std, imW, imH, min_conf_threshold, output_details):
+def run_detect(obj_cx, obj_cy, frame_cx,frame_cy, labels, edge_tpu, interpreter, input_mean, input_std, imW, imH, min_conf_threshold, output_details):
     videostream = VideoStream(resolution=(imW, imH), framerate=30).start()
     time.sleep(1)
     cv2.namedWindow('Object detector', cv2.WINDOW_NORMAL)
@@ -186,15 +187,20 @@ def run_detect(obj_center_x, obj_center_y, labels, edge_tpu, interpreter, input_
                 cv2.putText(frame, label, (xmin, label_ymin - 7), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2)
 
                  # Draw circle in center
-                obj_center_x = xmin + (int(round((xmax - xmin) / 2)))
-                obj_center_y = ymin + (int(round((ymax - ymin) / 2)))
-                cv2.circle(frame, (obj_center_x, obj_center_y), 5, (0, 0, 255), thickness=-1)
+                obj_cx = xmin + (int(round((xmax - xmin) / 2)))
+                obj_cy = ymin + (int(round((ymax - ymin) / 2)))
+                frame_cx = RESOLUTION[0] // 2
+                frame_cy = RESOLUTION[1] // 2
+                cv2.circle(frame, (obj_cx, obj_cy), 5, (0, 0, 255), thickness=-1)
+                #print(f'DETECTOR OBJ_CENTER: {obj_cx}X {obj_cy}Y')
+                cv2.circle(frame,(frame_cx, frame_cy), 5, (0, 255, 0), thickness=-1)
+                #print(f'DETECTOR FRAME_CENTER: {frame_cx}X {frame_cy}Y')
 
                 #center_x.value = obj_Xcenter
                 #center_y.value = obj_Ycenter
 
-                logging.info(f'Tracking {object_name} X {obj_center_x} Y {obj_center_y}')
-                print(f'Tracking {object_name} X {obj_center_x} Y {obj_center_y}')
+                logging.info(f'Detector Tracking {object_name} X {obj_cx} Y {obj_cy}')
+                print(f'Detector Tracking {object_name} X {obj_cx} Y {obj_cy}')
 
         cv2.putText(frame, 'FPS: {0:.2f}'.format(frame_rate_calc), (30, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0), 2, cv2.LINE_AA)
         cv2.imshow('Object detector', frame)
@@ -269,12 +275,23 @@ def set_servos(tlt, pan):
 
 def pid_process(output, p, i, d, obj_center, frame_center, action):
     signal.signal(signal.SIGINT, signal_handler)
+    if action == "pan":
+        print(f'PID OBJ_C: {obj_center}X')          
+        print(f'PID FRAME_C: {frame_center}X')
+    if action == "tilt":
+        print(f'PID OBJ_C: {obj_center}Y')          
+        print(f'PID FRAME_C: {frame_center}Y')
+        
+
 
     p = PIDController(p.value, i.value, d.value)
     p.reset()
 
     while True:
-        error = frame_center - obj_center.value
+        logging.info(f'PID Tracking {obj_center} From {frame_center}')
+        print(f'PID Tracking {obj_center} From {frame_center}')
+
+        error = frame_center.value - obj_center.value
 
         print(f"Error is: {error}")
 
@@ -294,14 +311,14 @@ def pantilt_process_manager(
     with Manager() as manager:
         start_time = time.time()
         print(f"Program started at: {start_time}")
-        frame_center_x = manager.Value('i', 0)
-        frame_center_y = manager.Value('i', 0)
+        frame_cx = manager.Value('i', 0)
+        frame_cy = manager.Value('i', 0)
 
-        frame_center_x.value = RESOLUTION[0] // 2
-        frame_center_y.value = RESOLUTION[1] // 2
+        frame_cx.value = RESOLUTION[0] // 2
+        frame_cy.value = RESOLUTION[1] // 2
 
-        obj_center_x = manager.Value('i', 0)
-        obj_center_y = manager.Value('i', 0)
+        obj_cx = manager.Value('i', 0)
+        obj_cy = manager.Value('i', 0)
 
         pan = manager.Value('i', 0)
         tilt = manager.Value('i', 0)
@@ -315,13 +332,13 @@ def pantilt_process_manager(
         tilt_d = manager.Value('f', 0)
 
         detect_process = Process(target=run_detect,
-                                  args=(obj_center_x, obj_center_y, labels, edge_tpu, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, output_details))
+                                  args=(obj_cx, obj_cy, frame_cx, frame_cy, labels, edge_tpu, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, output_details))
 
         pan_process = Process(target=pid_process,
-                              args=(pan, pan_p, pan_i, pan_d, obj_center_x, CENTER[0], 'pan'))
+                              args=(pan, pan_p, pan_i, pan_d, obj_cx, frame_cx, 'pan'))
 
         tilt_process = Process(target=pid_process,
-                               args=(tilt, tilt_p, tilt_i, tilt_d,obj_center_y, CENTER[1], 'tilt'))
+                               args=(tilt, tilt_p, tilt_i, tilt_d,obj_cy, frame_cy, 'tilt'))
 
         servo_process = Process(target=set_servos, args=(pan, tilt))
 
