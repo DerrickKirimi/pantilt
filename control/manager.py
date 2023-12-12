@@ -275,12 +275,14 @@ def set_servos(tlt, pan):
 
 def pid_process(output, p, i, d, obj_center, frame_center, action):
     signal.signal(signal.SIGINT, signal_handler)
-    if action == "pan":
-        print(f'PID OBJ_C: {obj_center}X')          
-        print(f'PID FRAME_C: {frame_center}X')
-    if action == "tilt":
-        print(f'PID OBJ_C: {obj_center}Y')          
-        print(f'PID FRAME_C: {frame_center}Y')
+    if action == 'pan':
+        print("PAN:")
+        print(f'PID OBJ_C: {obj_center.value}X')          
+        print(f'PID FRAME_C: {frame_center.value}X')
+    if action == 'tilt':
+        print("TILT:")
+        print(f'PID OBJ_C: {obj_center.value}Y')          
+        print(f'PID FRAME_C: {frame_center.value}Y')
         
 
 
@@ -288,8 +290,8 @@ def pid_process(output, p, i, d, obj_center, frame_center, action):
     p.reset()
 
     while True:
-        logging.info(f'PID Tracking {obj_center} From {frame_center}')
-        print(f'PID Tracking {obj_center} From {frame_center}')
+        logging.info(f'PID Tracking {obj_center.value} From {frame_center.value}')
+        print(f'PID Tracking {obj_center.value} From {frame_center.value}')
 
         error = frame_center.value - obj_center.value
 
