@@ -243,7 +243,7 @@ def signal_handler(sig, frame):
     
 def setServoAngle(servo, angle):
     print("Set servo angle:", angle)
-    sys.stdout.flush()
+    #sys.stdout.flush()
     servo.start(0)
     dutyCycle = angle / 18. + 3.
     servo.ChangeDutyCycle(dutyCycle)

@@ -240,9 +240,9 @@ def signal_handler(sig, frame):
     
 def setServoAngle(servo, angle):
     print("Set servo angle:", angle)
-    sys.stdout.flush()
+    #sys.stdout.flush()
     servo.start(0)
-    dutyCycle = angle / 18. + 3.
+    dutyCycle = angle / 18. + 2.
     servo.ChangeDutyCycle(dutyCycle)
     time.sleep(0.3)
     servo.stop()
@@ -257,15 +257,17 @@ def set_servos(tlt, pan):
     print("Inside set_servos function")
     while True:
         print("Inside set_servos loop")
-        sys.stdout.flush()
+        #sys.stdout.flush()
         pan_angle = pan.value
         tilt_angle = tlt.value
 
 #filter out noisy angle changes lower than 5deg with a lowpass filter
         pan_angle = limit_range(pan_angle, servoRange[0], servoRange[1])
         setServoAngle(pan_servo, pan_angle)
+
         print(f"Limited Pan angle is {pan_angle}")
         logging.info(f"Limited Pan angle is {pan_angle}")
+
         tilt_angle = limit_range(tilt_angle, servoRange[0], servoRange[1])
         setServoAngle(tilt_servo, tilt_angle)
 
@@ -275,23 +277,26 @@ def set_servos(tlt, pan):
 
 def pid_process(output, p, i, d, obj_center, frame_center, action):
     signal.signal(signal.SIGINT, signal_handler)
-    if action == 'pan':
-        print("PAN:")
-        print(f'PID OBJ_C: {obj_center.value}X')          
-        print(f'PID FRAME_C: {frame_center.value}X')
-    if action == 'tilt':
-        print("TILT:")
-        print(f'PID OBJ_C: {obj_center.value}Y')          
-        print(f'PID FRAME_C: {frame_center.value}Y')
-        
-
-
+    
     p = PIDController(p.value, i.value, d.value)
     p.reset()
 
     while True:
-        logging.info(f'PID Tracking {obj_center.value} From {frame_center.value}')
-        print(f'PID Tracking {obj_center.value} From {frame_center.value}')
+        if action == 'pan':
+            print("PAN:")
+            print(f'PID OBJ_C: {obj_center.value}X')          
+            print(f'PID FRAME_C: {frame_center.value}X')
+            logging.info(f'PID Tracking {obj_center.value}X From {frame_center.value}X')
+            print(f'PID Tracking {obj_center.value}X From {frame_center.value}X')
+        if action == 'tilt':
+            print("TILT:")
+            print(f'PID OBJ_C: {obj_center.value}Y')          
+            print(f'PID FRAME_C: {frame_center.value}Y')
+            logging.info(f'PID Tracking {obj_center.value}Y From {frame_center.value}Y')
+            print(f'PID Tracking {obj_center.value}Y From {frame_center.value}Y')
+        
+        #logging.info(f'PID Tracking {obj_center.value} From {frame_center.value}')
+        #print(f'PID Tracking {obj_center.value} From {frame_center.value}')
 
         error = frame_center.value - obj_center.value
 

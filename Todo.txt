@@ -3,6 +3,21 @@ Calibrate camera (and motors) to choose point where:
  framecenter = objcenter, thus PID error = 0, motors = still
 
 Find reason for pan and tilt conflation.
+output004: pan response satisfactory left to right tho panprocess is commented out, showing response pan runs in tiltprocess
+output005: only tilt process is active
+            This time tilt motor predominantly turns at start, then both, then pan takes over.
+Verdict: Either:
+            
+            tilt process writes non-judicially to pan and servo motor:
+                This requires a decesion mechanism or an oop pattern to write to 
+                decorate base pid class based on whether it is instatiated in pid_process ((as pan_pid or tilt_pid)
+            There exists a remnant ghost in the vires tilt or pan value biasing the motors to output when they shouldn't.
+                this requires calibration as defined above.
+
+check pid_process and set_servos. Is problem in one or either or both (or none)
+
+Pan Motor now spins when pan angle is 180. check if limiting dutycyle by angle/18. + 2 changes that.
+
 Write the code out in one line so it runs linearly rather than using multiprocessing.
     Now that I am not using Manager.value to share process variables, I can have these as globals.
     More sequential run. 
