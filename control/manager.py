@@ -247,6 +247,7 @@ def limit_range(val, start, end):
 
 def set_servos(tlt, pan):
     signal.signal(signal.SIGINT, signal_handler)
+    time.sleep(0.6)
     print("Inside set_servos function")
     while True:
         print("Inside set_servos loop")
@@ -254,6 +255,7 @@ def set_servos(tlt, pan):
         pan_angle = pan.value
         tilt_angle = tlt.value
 
+#filter out noisy angle changes lower than 5deg with a lowpass filter
         pan_angle = limit_range(pan_angle, servoRange[0], servoRange[1])
         setServoAngle(pan_servo, pan_angle)
         print(f"Limited Pan angle is {pan_angle}")
