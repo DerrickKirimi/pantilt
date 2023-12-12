@@ -1,4 +1,15 @@
 Put lowpass filter to filter small detection changes and avoid flooding noisy data to motors
 Calibrate camera (and motors) to choose point where:
  framecenter = objcenter, thus PID error = 0, motors = still
+
 Find reason for pan and tilt conflation.
+Write the code out in one line so it runs linearly rather than using multiprocessing.
+    Now that I am not using Manager.value to share process variables, I can have these as globals.
+    More sequential run. 
+    Easier to measure metrics.
+
+    multiprocessing way:
+        Locking Mechanisms: If necessary, use locks (Lock or RLock)
+         to synchronize access to shared resources to avoid data corruption.
+         Take case where servo is writing previous detection output while detection has moved
+         on, and this being non-deterministic thus introducing entropy in servo movements
