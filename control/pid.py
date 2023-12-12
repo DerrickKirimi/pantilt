@@ -3,7 +3,7 @@ import time
 
 
 class PIDController:
-    def __init__(self, kP=4, kI=0, kD=0):
+    def __init__(self, kP=1, kI=0, kD=0):
 
         # initialize gains
         self.kP = kP
@@ -23,7 +23,7 @@ class PIDController:
         self.cI = 0
         self.cD = 0
 
-    def update(self, error, sleep=0.01):
+    def update(self, error, sleep=0.5):
 
         time.sleep(sleep)
         # grab the current time and calculate delta time / error
