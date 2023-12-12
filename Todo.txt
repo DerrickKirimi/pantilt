@@ -1,3 +1,4 @@
 Put lowpass filter to filter small detection changes and avoid flooding noisy data to motors
 Calibrate camera (and motors) to choose point where:
  framecenter = objcenter, thus PID error = 0, motors = still
+Find reason for pan and tilt conflation.
