@@ -1,0 +1,2 @@
+map pid output values 
+map servo input values after pid calculation in set_servo funtion(set_pan, set_tilt)
