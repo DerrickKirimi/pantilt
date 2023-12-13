@@ -301,7 +301,7 @@ def set_tilt(tilt, tilt_position):
 
         tilt_position = tilt_angle
 
-def set_pan(pan, pan_position):
+def set_pan(pan, pan_output, pan_position):
     signal.signal(signal.SIGINT, signal_handler)
     time.sleep(0.2)
     print("Inside set_pan function")
@@ -442,8 +442,8 @@ if __name__ == '__main__':
         pan_position = manager.Value('i', 0)
         tilt_position = manager.Value('i', 0)
 
-        pan = manager.Value('i', 0)
-        tilt = manager.Value('i', 0)
+        pan_output = manager.Value('i', 0)
+        tilt_output = manager.Value('i', 0)
 
         pan_p = manager.Value('f', 0.05)
         pan_i = manager.Value('f', 0.1)
@@ -463,15 +463,15 @@ if __name__ == '__main__':
                                #args=(tilt, tilt_p, tilt_i, tilt_d, obj_cy, frame_cy, 'tilt'))
 
         ppid_pan = Process(target=pan_pid,
-                              args=(pan, pan_p, pan_i, pan_d, obj_cx, frame_cx, 'pan'))
+                              args=(pan_output, pan_p, pan_i, pan_d, obj_cx, frame_cx, 'pan'))
 
         ppid_tilt = Process(target=tilt_pid,
-                               args=(tilt, tilt_p, tilt_i, tilt_d, obj_cy, frame_cy, 'tilt'))
+                               args=(tilt_output, tilt_p, tilt_i, tilt_d, obj_cy, frame_cy, 'tilt'))
 
         #servo_process = Process(target=set_servos, args=(pan, tilt, pan_position, tilt_position))
 
-        pset_pan = Process(target=set_pan, args=(pan, pan_position))
-        pset_tilt = Process(target=set_tilt, args=(tilt, tilt_position))
+        pset_pan = Process(target=set_pan, args=(servo, pan_output, pan_position))
+        pset_tilt = Process(target=set_tilt, args=(servo, tilt_output, tilt_position))
 
         detect_process.start()
         #pant_pid_process.start()
