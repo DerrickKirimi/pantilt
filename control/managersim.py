@@ -199,7 +199,7 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
                 crosshair_x.value = obj_cx
                 crosshair_y.value = obj_cy
 
-                logging.info(f'Detector Tracking {object_name} X {obj_cx} Y {obj_cy}')
+                ##logging.info(f'Detector Tracking {object_name} X {obj_cx} Y {obj_cy}')
                 #print(f'Detector Tracking {object_name} X {obj_cx} Y {obj_cy}')
 
 
@@ -273,13 +273,13 @@ def set_servos(tlt, pan, pan_position, tilt_position):
         setServoAngle(pan_pin, pan_angle)
 
         print(f"Limited Pan angle is {pan_angle}")
-        logging.info(f"Limited Pan angle is {pan_angle}")
+        ##logging.info(f"Limited Pan angle is {pan_angle}")
 
         tilt_angle = limit_range(tilt_angle, servoRange[0], servoRange[1])
         setServoAngle(tilt_pin, tilt_angle)
 
         print(f"Limited Tilt angle is {tilt_angle}")
-        logging.info(f"Limited Tilt angle is {tilt_angle}")
+        ##logging.info(f"Limited Tilt angle is {tilt_angle}")
         pan_position.value = pan_angle
         tilt_position.value = tilt_angle
 
@@ -300,7 +300,7 @@ def set_tilt(tilt, tilt_position):
         setServoAngle(tilt_pin, tilt_angle)
 
         print(f"Limited Tilt angle is {tilt_angle}")
-        logging.info(f"Limited Tilt angle is {tilt_angle}")
+        ##logging.info(f"Limited Tilt angle is {tilt_angle}")
 
         tilt_position.value = tilt_angle
 
@@ -319,7 +319,7 @@ def set_pan(pan, pan_position):
         setServoAngle(pan_pin, pan_angle)
 
         print(f"Limited Pan angle is {pan_angle}")
-        logging.info(f"Limited Pan angle is {pan_angle}")
+        ##logging.info(f"Limited Pan angle is {pan_angle}")
 
         pan_position.value = pan_angle
 
@@ -336,10 +336,10 @@ def pan_pid(output, p, i, d, obj_center, frame_center, action):
             print("PAN:")
             print(f'PID OBJ_X: {obj_center.value}X')          
             print(f'PID FRAME_X: {frame_center.value}X')
-            logging.info(f'PAN PID Tracking {obj_center.value}X From {frame_center.value}X')
+            ##logging.info(f'PAN PID Tracking {obj_center.value}X From {frame_center.value}X')
             print(f'PAN PID Tracking {obj_center.value}X From {frame_center.value}X')
         
-            #logging.info(f'PID Tracking {obj_center.value} From {frame_center.value}')
+            ###logging.info(f'PID Tracking {obj_center.value} From {frame_center.value}')
             #print(f'PID Tracking {obj_center.value} From {frame_center.value}')
 
             error = frame_center.value - obj_center.value
@@ -351,7 +351,7 @@ def pan_pid(output, p, i, d, obj_center, frame_center, action):
 
             print(f"PID output is: {output.value} ")
 
-            #logging.info(f'{action} error {error} angle: {output.value}')
+            ###logging.info(f'{action} error {error} angle: {output.value}')
 
 def tilt_pid(output, p, i, d, obj_center, frame_center, action):
     signal.signal(signal.SIGINT, signal_handler)
@@ -364,10 +364,10 @@ def tilt_pid(output, p, i, d, obj_center, frame_center, action):
             print("TILT:")
             print(f'PID OBJ_Y: {obj_center.value}Y')          
             print(f'PID FRAME_X: {frame_center.value}Y')
-            logging.info(f'TILT PID Tracking {obj_center.value}Y From {frame_center.value}Y')
+            ##logging.info(f'TILT PID Tracking {obj_center.value}Y From {frame_center.value}Y')
             print(f'TILT PID Tracking {obj_center.value}Y From {frame_center.value}Y')
         
-            #logging.info(f'PID Tracking {obj_center.value} From {frame_center.value}')
+            ###logging.info(f'PID Tracking {obj_center.value} From {frame_center.value}')
             #print(f'PID Tracking {obj_center.value} From {frame_center.value}')
 
             error = frame_center.value - obj_center.value
@@ -378,7 +378,7 @@ def tilt_pid(output, p, i, d, obj_center, frame_center, action):
 
             print(f"PID output is: {output.value}")
 
-            #logging.info(f'{action} error {error} angle: {output.value}')
+            ###logging.info(f'{action} error {error} angle: {output.value}')
 
 def servoTest():
     for i in range (40, 130, 15):
@@ -403,16 +403,16 @@ def pantilt_pid(output, p, i, d, obj_center, frame_center, action):
             print("PAN:")
             print(f'PID OBJ_C: {obj_center.value}X')          
             print(f'PID FRAME_C: {frame_center.value}X')
-            logging.info(f'PID Tracking {obj_center.value}X From {frame_center.value}X')
+            ##logging.info(f'PID Tracking {obj_center.value}X From {frame_center.value}X')
             print(f'PID Tracking {obj_center.value}X From {frame_center.value}X')
         elif action == 'tilt':
             print("TILT:")
             print(f'PID OBJ_C: {obj_center.value}Y')          
             print(f'PID FRAME_C: {frame_center.value}Y')
-            logging.info(f'PID Tracking {obj_center.value}Y From {frame_center.value}Y')
+            ##logging.info(f'PID Tracking {obj_center.value}Y From {frame_center.value}Y')
             print(f'PID Tracking {obj_center.value}Y From {frame_center.value}Y')
         
-        #logging.info(f'PID Tracking {obj_center.value} From {frame_center.value}')
+        ###logging.info(f'PID Tracking {obj_center.value} From {frame_center.value}')
         #print(f'PID Tracking {obj_center.value} From {frame_center.value}')
 
         error = frame_center.value - obj_center.value
@@ -423,7 +423,7 @@ def pantilt_pid(output, p, i, d, obj_center, frame_center, action):
 
         print(f"PID output is: {output.value}")
 
-        #logging.info(f'{action} error {error} angle: {output.value}')
+        ###logging.info(f'{action} error {error} angle: {output.value}')
 
 #def pantilt_process_manager(
     #edge_tpu=False,
