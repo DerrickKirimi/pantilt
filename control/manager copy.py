@@ -38,8 +38,8 @@ tilt_pin = 13
 GPIO.setup(pan_pin, GPIO.OUT)
 GPIO.setup(tilt_pin, GPIO.OUT)
 
-pan_servo = GPIO.PWM(pan_pin, 50)
-tilt_servo = GPIO.PWM(tilt_pin, 50)
+#pan_servo = GPIO.PWM(pan_pin, 50)
+#tilt_servo = GPIO.PWM(tilt_pin, 50)
 
 
 #servoRange = (130, 145)
@@ -139,7 +139,7 @@ frame_rate_calc = 1
 freq = cv2.getTickFrequency()
 
 
-def run_detect(obj_cx, obj_cy, frame_cx,frame_cy, labels, edge_tpu, interpreter, input_mean, input_std, imW, imH, min_conf_threshold, output_details):
+def run_detect(obj_cx, obj_cy, frame_cx,frame_cy, labels, interpreter, input_mean, input_std, imW, imH, min_conf_threshold, output_details):
     videostream = VideoStream(resolution=(imW, imH), framerate=30).start()
     time.sleep(1)
     cv2.namedWindow('Object detector', cv2.WINDOW_NORMAL)
@@ -239,7 +239,7 @@ def signal_handler(sig, frame):
     sys.exit()
     
 def setServoAngle(servo, angle):
-    #servo = GPIO.PWM(servo, 50)
+    servo = GPIO.PWM(servo, 50)
     servo.start(0)
     if angle <0:
         angle = 1
@@ -291,7 +291,7 @@ def set_tilt(tilt, tilt_position):
     print("Inside set_tilt function")
     while True:
         print("Inside set_tilt loop")
-        tilt_angle = tilt_position + tilt
+        tilt_angle = tilt_position.value + tilt.value
         
         tilt_angle = limit_range(tilt_angle, servoRange[0], servoRange[1])
         setServoAngle(tilt_pin, tilt_angle)
@@ -299,7 +299,7 @@ def set_tilt(tilt, tilt_position):
         print(f"Limited Tilt angle is {tilt_angle}")
         logging.info(f"Limited Tilt angle is {tilt_angle}")
 
-        tilt_position = tilt_angle
+        tilt_position.value = tilt_angle
 
 def set_pan(pan, pan_position):
     signal.signal(signal.SIGINT, signal_handler)
@@ -308,7 +308,7 @@ def set_pan(pan, pan_position):
     while True:
         print("Inside set_pan loop")
         #sys.stdout.flush()
-        pan_angle = pan_position + pan
+        pan_angle = pan_position.value + pan.value
         
 #filter out noisy angle changes lower than 5deg with a lowpass filter
         pan_angle = limit_range(pan_angle, servoRange[0], servoRange[1])
@@ -317,7 +317,7 @@ def set_pan(pan, pan_position):
         print(f"Limited Pan angle is {pan_angle}")
         logging.info(f"Limited Pan angle is {pan_angle}")
 
-        pan_position = pan_angle
+        pan_position.value = pan_angle
 
 def pan_pid(output, p, i, d, obj_center, frame_center, action):
     signal.signal(signal.SIGINT, signal_handler)
@@ -425,8 +425,8 @@ if __name__ == '__main__':
         print(f"Program started at: {start_time}")
 
         print("[INFO] Moving servos to initial position")
-        set_pan(pan_servo, 90)
-        set_tilt(tilt_servo, 90)
+        setServoAngle(pan_pin, 90)
+        setServoAngle(tilt_pin, 90)
         time.sleep(1)
 
         
@@ -454,7 +454,7 @@ if __name__ == '__main__':
         tilt_d = manager.Value('f', 0)
 
         detect_process = Process(target=run_detect,
-                                  args=(obj_cx, obj_cy, frame_cx, frame_cy, labels, edge_tpu, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, output_details))
+                                  args=(obj_cx, obj_cy, frame_cx, frame_cy, labels, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, output_details))
 
         #pant_pid_process = Process(target=pantilt_pid,
                               #args=(pan, pan_p, pan_i, pan_d, obj_cx, frame_cx, 'pan'))
