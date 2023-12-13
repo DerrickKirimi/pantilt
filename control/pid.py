@@ -23,7 +23,7 @@ class PIDController:
         self.cI = 0
         self.cD = 0
 
-    def update(self, error, sleep=0.5):
+    def update(self, error, sleep=0.3):
 
         time.sleep(sleep)
         # grab the current time and calculate delta time / error

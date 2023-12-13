@@ -156,7 +156,7 @@ freq = cv2.getTickFrequency()
 
 def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter, input_mean, input_std, imW, imH, min_conf_threshold, output_details):
     videostream = VideoStream(resolution=(imW, imH), framerate=30).start()
-    time.sleep(1)
+    time.sleep(2.0)
     cv2.namedWindow('Object detector', cv2.WINDOW_NORMAL)
 
     frame_rate_calc = 1
@@ -279,7 +279,7 @@ def in_range(val, start, end):
 
 def set_servos(tlt, pan, pan_position, tilt_position):
     signal.signal(signal.SIGINT, signal_handler)
-    time.sleep(0.2)
+    #time.sleep(0.2)
     logging.info("Inside set_servos function")
     while True:
         logging.info("Inside set_servos loop")
@@ -308,7 +308,7 @@ def set_servos(tlt, pan, pan_position, tilt_position):
 
 def set_tilt(tilt, tilt_position):
     signal.signal(signal.SIGINT, signal_handler)
-    time.sleep(0.2)
+    #time.sleep(0.2)
     logging.info("Inside set_tilt function")
     while True:
         logging.info("Inside set_tilt loop")
@@ -330,7 +330,7 @@ def set_tilt(tilt, tilt_position):
 
 def set_pan(pan, pan_position):
     signal.signal(signal.SIGINT, signal_handler)
-    time.sleep(0.2)
+    #time.sleep(0.2)
     logging.info("Inside set_pan function")
     while True:
         logging.info("Inside set_pan loop")
