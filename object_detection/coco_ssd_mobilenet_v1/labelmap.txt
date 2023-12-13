@@ -2,4 +2,3 @@ person
 car
 motorcycle
 bus
-
