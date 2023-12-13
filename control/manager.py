@@ -345,7 +345,7 @@ def pantilt_process_manager(
                               args=(pan, pan_p, pan_i, pan_d, obj_cx, frame_cx, 'pan'))
 
         tilt_process = Process(target=pid_process,
-                               args=(tilt, tilt_p, tilt_i, tilt_d,obj_cy, frame_cy, 'tilt'))
+                               args=(tilt, tilt_p, tilt_i, tilt_d, obj_cy, frame_cy, 'tilt'))
 
         servo_process = Process(target=set_servos, args=(pan, tilt))
 
