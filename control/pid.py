@@ -3,7 +3,7 @@ import time
 
 
 class PIDController:
-    def __init__(self, kP=10, kI=0, kD=0):
+    def __init__(self, kP=0.15, kI=0.1, kD=0):
 
         # initialize gains
         self.kP = kP
