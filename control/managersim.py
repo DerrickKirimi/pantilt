@@ -336,7 +336,7 @@ def set_pan(pan, pan_position):
         logging.info("Inside set_pan loop")
         #sys.stdout.flush()
         #pan_angle = pan_position.value + pan.value
-        pan_angle = pan.value
+        pan_angle = -1 * pan.value
         
 #filter out noisy angle changes lower than 5deg with a lowpass filter
         if in_range(pan_angle, servoRange[0], servoRange[1]):
@@ -370,7 +370,9 @@ def pan_pid(output, p, i, d, obj_center, frame_center, action):
         
             ###logging.info(f'PID Tracking {obj_center.value} From {frame_center.value}')
             #logging.info(f'PID Tracking {obj_center.value} From {frame_center.value}')
+            
 
+            
             error = frame_center.value - obj_center.value
 
             logging.info(f"Error is: {error}")
