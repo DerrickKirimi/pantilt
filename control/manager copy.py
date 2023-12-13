@@ -268,13 +268,13 @@ def set_servos(tlt, pan, pan_position, tilt_position):
 
 #filter out noisy angle changes lower than 5deg with a lowpass filter
         pan_angle = limit_range(pan_angle, servoRange[0], servoRange[1])
-        setServoAngle(pan_servo, pan_angle)
+        setServoAngle(pan_pin, pan_angle)
 
         print(f"Limited Pan angle is {pan_angle}")
         logging.info(f"Limited Pan angle is {pan_angle}")
 
         tilt_angle = limit_range(tilt_angle, servoRange[0], servoRange[1])
-        setServoAngle(tilt_servo, tilt_angle)
+        setServoAngle(tilt_pin, tilt_angle)
 
         print(f"Limited Tilt angle is {tilt_angle}")
         logging.info(f"Limited Tilt angle is {tilt_angle}")
