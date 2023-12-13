@@ -1,0 +1,6152 @@
+Program started at: 1702216655.2127028
+Inside set_servos function
+Inside set_servos loop
+Set servo angle: 40
+Limited Pan angle is 40
+Set servo angle: 40
+Limited Tilt angle is 40
+Inside set_servos loop
+Set servo angle: 43.38897705078125
+Limited Pan angle is 43.38897705078125
+Set servo angle: 40
+Limited Tilt angle is 40
+Inside set_servos loop
+Set servo angle: 62.799415588378906
+Limited Pan angle is 62.799415588378906
+Set servo angle: 40
+Limited Tilt angle is 40
+Inside set_servos loop
+Set servo angle: 80
+Error is: 160
+PID output is: 8.187629699707031
+Error is: 160
+PID output is: 8.358341217041016
+Error is: 160
+PID output is: 8.527687072753906
+Error is: 160
+PID output is: 8.697822570800781
+Error is: 160
+PID output is: 8.8695068359375
+Error is: 160
+PID output is: 9.040225982666016
+Error is: 160
+PID output is: 9.210376739501953
+Error is: 160
+PID output is: 9.380744934082031
+Error is: 160
+PID output is: 9.55230712890625
+Error is: 160
+PID output is: 9.722721099853516
+Error is: 160
+PID output is: 9.898441314697266
+Error is: 160
+PID output is: 10.071098327636719
+Error is: 160
+PID output is: 10.24178695678711
+Error is: 160
+PID output is: 10.411140441894531
+Error is: 160
+PID output is: 10.581520080566406
+Error is: 160
+PID output is: 10.751296997070312
+Error is: 160
+PID output is: 10.920494079589844
+Error is: 160
+PID output is: 11.090644836425781
+Error is: 160
+PID output is: 11.259750366210938
+Error is: 160
+PID output is: 11.428871154785156
+Error is: 160
+PID output is: 11.599105834960938
+Error is: 160
+PID output is: 11.768123626708984
+Error is: 160
+PID output is: 11.938026428222656
+Error is: 160
+PID output is: 12.108711242675781
+Error is: 160
+PID output is: 12.28287124633789
+Error is: 160
+PID output is: 12.457427978515625
+Error is: 160
+PID output is: 12.62875747680664
+Error is: 160
+PID output is: 12.798694610595703
+Error is: 160
+PID output is: 12.970947265625
+Error is: 160
+PID output is: 13.144989013671875
+Error is: 160
+PID output is: 13.317508697509766
+Error is: 160
+PID output is: 13.488758087158203
+Error is: 160
+PID output is: 13.707695007324219
+Error is: 160
+PID output is: 13.880439758300781
+Error is: 160
+PID output is: 14.051910400390625
+Error is: 160
+PID output is: 14.222831726074219
+Error is: 160
+PID output is: 14.39365005493164
+Error is: 160
+PID output is: 14.56435775756836
+Error is: 160
+PID output is: 14.735069274902344
+Error is: 160
+PID output is: 14.905693054199219
+Error is: 160
+PID output is: 15.076339721679688
+Error is: 160
+PID output is: 15.24749755859375
+Error is: 160
+PID output is: 15.418888092041016
+Error is: 160
+PID output is: 15.590267181396484
+Error is: 160
+PID output is: 15.7646484375
+Error is: 160
+PID output is: 15.936325073242188
+Error is: 160
+PID output is: 16.107025146484375
+Error is: 160
+PID output is: 16.277740478515625
+Error is: 160
+PID output is: 16.448734283447266
+Error is: 160
+PID output is: 16.619327545166016
+Error is: 160
+PID output is: 16.790035247802734
+Error is: 160
+PID output is: 16.96187973022461
+Error is: 160
+PID output is: 17.132549285888672
+Error is: 160
+PID output is: 17.303096771240234
+Error is: 160
+PID output is: 17.474143981933594
+Error is: 160
+PID output is: 17.644329071044922
+Error is: 160
+PID output is: 17.81329345703125
+Error is: 160
+PID output is: 17.985370635986328
+Error is: 160
+PID output is: 18.157470703125
+Error is: 160
+PID output is: 18.332317352294922
+Error is: 160
+PID output is: 18.50865936279297
+Error is: 160
+PID output is: 18.68160629272461
+Error is: 160
+PID output is: 18.853397369384766
+Error is: 160
+PID output is: 19.024494171142578
+Error is: 160
+PID output is: 19.19573974609375
+Error is: 160
+PID output is: 19.366703033447266
+Error is: 160
+PID output is: 19.539649963378906
+Error is: 160
+PID output is: 19.711448669433594
+Error is: 160
+PID output is: 19.88263702392578
+Error is: 160
+PID output is: 20.056926727294922
+Error is: 160
+PID output is: 20.22918701171875
+Error is: 160
+PID output is: 20.400447845458984
+Error is: 160
+PID output is: 20.572479248046875
+Error is: 160
+PID output is: 20.746261596679688
+Error is: 160
+PID output is: 20.919296264648438
+Error is: 160
+PID output is: 21.092273712158203
+Error is: 160
+PID output is: 21.264331817626953
+Error is: 160
+PID output is: 21.436168670654297
+Error is: 160
+PID output is: 21.606414794921875
+Error is: 160
+PID output is: 21.779571533203125
+Error is: 160
+PID output is: 21.952068328857422
+Error is: 160
+PID output is: 22.15876007080078
+Error is: 160
+PID output is: 22.333332061767578
+Error is: 160
+PID output is: 22.503890991210938
+Error is: 160
+PID output is: 22.674468994140625
+Error is: 160
+PID output is: 22.848106384277344
+Error is: 160
+PID output is: 23.020782470703125
+Error is: 160
+PID output is: 23.226764678955078
+Error is: 160
+PID output is: 23.398635864257812
+Error is: 160
+PID output is: 23.56976318359375
+Error is: 160
+PID output is: 23.744293212890625
+Error is: 160
+PID output is: 23.921977996826172
+Error is: 160
+PID output is: 24.095417022705078
+Error is: 160
+PID output is: 24.269332885742188
+Error is: 160
+PID output is: 24.444164276123047
+Error is: 160
+PID output is: 24.617107391357422
+Error is: 160
+PID output is: 24.788604736328125
+Error is: 160
+PID output is: 24.96300506591797
+Error is: 160
+PID output is: 25.13718032836914
+Error is: 160
+PID output is: 25.309730529785156
+Error is: 160
+PID output is: 25.495330810546875
+Error is: 160
+PID output is: 25.668270111083984
+Error is: 160
+PID output is: 25.840476989746094
+Error is: 160
+PID output is: 26.01400375366211
+Error is: 160
+PID output is: 26.188846588134766
+Error is: 160
+PID output is: 26.36196517944336
+Error is: 160
+PID output is: 26.538349151611328
+Error is: 160
+PID output is: 26.71106719970703
+Error is: 160
+PID output is: 26.884212493896484
+Error is: 160
+PID output is: 27.05823516845703
+Error is: 160
+PID output is: 27.23455047607422
+Error is: 160
+PID output is: 27.410076141357422
+Error is: 160
+PID output is: 27.596851348876953
+Error is: 160
+PID output is: 27.770069122314453
+Error is: 160
+PID output is: 27.940296173095703
+Error is: 160
+PID output is: 28.131954193115234
+Error is: 160
+PID output is: 28.31835174560547
+Error is: 160
+PID output is: 28.496795654296875
+Error is: 160
+PID output is: 28.6700439453125
+Error is: 160
+PID output is: 28.842418670654297
+Error is: 160
+PID output is: 29.01401138305664
+Error is: 160
+PID output is: 29.188961029052734
+Error is: 160
+PID output is: 29.365318298339844
+Error is: 160
+PID output is: 29.538555145263672
+Error is: 160
+PID output is: 29.715538024902344
+Error is: 160
+PID output is: 29.888755798339844
+Error is: 160
+PID output is: 30.060680389404297
+Error is: 160
+PID output is: 30.233985900878906
+Error is: 160
+PID output is: 30.40789031982422
+Error is: 160
+PID output is: 30.5809326171875
+Error is: 160
+PID output is: 30.756004333496094
+Error is: 160
+PID output is: 30.928482055664062
+Error is: 160
+PID output is: 31.101238250732422
+Error is: 160
+PID output is: 31.275638580322266
+Error is: 160
+PID output is: 31.449626922607422
+Error is: 160
+PID output is: 31.631122589111328
+Error is: 160
+PID output is: 31.808456420898438
+Error is: 160
+PID output is: 31.98333740234375
+Error is: 160
+PID output is: 32.155914306640625
+Error is: 160
+PID output is: 32.32832336425781
+Error is: 160
+PID output is: 32.50392150878906
+Error is: 160
+PID output is: 32.68125915527344
+Error is: 160
+PID output is: 32.862972259521484
+Error is: 160
+PID output is: 33.04180908203125
+Error is: 160
+PID output is: 33.21720886230469
+Error is: 160
+PID output is: 33.392940521240234
+Error is: 160
+PID output is: 33.56657409667969
+Error is: 160
+PID output is: 33.74577713012695
+Error is: 160
+PID output is: 33.92226028442383
+Error is: 160
+PID output is: 34.10084915161133
+Error is: 160
+PID output is: 34.2722053527832
+Error is: 160
+PID output is: 34.44517517089844
+Error is: 160
+PID output is: 34.62694549560547
+Error is: 160
+PID output is: 34.80463790893555
+Error is: 160
+PID output is: 34.98629379272461
+Error is: 160
+PID output is: 35.160675048828125
+Error is: 160
+PID output is: 35.33302688598633
+Error is: 160
+PID output is: 35.50470733642578
+Error is: 160
+PID output is: 35.67841339111328
+Error is: 160
+PID output is: 35.85340881347656
+Error is: 160
+PID output is: 36.02967834472656
+Error is: 160
+PID output is: 36.20626449584961
+Error is: 160
+PID output is: 36.380088806152344
+Error is: 160
+PID output is: 36.55012130737305
+Error is: 160
+PID output is: 36.724449157714844
+Error is: 160
+PID output is: 36.89723587036133
+Error is: 160
+PID output is: 37.0736198425293
+Error is: 160
+PID output is: 37.25764083862305
+Error is: 160
+PID output is: 37.42996597290039
+Error is: 160
+PID output is: 37.60187530517578
+Error is: 160
+PID output is: 37.780059814453125
+Error is: 160
+PID output is: 37.95512008666992
+Error is: 160
+PID output is: 38.13095474243164Error is: 160
+PID output is: 24.33587646484375
+Error is: 160
+PID output is: 24.68011474609375
+Error is: 160
+PID output is: 25.02105712890625
+Error is: 160
+PID output is: 25.361351013183594
+Error is: 160
+PID output is: 25.70789337158203
+Error is: 160
+PID output is: 26.04956817626953
+Error is: 160
+PID output is: 26.39080047607422
+Error is: 160
+PID output is: 26.736434936523438
+Error is: 160
+PID output is: 27.079864501953125
+Error is: 160
+PID output is: 27.42156982421875
+Error is: 160
+PID output is: 27.7691650390625
+Error is: 160
+PID output is: 28.109535217285156
+Error is: 160
+PID output is: 28.447975158691406
+Error is: 160
+PID output is: 28.788475036621094
+Error is: 160
+PID output is: 29.130569458007812
+Error is: 160
+PID output is: 29.469154357910156
+Error is: 160
+PID output is: 29.808135986328125
+Error is: 160
+PID output is: 30.146522521972656
+Error is: 160
+PID output is: 30.48534393310547
+Error is: 160
+PID output is: 30.82354736328125
+Error is: 160
+PID output is: 31.162429809570312
+Error is: 160
+PID output is: 31.503036499023438
+Error is: 160
+PID output is: 31.841209411621094
+Error is: 160
+PID output is: 32.183631896972656
+Error is: 160
+PID output is: 32.53321075439453
+Error is: 160
+PID output is: 32.883705139160156
+Error is: 160
+PID output is: 33.22340393066406
+Error is: 160
+PID output is: 33.56224822998047
+Error is: 160
+PID output is: 33.903076171875
+Error is: 160
+PID output is: 34.248130798339844
+Error is: 160
+PID output is: 34.591957092285156
+Error is: 160
+PID output is: 34.93181610107422
+Error is: 160
+PID output is: 35.28056335449219
+Error is: 160
+PID output is: 35.62073516845703
+Error is: 160
+PID output is: 35.959747314453125
+Error is: 160
+PID output is: 36.298057556152344
+Error is: 160
+PID output is: 36.63495635986328
+Error is: 160
+PID output is: 36.97248077392578
+Error is: 160
+PID output is: 37.309120178222656
+Error is: 160
+PID output is: 37.64641571044922
+Error is: 160
+PID output is: 37.98298645019531
+Error is: 160
+PID output is: 38.3221435546875
+Error is: 160
+PID output is: 38.66096496582031
+Error is: 160
+PID output is: 39.00016784667969
+Error is: 160
+PID output is: 39.33879852294922
+Error is: 160
+PID output is: 39.67781066894531
+Error is: 160
+PID output is: 40.014808654785156
+Error is: 160
+PID output is: 40.352027893066406
+Error is: 160
+PID output is: 40.69001770019531
+Error is: 160
+PID output is: 41.027381896972656
+Error is: 160
+PID output is: 41.364280700683594
+Error is: 160
+PID output is: 41.70140075683594
+Error is: 160
+PID output is: 42.040687561035156
+Error is: 160
+PID output is: 42.37731170654297
+Error is: 160
+PID output is: 42.71417999267578
+Error is: 160
+PID output is: 43.05152130126953
+Error is: 160
+PID output is: 43.38897705078125
+Error is: 160
+PID output is: 43.72709655761719
+Error is: 160
+PID output is: 44.06700897216797
+Error is: 160
+PID output is: 44.409950256347656
+Error is: 160
+PID output is: 44.757232666015625
+Error is: 160
+PID output is: 45.101318359375
+Error is: 160
+PID output is: 45.44114685058594
+Error is: 160
+PID output is: 45.78028106689453
+Error is: 160
+PID output is: 46.120635986328125
+Error is: 160
+PID output is: 46.45829772949219
+Error is: 160
+PID output is: 46.80004119873047
+Error is: 160
+PID output is: 47.1396484375
+Error is: 160
+PID output is: 47.479888916015625
+Error is: 160
+PID output is: 47.81910705566406
+Error is: 160
+PID output is: 48.158416748046875
+Error is: 160
+PID output is: 48.49925231933594
+Error is: 160
+PID output is: 48.842872619628906
+Error is: 160
+PID output is: 49.18132781982422
+Error is: 160
+PID output is: 49.524757385253906
+Error is: 160
+PID output is: 49.871055603027344
+Error is: 160
+PID output is: 50.21228790283203
+Error is: 160
+PID output is: 50.55310821533203
+Error is: 160
+PID output is: 50.89385986328125
+Error is: 160
+PID output is: 51.23309326171875
+Error is: 160
+PID output is: 51.573814392089844
+Error is: 160
+PID output is: 51.956298828125
+Error is: 160
+PID output is: 52.34288024902344
+Error is: 160
+PID output is: 52.68437194824219
+Error is: 160
+PID output is: 53.02412414550781
+Error is: 160
+PID output is: 53.36396789550781
+Error is: 160
+PID output is: 53.71050262451172
+Error is: 160
+PID output is: 54.051673889160156
+Error is: 160
+PID output is: 54.412742614746094
+Error is: 160
+PID output is: 54.76593017578125
+Error is: 160
+PID output is: 55.115272521972656
+Error is: 160
+PID output is: 55.46331787109375
+Error is: 160
+PID output is: 55.818458557128906
+Error is: 160
+PID output is: 56.17042541503906
+Error is: 160
+PID output is: 56.527061462402344
+Error is: 160
+PID output is: 56.87751770019531
+Error is: 160
+PID output is: 57.227386474609375
+Error is: 160
+PID output is: 57.573463439941406
+Error is: 160
+PID output is: 57.923377990722656
+Error is: 160
+PID output is: 58.2706298828125
+Error is: 160
+PID output is: 58.62052917480469
+Error is: 160
+PID output is: 58.969970703125
+Error is: 160
+PID output is: 59.314674377441406
+Error is: 160
+PID output is: 59.65978240966797
+Error is: 160
+PID output is: 60.007118225097656
+Error is: 160
+PID output is: 60.353843688964844
+Error is: 160
+PID output is: 60.70855712890625
+Error is: 160
+PID output is: 61.06250762939453
+Error is: 160
+PID output is: 61.406822204589844
+Error is: 160
+PID output is: 61.75276184082031
+Error is: 160
+PID output is: 62.10114288330078
+Error is: 160
+PID output is: 62.447715759277344
+Error is: 160
+PID output is: 62.799415588378906
+Error is: 160
+PID output is: 63.16680145263672
+Error is: 160
+PID output is: 63.513282775878906
+Error is: 160
+PID output is: 63.85706329345703
+Error is: 160
+PID output is: 64.25904083251953
+Error is: 160
+PID output is: 64.6102066040039
+Error is: 160
+PID output is: 64.96802520751953
+Error is: 160
+PID output is: 65.32304382324219
+Error is: 160
+PID output is: 65.6715316772461
+Error is: 160
+PID output is: 66.01412200927734
+Error is: 160
+PID output is: 66.36283874511719
+Error is: 160
+PID output is: 66.70891571044922
+Error is: 160
+PID output is: 67.0560302734375
+Error is: 160
+PID output is: 67.41168975830078
+Error is: 160
+PID output is: 67.75618743896484
+Error is: 160
+PID output is: 68.09976196289062
+Error is: 160
+PID output is: 68.446533203125
+Error is: 160
+PID output is: 68.79454803466797
+Error is: 160
+PID output is: 69.14215087890625
+Error is: 160
+PID output is: 69.49669647216797
+Error is: 160
+PID output is: 69.84280395507812
+Error is: 160
+PID output is: 70.18687438964844
+Error is: 160
+PID output is: 70.5300064086914
+Error is: 160
+PID output is: 70.88082122802734
+Error is: 160
+PID output is: 71.2442855834961
+Error is: 160
+PID output is: 71.60295867919922
+Error is: 160
+PID output is: 71.95266723632812
+Error is: 160
+PID output is: 72.29689025878906
+Error is: 160
+PID output is: 72.64667510986328
+Error is: 160
+PID output is: 72.99324798583984
+Error is: 160
+PID output is: 73.34650421142578
+Error is: 160
+PID output is: 73.70733642578125
+Error is: 160
+PID output is: 74.06461334228516
+Error is: 160
+PID output is: 74.41597747802734
+Error is: 160
+PID output is: 74.76435089111328
+Error is: 160
+PID output is: 75.11428833007812
+Error is: 160
+PID output is: 75.47692108154297
+Error is: 160
+PID output is: 75.84021759033203
+Error is: 160
+PID output is: 76.19178771972656
+Error is: 160
+PID output is: 76.53925323486328
+Error is: 160
+PID output is: 76.89167785644531
+Error is: 160
+PID output is: 77.23970794677734
+Error is: 160
+PID output is: 77.58978271484375
+Error is: 160
+PID output is: 77.9512710571289
+Error is: 160
+PID output is: 78.3004379272461
+Error is: 160
+PID output is: 78.64474487304688
+Error is: 160
+PID output is: 78.98827362060547
+Error is: 160
+PID output is: 79.33550262451172
+Error is: 160
+PID output is: 79.68345642089844
+Error is: 160
+PID output is: 80.0384750366211
+Error is: 160
+PID output is: 80.39665985107422
+Error is: 160
+PID output is: 80.73931884765625
+Error is: 160
+PID output is: 81.08106994628906
+Error is: 160
+PID output is: 81.42747497558594
+Error is: 160
+PID output is: 81.77323150634766
+Error is: 160
+PID output is: 82.1234359741211
+Error is: 160
+PID output is: 82.4871826171875
+Error is: 160
+PID output is: 82.83393096923828
+Error is: 160
+PID output is: 83.17825317382812
+Error is: 160
+PID output is: 83.58045196533203
+Error is: 160
+PID output is: 83.92581939697266
+Error is: 160
+PID output is: 84.27041625976562Limited Pan angle is 80
+Set servo angle: 40
+Limited Tilt angle is 40
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 46.59746170043945
+Limited Tilt angle is 46.59746170043945
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 56.325992584228516
+Limited Tilt angle is 56.325992584228516
+Inside set_servos loop
+Set servo angle: 80
+
+Error is: 160
+PID output is: 84.642578125
+Error is: 160
+PID output is: 84.99202728271484
+Error is: 160
+PID output is: 85.34201049804688
+Error is: 160
+PID output is: 85.69029998779297
+Error is: 160
+PID output is: 86.03954315185547
+Error is: 160
+PID output is: 86.41578674316406
+Error is: 160
+PID output is: 86.7650375366211
+Error is: 160
+PID output is: 87.11370849609375
+Error is: 160
+PID output is: 87.4593505859375
+Error is: 160
+PID output is: 87.80658721923828
+Error is: 160
+PID output is: 88.15716552734375
+Error is: 160
+PID output is: 88.50951385498047
+Error is: 160
+PID output is: 88.86187744140625
+Error is: 160
+PID output is: 89.21870422363281
+Error is: 160
+PID output is: 89.57492065429688
+Error is: 160
+PID output is: 89.93434143066406
+Error is: 160
+PID output is: 90.28571319580078
+Error is: 160
+PID output is: 90.6387710571289
+Error is: 160
+PID output is: 90.98860931396484
+Error is: 160
+PID output is: 91.34384155273438
+Error is: 160
+PID output is: 91.69622039794922
+Error is: 160
+PID output is: 92.0494613647461
+Error is: 160
+PID output is: 92.40296173095703
+Error is: 160
+PID output is: 92.76841735839844
+Error is: 160
+PID output is: 93.11822509765625
+Error is: 160
+PID output is: 93.4662094116211
+Error is: 160
+PID output is: 93.81263732910156
+Error is: 160
+PID output is: 94.16204833984375
+Error is: 160
+PID output is: 94.51087188720703
+Error is: 160
+PID output is: 94.85978698730469
+Error is: 160
+PID output is: 95.20800018310547
+Error is: 160
+PID output is: 95.55451202392578
+Error is: 160
+PID output is: 95.89938354492188
+Error is: 160
+PID output is: 96.24691009521484
+Error is: 160
+PID output is: 96.9169921875
+Error is: 160
+PID output is: 97.29216003417969
+Error is: 160
+PID output is: 97.77352142333984
+Error is: 160
+PID output is: 98.20225524902344
+Error is: 160
+PID output is: 98.64998626708984
+Error is: 160
+PID output is: 99.05128479003906
+Error is: 160
+PID output is: 99.45699310302734
+Error is: 160
+PID output is: 100.02178192138672
+Error is: 160
+PID output is: 100.38438415527344
+Error is: 160
+PID output is: 100.74989318847656
+Error is: 160
+PID output is: 101.13737487792969
+Error is: 160
+PID output is: 101.49462127685547
+Error is: 160
+PID output is: 101.8487548828125
+Error is: 160
+PID output is: 102.20194244384766
+Error is: 160
+PID output is: 102.55510711669922
+Error is: 160
+PID output is: 102.9098892211914
+Error is: 160
+PID output is: 103.28202819824219
+Error is: 160
+PID output is: 103.65130615234375
+Error is: 160
+PID output is: 104.01457214355469
+Error is: 160
+PID output is: 104.37027740478516
+Error is: 160
+PID output is: 104.72321319580078
+Error is: 160
+PID output is: 105.08326721191406
+Error is: 160
+PID output is: 105.44831085205078
+Error is: 160
+PID output is: 105.82955932617188
+Error is: 160
+PID output is: 106.18871307373047
+Error is: 160
+PID output is: 106.53952026367188
+Error is: 160
+PID output is: 106.8880386352539
+Error is: 160
+PID output is: 107.24523162841797
+Error is: 160
+PID output is: 107.60133361816406
+Error is: 160
+PID output is: 107.94951629638672
+Error is: 160
+PID output is: 108.29468536376953
+Error is: 160
+PID output is: 108.64279174804688
+Error is: 160
+PID output is: 108.9897689819336
+Error is: 160
+PID output is: 109.33734130859375
+Error is: 160
+PID output is: 109.68405151367188
+Error is: 160
+PID output is: 110.04290008544922
+Error is: 160
+PID output is: 110.38934326171875
+Error is: 160
+PID output is: 110.74040985107422
+Error is: 160
+PID output is: 111.09589385986328
+Error is: 160
+PID output is: 111.53557586669922
+Error is: 160
+PID output is: 111.91336059570312
+Error is: 160
+PID output is: 112.2872085571289
+Error is: 160
+PID output is: 112.63654327392578
+Error is: 160
+PID output is: 113.01517486572266
+Error is: 160
+PID output is: 113.36834716796875
+Error is: 160
+PID output is: 113.71633911132812
+Error is: 160
+PID output is: 114.06636047363281
+Error is: 160
+PID output is: 114.41564178466797
+Error is: 160
+PID output is: 114.76251983642578
+Error is: 160
+PID output is: 115.10911560058594
+Error is: 160
+PID output is: 115.4582290649414
+Error is: 160
+PID output is: 115.81178283691406
+Error is: 160
+PID output is: 116.15985107421875
+Error is: 160
+PID output is: 116.50593566894531
+Error is: 160
+PID output is: 116.8526382446289
+Error is: 160
+PID output is: 117.2022476196289
+Error is: 160
+PID output is: 117.54985809326172
+Error is: 160
+PID output is: 117.89616394042969
+Error is: 160
+PID output is: 118.24475860595703
+Error is: 160
+PID output is: 118.62692260742188
+Error is: 160
+PID output is: 119.01951599121094
+Error is: 160
+PID output is: 119.42660522460938
+Error is: 160
+PID output is: 119.7984848022461
+Error is: 160
+PID output is: 120.17694854736328
+Error is: 160
+PID output is: 120.54824829101562
+Error is: 160
+PID output is: 120.89784240722656
+Error is: 160
+PID output is: 121.24467468261719
+Error is: 160
+PID output is: 121.59776306152344
+Error is: 160
+PID output is: 121.95944213867188
+Error is: 160
+PID output is: 122.31155395507812
+Error is: 160
+PID output is: 122.6612319946289
+Error is: 160
+PID output is: 123.00958251953125
+Error is: 160
+PID output is: 123.35855102539062
+Error is: 160
+PID output is: 123.70636749267578
+Error is: 160
+PID output is: 124.05624389648438
+Error is: 160
+PID output is: 124.404052734375
+Error is: 160
+PID output is: 124.77177429199219
+Error is: 160
+PID output is: 125.13959503173828
+Error is: 160
+PID output is: 125.52105712890625
+Error is: 160
+PID output is: 125.87024688720703
+Error is: 160
+PID output is: 126.22701263427734
+Error is: 160
+PID output is: 126.5749282836914
+Error is: 160
+PID output is: 126.91869354248047
+Error is: 160
+PID output is: 127.27713012695312
+Error is: 160
+PID output is: 127.62578582763672
+Error is: 160
+PID output is: 127.98057556152344
+Error is: 160
+PID output is: 128.3536148071289
+Error is: 160
+PID output is: 128.72411346435547
+Error is: 160
+PID output is: 129.09117889404297
+Error is: 160
+PID output is: 129.4626693725586
+Error is: 160
+PID output is: 129.82061004638672
+Error is: 160
+PID output is: 130.18671417236328
+Error is: 160
+PID output is: 130.55558013916016
+Error is: 160
+PID output is: 130.9488296508789
+Error is: 160
+PID output is: 131.31237030029297
+Error is: 160
+PID output is: 131.6736068725586
+Error is: 160
+PID output is: 132.0820083618164
+Error is: 160
+PID output is: 132.45323181152344
+Error is: 160
+PID output is: 132.85883331298828
+Error is: 160
+PID output is: 133.23594665527344
+Error is: 160
+PID output is: 133.64405059814453
+Error is: 160
+PID output is: 134.00668334960938
+Error is: 160
+PID output is: 134.3648681640625
+Error is: 160
+PID output is: 134.73755645751953
+Error is: 160
+PID output is: 135.0982437133789
+Error is: 160
+PID output is: 135.45001983642578
+Error is: 160
+PID output is: 135.80447387695312
+Error is: 160
+PID output is: 136.15419006347656
+Error is: 160
+PID output is: 136.50489807128906
+Error is: 160
+PID output is: 136.8539810180664
+Error is: 160
+PID output is: 137.2052230834961
+Error is: 160
+PID output is: 137.58573150634766
+Error is: 160
+PID output is: 137.93387603759766
+Error is: 160
+PID output is: 138.28192901611328
+Error is: 160
+PID output is: 138.6351318359375
+Error is: 160
+PID output is: 138.99017333984375
+Error is: 160
+PID output is: 139.34821319580078
+Error is: 160
+PID output is: 139.69972229003906
+Error is: 160
+PID output is: 140.05805206298828
+Error is: 160
+PID output is: 140.49327087402344
+Error is: 160
+PID output is: 140.85179901123047
+Error is: 160
+PID output is: 141.20145416259766
+Error is: 160
+PID output is: 141.5598373413086
+Error is: 160
+PID output is: 141.9210662841797
+Error is: 160
+PID output is: 142.27237701416016
+Error is: 160
+PID output is: 142.6192398071289
+Error is: 160
+PID output is: 142.9664764404297
+Error is: 160
+PID output is: 143.3181381225586
+Error is: 160
+PID output is: 143.66594696044922
+Error is: 160
+PID output is: 144.01689910888672
+Error is: 160
+PID output is: 144.3635711669922
+Error is: 160
+PID output is: 144.72000885009766
+Error is: 160
+PID output is: 145.0729522705078
+Error is: 160
+PID output is: 145.43360900878906
+Error is: 160
+PID output is: 145.7923583984375
+Error is: 160
+PID output is: 146.17240142822266
+Error is: 160
+PID output is: 146.54147338867188
+Error is: 160
+PID output is: 146.93071746826172
+Error is: 160
+PID output is: 147.34395599365234
+Error is: 160
+PID output is: 38.31410217285156
+Error is: 160
+PID output is: 38.490177154541016
+Error is: 160
+PID output is: 38.671287536621094
+Error is: 160
+PID output is: 38.84968566894531
+Error is: 160
+PID output is: 39.039955139160156
+Error is: 160
+PID output is: 39.21891403198242
+Error is: 160
+PID output is: 39.3930778503418
+Error is: 160
+PID output is: 39.56782531738281
+Error is: 160
+PID output is: 39.7395133972168
+Error is: 160
+PID output is: 39.91442108154297
+Error is: 160
+PID output is: 40.0882453918457
+Error is: 160
+PID output is: 40.26598358154297
+Error is: 160
+PID output is: 40.445255279541016
+Error is: 160
+PID output is: 40.61994552612305
+Error is: 160
+PID output is: 40.797237396240234
+Error is: 160
+PID output is: 40.98369216918945
+Error is: 160
+PID output is: 41.16217041015625
+Error is: 160
+PID output is: 41.339603424072266
+Error is: 160
+PID output is: 41.51503372192383
+Error is: 160
+PID output is: 41.691768646240234
+Error is: 160
+PID output is: 41.86845397949219
+Error is: 160
+PID output is: 42.04278564453125
+Error is: 160
+PID output is: 42.23891830444336
+Error is: 160
+PID output is: 42.434356689453125
+Error is: 160
+PID output is: 42.653228759765625
+Error is: 160
+PID output is: 42.835262298583984
+Error is: 160
+PID output is: 43.015804290771484
+Error is: 160
+PID output is: 43.193939208984375
+Error is: 160
+PID output is: 43.373844146728516
+Error is: 160
+PID output is: 43.55241394042969
+Error is: 160
+PID output is: 43.73299789428711
+Error is: 160
+PID output is: 43.91687774658203
+Error is: 160
+PID output is: 44.09616470336914
+Error is: 160
+PID output is: 44.27570343017578
+Error is: 160
+PID output is: 44.500606536865234
+Error is: 160
+PID output is: 44.6984977722168
+Error is: 160
+PID output is: 44.88547897338867
+Error is: 160
+PID output is: 45.080928802490234
+Error is: 160
+PID output is: 45.279178619384766
+Error is: 160
+PID output is: 45.478328704833984
+Error is: 160
+PID output is: 45.67376708984375
+Error is: 160
+PID output is: 45.94417953491211
+Error is: 160
+PID output is: 46.19205093383789
+Error is: 160
+PID output is: 46.37254333496094
+Error is: 160
+PID output is: 46.59746170043945
+Error is: 160
+PID output is: 46.77716064453125
+Error is: 160
+PID output is: 46.96857833862305
+Error is: 160
+PID output is: 47.15519332885742
+Error is: 160
+PID output is: 47.359561920166016
+Error is: 160
+PID output is: 47.548011779785156
+Error is: 160
+PID output is: 47.8106803894043
+Error is: 160
+PID output is: 48.071956634521484
+Error is: 160
+PID output is: 48.24980545043945
+Error is: 160
+PID output is: 48.449100494384766
+Error is: 160
+PID output is: 48.63804626464844
+Error is: 160
+PID output is: 48.81813049316406
+Error is: 160
+PID output is: 48.99347686767578
+Error is: 160
+PID output is: 49.221229553222656
+Error is: 160
+PID output is: 49.41081237792969
+Error is: 160
+PID output is: 49.58845138549805
+Error is: 160
+PID output is: 49.76371383666992
+Error is: 160
+PID output is: 49.94332504272461
+Error is: 160
+PID output is: 50.118263244628906
+Error is: 160
+PID output is: 50.29220199584961
+Error is: 160
+PID output is: 50.46613693237305
+Error is: 160
+PID output is: 50.64237594604492
+Error is: 160
+PID output is: 50.81878662109375
+Error is: 160
+PID output is: 51.00501251220703
+Error is: 160
+PID output is: 51.180091857910156
+Error is: 160
+PID output is: 51.3586540222168
+Error is: 160
+PID output is: 51.57640838623047
+Error is: 160
+PID output is: 51.77886199951172
+Error is: 160
+PID output is: 52.099063873291016
+Error is: 160
+PID output is: 52.27569580078125
+Error is: 160
+PID output is: 52.45235061645508
+Error is: 160
+PID output is: 52.62907791137695
+Error is: 160
+PID output is: 52.804630279541016
+Error is: 160
+PID output is: 52.979679107666016
+Error is: 160
+PID output is: 53.155677795410156
+Error is: 160
+PID output is: 53.33103561401367
+Error is: 160
+PID output is: 53.51254653930664
+Error is: 160
+PID output is: 53.687198638916016
+Error is: 160
+PID output is: 53.86479187011719
+Error is: 160
+PID output is: 54.04378128051758
+Error is: 160
+PID output is: 54.223445892333984
+Error is: 160
+PID output is: 54.40011978149414
+Error is: 160
+PID output is: 54.57625198364258
+Error is: 160
+PID output is: 54.75345230102539
+Error is: 160
+PID output is: 54.93562698364258
+Error is: 160
+PID output is: 55.1193733215332
+Error is: 160
+PID output is: 55.34765625
+Error is: 160
+PID output is: 55.52973175048828
+Error is: 160
+PID output is: 55.732582092285156
+Error is: 160
+PID output is: 55.918827056884766
+Error is: 160
+PID output is: 56.10462188720703
+Error is: 160
+PID output is: 56.325992584228516
+Error is: 160
+PID output is: 56.50337600708008
+Error is: 160
+PID output is: 56.68128204345703
+Error is: 160
+PID output is: 56.86735534667969
+Error is: 160
+PID output is: 57.05902862548828
+Error is: 160
+PID output is: 57.249874114990234
+Error is: 160
+PID output is: 57.42993927001953
+Error is: 160
+PID output is: 57.610530853271484
+Error is: 160
+PID output is: 57.80138397216797
+Error is: 160
+PID output is: 57.980159759521484
+Error is: 160
+PID output is: 58.158485412597656
+Error is: 160
+PID output is: 58.34006881713867
+Error is: 160
+PID output is: 58.51785659790039
+Error is: 160
+PID output is: 58.723018646240234
+Error is: 160
+PID output is: 58.90223693847656
+Error is: 160
+PID output is: 59.092403411865234
+Error is: 160
+PID output is: 59.27354431152344
+Error is: 160
+PID output is: 59.451900482177734
+Error is: 160
+PID output is: 59.635955810546875
+Error is: 160
+PID output is: 59.818946838378906
+Error is: 160
+PID output is: 60.00647735595703
+Error is: 160
+PID output is: 60.19649887084961
+Error is: 160
+PID output is: 60.378936767578125
+Error is: 160
+PID output is: 60.561676025390625
+Error is: 160
+PID output is: 60.73963928222656
+Error is: 160
+PID output is: 60.92670822143555
+Error is: 160
+PID output is: 61.10539245605469
+Error is: 160
+PID output is: 61.286293029785156
+Error is: 160
+PID output is: 61.47397994995117
+Error is: 160
+PID output is: 61.669254302978516
+Error is: 160
+PID output is: 61.85823059082031
+Error is: 160
+PID output is: 62.04942321777344
+Error is: 160
+PID output is: 62.23825454711914
+Error is: 160
+PID output is: 62.438629150390625
+Error is: 160
+PID output is: 62.63311767578125
+Error is: 160
+PID output is: 62.83032989501953
+Error is: 160
+PID output is: 63.02860641479492
+Error is: 160
+PID output is: 63.22486114501953
+Error is: 160
+PID output is: 63.409385681152344
+Error is: 160
+PID output is: 63.59128189086914
+Error is: 160
+PID output is: 63.80460739135742
+Error is: 160
+PID output is: 63.984275817871094
+Error is: 160
+PID output is: 64.16186141967773
+Error is: 160
+PID output is: 64.34529876708984
+Error is: 160
+PID output is: 64.52359771728516
+Error is: 160
+PID output is: 64.70439529418945
+Error is: 160
+PID output is: 64.88218688964844
+Error is: 160
+PID output is: 65.0618896484375
+Error is: 160
+PID output is: 65.23949432373047
+Error is: 160
+PID output is: 65.4205093383789
+Error is: 160
+PID output is: 65.59907913208008
+Error is: 160
+PID output is: 65.77692794799805
+Error is: 160
+PID output is: 65.96463775634766
+Error is: 160
+PID output is: 66.1678352355957
+Error is: 160
+PID output is: 66.35522842407227
+Error is: 160
+PID output is: 66.54924011230469
+Error is: 160
+PID output is: 66.73586654663086
+Error is: 160
+PID output is: 66.91661834716797
+Error is: 160
+PID output is: 67.09710693359375
+Error is: 160
+PID output is: 67.27538681030273
+Error is: 160
+PID output is: 67.45444107055664
+Error is: 160
+PID output is: 67.63260650634766
+Error is: 160
+PID output is: 67.81016159057617
+Error is: 160
+PID output is: 68.00483703613281
+Error is: 160
+PID output is: 68.18502807617188
+Error is: 160
+PID output is: 68.36983871459961
+Error is: 160
+PID output is: 68.55226516723633
+Error is: 160
+PID output is: 68.72883987426758
+Error is: 160
+PID output is: 68.91413497924805
+Error is: 160
+PID output is: 69.10456848144531
+Error is: 160
+PID output is: 69.2790412902832
+Error is: 160
+PID output is: 69.47518157958984
+Error is: 160
+PID output is: 69.68280029296875
+Error is: 160
+PID output is: 69.86579895019531
+Error is: 160
+PID output is: 70.0531997680664
+Error is: 160
+PID output is: 70.24480438232422
+Error is: 160
+PID output is: 70.4212875366211
+Error is: 160
+PID output is: 70.60102844238281
+Error is: 160
+PID output is: 70.77880096435547Limited Pan angle is 80
+Set servo angle: 66.1678352355957
+Limited Tilt angle is 66.1678352355957
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 75.95977401733398
+Limited Tilt angle is 75.95977401733398
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 80
+Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 80
+
+Error is: 160
+PID output is: 147.7218475341797
+Error is: 160
+PID output is: 148.08584594726562
+Error is: 160
+PID output is: 148.4583511352539
+Error is: 160
+PID output is: 148.82798767089844
+Error is: 160
+PID output is: 149.1806411743164
+Error is: 160
+PID output is: 149.61273956298828
+Error is: 160
+PID output is: 149.99122619628906
+Error is: 160
+PID output is: 150.35033416748047
+Error is: 160
+PID output is: 150.69529724121094
+Error is: 160
+PID output is: 151.0921630859375
+Error is: 160
+PID output is: 151.43810272216797
+Error is: 160
+PID output is: 151.7907943725586
+Error is: 160
+PID output is: 152.14781188964844
+Error is: 160
+PID output is: 152.61898040771484
+Error is: 160
+PID output is: 153.021240234375
+Error is: 160
+PID output is: 153.3738021850586
+Error is: 160
+PID output is: 153.7350616455078
+Error is: 160
+PID output is: 154.13603973388672
+Error is: 160
+PID output is: 154.4969482421875
+Error is: 160
+PID output is: 154.85906982421875
+Error is: 160
+PID output is: 155.20941162109375
+Error is: 160
+PID output is: 155.55780792236328
+Error is: 160
+PID output is: 155.91338348388672
+Error is: 160
+PID output is: 156.35256958007812
+Error is: 160
+PID output is: 156.76321411132812
+Error is: 160
+PID output is: 157.11241149902344
+Error is: 160
+PID output is: 157.45542907714844
+Error is: 160
+PID output is: 157.80060577392578
+Error is: 160
+PID output is: 158.1450958251953
+Error is: 160
+PID output is: 158.48863220214844
+Error is: 160
+PID output is: 158.8412094116211
+Error is: 160
+PID output is: 159.19225311279297
+Error is: 160
+PID output is: 159.5497589111328
+Error is: 160
+PID output is: 159.9053497314453
+Error is: 160
+PID output is: 160.2791519165039
+Error is: 160
+PID output is: 160.82408142089844
+Error is: 160
+PID output is: 161.5504608154297
+Error is: 160
+PID output is: 161.897216796875
+Error is: 160
+PID output is: 162.2454071044922
+Error is: 160
+PID output is: 162.7393035888672
+Error is: 160
+PID output is: 163.18744659423828
+Error is: 160
+PID output is: 163.53787231445312
+Error is: 160
+PID output is: 163.89142608642578
+Error is: 160
+PID output is: 164.24088287353516
+Error is: 160
+PID output is: 164.59415435791016
+Error is: 160
+PID output is: 164.9493408203125
+Error is: 160
+PID output is: 165.30091094970703
+Error is: 160
+PID output is: 165.6495590209961
+Error is: 160
+PID output is: 166.00081634521484
+Error is: 160
+PID output is: 166.35387420654297
+Error is: 160
+PID output is: 166.7044906616211
+Error is: 160
+PID output is: 167.0542221069336
+Error is: 160
+PID output is: 167.41692352294922
+Error is: 160
+PID output is: 167.77373504638672
+Error is: 160
+PID output is: 168.29561614990234
+Error is: 160
+PID output is: 168.64491271972656
+Error is: 160
+PID output is: 169.00931549072266
+Error is: 160
+PID output is: 169.4444580078125
+Error is: 160
+PID output is: 169.85801696777344
+Error is: 160
+PID output is: 170.20506286621094
+Error is: 160
+PID output is: 170.55229949951172
+Error is: 160
+PID output is: 170.94829559326172
+Error is: 160
+PID output is: 171.29119110107422
+Error is: 160
+PID output is: 171.63906860351562
+Error is: 160
+PID output is: 171.98887634277344
+Error is: 160
+PID output is: 172.34689331054688
+Error is: 160
+PID output is: 172.9045639038086
+Error is: 160
+PID output is: 173.295654296875
+Error is: 160
+PID output is: 173.6423110961914
+Error is: 160
+PID output is: 174.0030746459961
+Error is: 160
+PID output is: 174.37340545654297
+Error is: 160
+PID output is: 174.83306121826172
+Error is: 160
+PID output is: 175.3268280029297
+Error is: 160
+PID output is: 175.68976593017578
+Error is: 160
+PID output is: 176.1338119506836
+Error is: 160
+PID output is: 176.56585693359375
+Error is: 160
+PID output is: 176.91473388671875
+Error is: 160
+PID output is: 177.26393127441406
+Error is: 160
+PID output is: 177.62091064453125
+Error is: 160
+PID output is: 177.97145080566406
+Error is: 160
+PID output is: 178.32040405273438
+Error is: 160
+PID output is: 178.67168426513672
+Error is: 160
+PID output is: 179.0203857421875
+Error is: 160
+PID output is: 179.3732452392578
+Error is: 160
+PID output is: 179.72181701660156
+Error is: 160
+PID output is: 180.0856475830078
+Error is: 160
+PID output is: 180.45561981201172
+Error is: 160
+PID output is: 180.80813598632812
+Error is: 160
+PID output is: 181.17184448242188
+Error is: 160
+PID output is: 182.08697509765625
+Error is: 160
+PID output is: 182.5102767944336
+Error is: 160
+PID output is: 182.8569793701172
+Error is: 160
+PID output is: 183.20249938964844
+Error is: 160
+PID output is: 183.5517578125
+Error is: 160
+PID output is: 183.90851593017578
+Error is: 160
+PID output is: 184.26782989501953
+Error is: 160
+PID output is: 184.6483917236328
+Error is: 160
+PID output is: 185.00312042236328
+Error is: 160
+PID output is: 185.37261199951172
+Error is: 160
+PID output is: 185.92504119873047
+Error is: 160
+PID output is: 186.3173065185547
+Error is: 160
+PID output is: 186.6684341430664
+Error is: 160
+PID output is: 187.01900482177734
+Error is: 160
+PID output is: 187.36881256103516
+Error is: 160
+PID output is: 187.71625518798828
+Error is: 160
+PID output is: 188.06548309326172
+Error is: 160
+PID output is: 188.60413360595703
+Error is: 160
+PID output is: 188.96514129638672
+Error is: 160
+PID output is: 189.49502563476562
+Error is: 160
+PID output is: 190.03765869140625
+Error is: 160
+PID output is: 190.4178009033203
+Error is: 160
+PID output is: 190.79000091552734
+Error is: 160
+PID output is: 191.14952850341797
+Error is: 160
+PID output is: 191.52825164794922
+Error is: 160
+PID output is: 191.9049530029297
+Error is: 160
+PID output is: 192.275146484375
+Error is: 160
+PID output is: 192.6509552001953
+Error is: 160
+PID output is: 193.01852416992188
+Error is: 160
+PID output is: 193.3896713256836
+Error is: 160
+PID output is: 193.7500228881836
+Error is: 160
+PID output is: 194.11495208740234
+Error is: 160
+PID output is: 194.4767608642578
+Error is: 160
+PID output is: 194.84662628173828
+Error is: 160
+PID output is: 195.26998901367188
+Error is: 160
+PID output is: 195.63590240478516
+Error is: 160
+PID output is: 195.99302673339844
+Error is: 160
+PID output is: 196.3517837524414
+Error is: 160
+PID output is: 196.71553802490234
+Error is: 160
+PID output is: 197.07000732421875
+Error is: 160
+PID output is: 197.4375457763672
+Error is: 160
+PID output is: 197.78689575195312
+Error is: 160
+PID output is: 198.13814544677734
+Error is: 160
+PID output is: 198.50144958496094
+Error is: 160
+PID output is: 198.91519165039062
+Error is: 160
+PID output is: 199.28533172607422
+Error is: 160
+PID output is: 199.66648864746094
+Error is: 160
+PID output is: 200.04987335205078
+Error is: 160
+PID output is: 200.42337799072266
+Error is: 160
+PID output is: 200.77896881103516
+Error is: 160
+PID output is: 201.1452407836914
+Error is: 160
+PID output is: 201.4963836669922
+Error is: 160
+PID output is: 201.84689331054688
+Error is: 160
+PID output is: 202.2361831665039
+Error is: 160
+PID output is: 202.58733367919922
+Error is: 160
+PID output is: 202.97283935546875
+Error is: 160
+PID output is: 203.32787322998047
+Error is: 160
+PID output is: 203.67887115478516
+Error is: 160
+PID output is: 204.02952575683594
+Error is: 160
+PID output is: 204.3820571899414
+Error is: 160
+PID output is: 204.73702239990234
+Error is: 160
+PID output is: 205.08931732177734
+Error is: 160
+PID output is: 205.46011352539062
+Error is: 160
+PID output is: 205.8141098022461
+Error is: 160
+PID output is: 206.16519927978516
+Error is: 160
+PID output is: 206.51416778564453
+Error is: 160
+PID output is: 206.86883544921875
+Error is: 160
+PID output is: 207.2321319580078
+Error is: 160
+PID output is: 207.5819091796875
+Error is: 160
+PID output is: 207.92987823486328
+Error is: 160
+PID output is: 208.27880096435547
+Error is: 160
+PID output is: 208.62625885009766
+Error is: 160
+PID output is: 208.97447204589844
+Error is: 160
+PID output is: 209.3960418701172
+Error is: 160
+PID output is: 209.78131103515625
+Error is: 160
+PID output is: 210.15192413330078
+Error is: 160
+PID output is: 210.53494262695312
+Error is: 160
+PID output is: 210.89979553222656
+Error is: 160
+PID output is: 211.26727294921875
+Error is: 160
+PID output is: 211.61840057373047
+Error is: 160
+PID output is: 211.97157287597656
+Error is: 160
+PID output is: 212.3535919189453
+Error is: 160
+PID output is: 212.7052459716797
+
+Error is: 160
+PID output is: 70.96479797363281
+Error is: 160
+PID output is: 71.14186477661133
+Error is: 160
+PID output is: 71.33576583862305
+Error is: 160
+PID output is: 71.51925277709961
+Error is: 160
+PID output is: 71.69675064086914
+Error is: 160
+PID output is: 71.89127731323242
+Error is: 160
+PID output is: 72.08373641967773
+Error is: 160
+PID output is: 72.26275253295898
+Error is: 160
+PID output is: 72.44799041748047
+Error is: 160
+PID output is: 72.62477493286133
+Error is: 160
+PID output is: 72.80160140991211
+Error is: 160
+PID output is: 73.01112365722656
+Error is: 160
+PID output is: 73.18775939941406
+Error is: 160
+PID output is: 73.39165496826172
+Error is: 160
+PID output is: 73.56762313842773
+Error is: 160
+PID output is: 73.82675170898438
+Error is: 160
+PID output is: 74.0043830871582
+Error is: 160
+PID output is: 74.17872619628906
+Error is: 160
+PID output is: 74.35737609863281
+Error is: 160
+PID output is: 74.53813552856445
+Error is: 160
+PID output is: 74.71391677856445
+Error is: 160
+PID output is: 74.89961242675781
+Error is: 160
+PID output is: 75.07623291015625
+Error is: 160
+PID output is: 75.25220108032227
+Error is: 160
+PID output is: 75.4278450012207
+Error is: 160
+PID output is: 75.60549545288086
+Error is: 160
+PID output is: 75.78456497192383
+Error is: 160
+PID output is: 75.95977401733398
+Error is: 160
+PID output is: 76.18513107299805
+Error is: 160
+PID output is: 76.36572265625
+Error is: 160
+PID output is: 76.57509231567383
+Error is: 160
+PID output is: 76.74883270263672
+Error is: 160
+PID output is: 76.92518997192383
+Error is: 160
+PID output is: 77.13353729248047
+Error is: 160
+PID output is: 77.31130599975586
+Error is: 160
+PID output is: 77.49117279052734
+Error is: 160
+PID output is: 77.67599868774414
+Error is: 160
+PID output is: 77.8515853881836
+Error is: 160
+PID output is: 78.02480697631836
+Error is: 160
+PID output is: 78.19905090332031
+Error is: 160
+PID output is: 78.37174987792969
+Error is: 160
+PID output is: 78.54916381835938
+Error is: 160
+PID output is: 78.72764205932617
+Error is: 160
+PID output is: 78.90222549438477
+Error is: 160
+PID output is: 79.07538604736328
+Error is: 160
+PID output is: 79.25590896606445
+Error is: 160
+PID output is: 79.43018341064453
+Error is: 160
+PID output is: 79.66081619262695
+Error is: 160
+PID output is: 79.96209716796875
+Error is: 160
+PID output is: 80.20032501220703
+Error is: 160
+PID output is: 80.37717819213867
+Error is: 160
+PID output is: 80.56392669677734
+Error is: 160
+PID output is: 80.74343872070312
+Error is: 160
+PID output is: 80.91864395141602
+Error is: 160
+PID output is: 81.09789276123047
+Error is: 160
+PID output is: 81.27648544311523
+Error is: 160
+PID output is: 81.45798873901367
+Error is: 160
+PID output is: 81.63632583618164
+Error is: 160
+PID output is: 81.82181930541992
+Error is: 160
+PID output is: 81.99966049194336
+Error is: 160
+PID output is: 82.18078994750977
+Error is: 160
+PID output is: 82.4391860961914
+Error is: 160
+PID output is: 82.6215934753418
+Error is: 160
+PID output is: 82.79898071289062
+Error is: 160
+PID output is: 82.99637222290039
+Error is: 160
+PID output is: 83.19484329223633
+Error is: 160
+PID output is: 83.38406372070312
+Error is: 160
+PID output is: 83.56660079956055
+Error is: 160
+PID output is: 83.75394058227539
+Error is: 160
+PID output is: 83.94963455200195
+Error is: 160
+PID output is: 84.13372039794922
+Error is: 160
+PID output is: 84.3172378540039
+Error is: 160
+PID output is: 84.4926643371582
+Error is: 160
+PID output is: 84.66755676269531
+Error is: 160
+PID output is: 84.84246444702148
+Error is: 160
+PID output is: 85.02067565917969
+Error is: 160
+PID output is: 85.19697570800781
+Error is: 160
+PID output is: 85.37232208251953
+Error is: 160
+PID output is: 85.54708099365234
+Error is: 160
+PID output is: 85.72603225708008
+Error is: 160
+PID output is: 85.90142059326172
+Error is: 160
+PID output is: 86.08316421508789
+Error is: 160
+PID output is: 86.25981521606445
+Error is: 160
+PID output is: 86.43339157104492
+Error is: 160
+PID output is: 86.61819839477539
+Error is: 160
+PID output is: 86.8388786315918
+Error is: 160
+PID output is: 87.05325317382812
+Error is: 160
+PID output is: 87.23284149169922
+Error is: 160
+PID output is: 87.41305923461914
+Error is: 160
+PID output is: 87.59280395507812
+Error is: 160
+PID output is: 87.77679443359375
+Error is: 160
+PID output is: 87.96200561523438
+Error is: 160
+PID output is: 88.14797592163086
+Error is: 160
+PID output is: 88.33601379394531
+Error is: 160
+PID output is: 88.511474609375
+Error is: 160
+PID output is: 88.69741821289062
+Error is: 160
+PID output is: 88.87602233886719
+Error is: 160
+PID output is: 89.06316757202148
+Error is: 160
+PID output is: 89.24811553955078
+Error is: 160
+PID output is: 89.43606948852539
+Error is: 160
+PID output is: 89.61292266845703
+Error is: 160
+PID output is: 89.79357147216797
+Error is: 160
+PID output is: 89.97939682006836
+Error is: 160
+PID output is: 90.17253494262695
+Error is: 160
+PID output is: 90.36161041259766
+Error is: 160
+PID output is: 90.54690170288086
+Error is: 160
+PID output is: 90.74829864501953
+Error is: 160
+PID output is: 91.01655960083008
+Error is: 160
+PID output is: 91.206787109375
+Error is: 160
+PID output is: 91.39323043823242
+Error is: 160
+PID output is: 91.57162857055664
+Error is: 160
+PID output is: 91.76185989379883
+Error is: 160
+PID output is: 91.94969177246094
+Error is: 160
+PID output is: 92.1361312866211
+Error is: 160
+PID output is: 92.33378601074219
+Error is: 160
+PID output is: 92.52605819702148
+Error is: 160
+PID output is: 92.70440292358398
+Error is: 160
+PID output is: 92.89041519165039
+Error is: 160
+PID output is: 93.07756805419922
+Error is: 160
+PID output is: 93.25703811645508
+Error is: 160
+PID output is: 93.4354133605957
+Error is: 160
+PID output is: 93.66399002075195
+Error is: 160
+PID output is: 93.84517669677734
+Error is: 160
+PID output is: 94.02729034423828
+Error is: 160
+PID output is: 94.21390533447266
+Error is: 160
+PID output is: 94.40304565429688
+Error is: 160
+PID output is: 94.58295059204102
+Error is: 160
+PID output is: 94.75864028930664
+Error is: 160
+PID output is: 94.93519592285156
+Error is: 160
+PID output is: 95.11211776733398
+Error is: 160
+PID output is: 95.29727172851562
+Error is: 160
+PID output is: 95.47671127319336
+Error is: 160
+PID output is: 95.6621208190918
+Error is: 160
+PID output is: 95.84173965454102
+Error is: 160
+PID output is: 96.03324127197266
+Error is: 160
+PID output is: 96.22101593017578
+Error is: 160
+PID output is: 96.41904067993164
+Error is: 160
+PID output is: 96.59918975830078
+Error is: 160
+PID output is: 96.7745475769043
+Error is: 160
+PID output is: 96.9640007019043
+Error is: 160
+PID output is: 97.1618537902832
+Error is: 160
+PID output is: 97.34249496459961
+Error is: 160
+PID output is: 97.52399063110352
+Error is: 160
+PID output is: 97.70294952392578
+Error is: 160
+PID output is: 97.92071151733398
+Error is: 160
+PID output is: 98.09943389892578
+Error is: 160
+PID output is: 98.27660369873047
+Error is: 160
+PID output is: 98.46178436279297
+Error is: 160
+PID output is: 98.64059448242188
+Error is: 160
+PID output is: 98.82316970825195
+Error is: 160
+PID output is: 99.01699829101562
+Error is: 160
+PID output is: 99.2005500793457
+Error is: 160
+PID output is: 99.37909698486328
+Error is: 160
+PID output is: 99.55669021606445
+Error is: 160
+PID output is: 99.74316787719727
+Error is: 160
+PID output is: 99.92681503295898
+Error is: 160
+PID output is: 100.10522842407227
+Error is: 160
+PID output is: 100.28854751586914
+Error is: 160
+PID output is: 100.48624420166016
+Error is: 160
+PID output is: 100.70919036865234
+Error is: 160
+PID output is: 100.8990592956543
+Error is: 160
+PID output is: 101.08440399169922
+Error is: 160
+PID output is: 101.27766418457031
+Error is: 160
+PID output is: 101.46695709228516
+Error is: 160
+PID output is: 101.6673698425293
+Error is: 160
+PID output is: 101.84890365600586
+Error is: 160
+PID output is: 102.0301628112793
+Error is: 160
+PID output is: 102.20854568481445
+Error is: 160
+PID output is: 102.38367462158203
+Error is: 160
+PID output is: 102.56044387817383
+Error is: 160
+PID output is: 102.73561477661133
+Error is: 160
+PID output is: 102.91638946533203
+Error is: 160
+PID output is: 103.09396362304688
+Error is: 160
+PID output is: 103.26801681518555
+Error is: 160
+PID output is: 103.44250106811523Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 80
+Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 80
+Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 80
+Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+Error is: 160
+PID output is: 213.06234741210938
+Error is: 160
+PID output is: 213.41168212890625
+Error is: 160
+PID output is: 213.7616729736328
+Error is: 160
+PID output is: 214.12024688720703
+Error is: 160
+PID output is: 214.49263763427734
+Error is: 160
+PID output is: 214.84307861328125
+Error is: 160
+PID output is: 215.19204711914062
+Error is: 160
+PID output is: 215.54044342041016
+Error is: 160
+PID output is: 215.8894271850586
+Error is: 160
+PID output is: 216.2623748779297
+Error is: 160
+PID output is: 216.68119049072266
+Error is: 160
+PID output is: 217.04991912841797
+Error is: 160
+PID output is: 217.41500854492188
+Error is: 160
+PID output is: 217.79309844970703
+Error is: 160
+PID output is: 218.164306640625
+Error is: 160
+PID output is: 218.5198745727539
+Error is: 160
+PID output is: 218.91139221191406
+Error is: 160
+PID output is: 219.27436065673828
+Error is: 160
+PID output is: 219.63164520263672
+Error is: 160
+PID output is: 220.02801513671875
+Error is: 160
+PID output is: 220.4048309326172
+Error is: 160
+PID output is: 220.78876495361328
+Error is: 160
+PID output is: 221.14906311035156
+Error is: 160
+PID output is: 221.51202392578125
+Error is: 160
+PID output is: 221.8833999633789
+Error is: 160
+PID output is: 222.24323272705078
+Error is: 160
+PID output is: 222.60198211669922
+Error is: 160
+PID output is: 223.05445098876953
+Error is: 160
+PID output is: 223.43765258789062
+Error is: 160
+PID output is: 223.79779052734375
+Error is: 160
+PID output is: 224.1729278564453
+Error is: 160
+PID output is: 224.5445556640625
+Error is: 160
+PID output is: 224.95053100585938
+Error is: 160
+PID output is: 225.33303833007812
+Error is: 160
+PID output is: 225.72630310058594
+Error is: 160
+PID output is: 226.12226104736328
+Error is: 160
+PID output is: 226.48682403564453
+Error is: 160
+PID output is: 226.87939453125
+Error is: 160
+PID output is: 227.28150177001953
+Error is: 160
+PID output is: 227.6455841064453
+Error is: 160
+PID output is: 228.04727935791016
+Error is: 160
+PID output is: 228.4368133544922
+Error is: 160
+PID output is: 228.83160400390625
+Error is: 160
+PID output is: 229.24121856689453
+Error is: 160
+PID output is: 229.63736724853516
+Error is: 160
+PID output is: 230.0987548828125
+Error is: 160
+PID output is: 230.50619506835938
+Error is: 160
+PID output is: 230.89154815673828
+Error is: 160
+PID output is: 231.33261108398438
+Error is: 160
+PID output is: 231.72885131835938
+Error is: 160
+PID output is: 232.08275604248047
+Error is: 160
+PID output is: 232.45438385009766
+Error is: 160
+PID output is: 232.82100677490234
+Error is: 160
+PID output is: 233.2074737548828
+Error is: 160
+PID output is: 233.6268081665039
+Error is: 160
+PID output is: 233.98162841796875
+Error is: 160
+PID output is: 234.3486785888672
+Error is: 160
+PID output is: 234.70974731445312
+Error is: 160
+PID output is: 235.07177734375
+Error is: 160
+PID output is: 235.44747924804688
+Error is: 160
+PID output is: 235.83160400390625
+Error is: 160
+PID output is: 236.18814849853516
+Error is: 160
+PID output is: 236.54529571533203
+Error is: 160
+PID output is: 236.96421813964844
+Error is: 160
+PID output is: 237.34487915039062
+Error is: 160
+PID output is: 237.70569610595703
+Error is: 160
+PID output is: 238.06942749023438
+Error is: 160
+PID output is: 238.43140411376953
+Error is: 160
+PID output is: 238.8386459350586
+Error is: 160
+PID output is: 239.22164916992188
+Error is: 160
+PID output is: 239.59678649902344
+Error is: 160
+PID output is: 239.95822143554688
+Error is: 160
+PID output is: 240.31787872314453
+Error is: 160
+PID output is: 240.67272186279297
+Error is: 160
+PID output is: 241.02615356445312
+Error is: 160
+PID output is: 241.3972396850586
+Error is: 160
+PID output is: 241.76337432861328
+Error is: 160
+PID output is: 242.12133026123047
+Error is: 160
+PID output is: 242.4813232421875
+Error is: 160
+PID output is: 242.84146881103516
+Error is: 160
+PID output is: 243.1988983154297
+Error is: 160
+PID output is: 243.6346893310547
+Error is: 160
+PID output is: 244.02397918701172
+Error is: 160
+PID output is: 244.38443756103516
+Error is: 160
+PID output is: 244.75076293945312
+Error is: 160
+PID output is: 245.12345123291016
+Error is: 160
+PID output is: 245.51386260986328
+Error is: 160
+PID output is: 245.87694549560547
+Error is: 160
+PID output is: 246.26335906982422
+Error is: 160
+PID output is: 246.62259674072266
+Error is: 160
+PID output is: 246.98275756835938
+Error is: 160
+PID output is: 247.34730529785156
+Error is: 160
+PID output is: 247.7226333618164
+Error is: 160
+PID output is: 248.07952117919922
+Error is: 160
+PID output is: 248.4600372314453
+Error is: 160
+PID output is: 248.82813262939453
+Error is: 160
+PID output is: 249.18910217285156
+Error is: 160
+PID output is: 249.5447540283203
+Error is: 160
+PID output is: 249.9170684814453
+Error is: 160
+PID output is: 250.28823852539062
+Error is: 160
+PID output is: 250.7377166748047
+Error is: 160
+PID output is: 251.1004867553711
+Error is: 160
+PID output is: 251.4469985961914
+Error is: 160
+PID output is: 251.8012237548828
+Error is: 160
+PID output is: 252.19609832763672
+Error is: 160
+PID output is: 252.57081604003906
+Error is: 160
+PID output is: 252.9907684326172
+Error is: 160
+PID output is: 253.3561019897461
+Error is: 160
+PID output is: 253.71739959716797
+Error is: 160
+PID output is: 254.0898895263672
+Error is: 160
+PID output is: 254.46279907226562
+Error is: 160
+PID output is: 254.83330535888672
+Error is: 160
+PID output is: 255.1954345703125
+Error is: 160
+PID output is: 255.55868530273438
+Error is: 160
+PID output is: 255.91886138916016
+Error is: 160
+PID output is: 256.28418731689453
+Error is: 160
+PID output is: 256.65821075439453
+Error is: 160
+PID output is: 257.04822540283203
+Error is: 160
+PID output is: 257.6274108886719
+Error is: 160
+PID output is: 257.9967727661133
+Error is: 160
+PID output is: 258.3557586669922
+Error is: 160
+PID output is: 258.7119445800781
+Error is: 160
+PID output is: 259.2171859741211
+Error is: 160
+PID output is: 259.5900115966797
+Error is: 160
+PID output is: 259.9654312133789
+Error is: 160
+PID output is: 260.3414993286133
+Error is: 160
+PID output is: 260.69557189941406
+Error is: 160
+PID output is: 261.05358123779297
+Error is: 160
+PID output is: 261.4112091064453
+Error is: 160
+PID output is: 261.7678527832031
+Error is: 160
+PID output is: 262.1238708496094
+Error is: 160
+PID output is: 262.48360443115234
+Error is: 160
+PID output is: 262.8392868041992
+Error is: 160
+PID output is: 263.2055206298828
+Error is: 160
+PID output is: 263.6089630126953
+Error is: 160
+PID output is: 264.1527557373047
+Error is: 160
+PID output is: 264.51773834228516
+Error is: 160
+PID output is: 264.99617767333984
+Error is: 160
+PID output is: 265.396728515625
+Error is: 160
+PID output is: 265.8030014038086
+Error is: 160
+PID output is: 266.1554946899414
+Error is: 160
+PID output is: 266.56407928466797
+Error is: 160
+PID output is: 266.9613571166992
+Error is: 160
+PID output is: 267.3683853149414
+Error is: 160
+PID output is: 267.75201416015625
+Error is: 160
+PID output is: 268.1207962036133
+Error is: 160
+PID output is: 268.5035934448242
+Error is: 160
+PID output is: 268.9101867675781
+Error is: 160
+PID output is: 269.26456451416016
+Error is: 160
+PID output is: 269.6237258911133
+Error is: 160
+PID output is: 270.01575469970703
+Error is: 160
+PID output is: 270.3603057861328
+Error is: 160
+PID output is: 270.8831558227539
+Error is: 160
+PID output is: 271.2842254638672
+Error is: 160
+PID output is: 271.705810546875
+Error is: 160
+PID output is: 272.11151123046875
+Error is: 160
+PID output is: 272.46007537841797
+Error is: 160
+PID output is: 272.8333511352539
+Error is: 160
+PID output is: 273.2104721069336
+Error is: 160
+PID output is: 273.6049270629883
+Error is: 160
+PID output is: 273.97684478759766
+Error is: 160
+PID output is: 274.34986114501953
+Error is: 160
+PID output is: 274.7063522338867
+Error is: 160
+PID output is: 275.07543182373047
+Error is: 160
+PID output is: 275.4642791748047
+Error is: 160
+PID output is: 275.8936004638672
+Error is: 160
+PID output is: 276.2593994140625
+Error is: 160
+PID output is: 276.6742248535156
+Error is: 160
+PID output is: 277.0535125732422
+Error is: 160
+PID output is: 277.7440872192383
+Error is: 160
+PID output is: 278.15447998046875
+Error is: 160
+PID output is: 278.78985595703125
+Error is: 160
+PID output is: 279.1795883178711
+Error is: 160
+PID output is: 103.62512969970703
+Error is: 160
+PID output is: 103.80269622802734
+Error is: 160
+PID output is: 104.00714111328125
+Error is: 160
+PID output is: 104.2049789428711
+Error is: 160
+PID output is: 104.39184188842773
+Error is: 160
+PID output is: 104.5831298828125
+Error is: 160
+PID output is: 104.76750564575195
+Error is: 160
+PID output is: 104.97950744628906
+Error is: 160
+PID output is: 105.15884399414062
+Error is: 160
+PID output is: 105.3592758178711
+Error is: 160
+PID output is: 105.53915786743164
+Error is: 160
+PID output is: 105.71767807006836
+Error is: 160
+PID output is: 105.9086685180664
+Error is: 160
+PID output is: 106.09236145019531
+Error is: 160
+PID output is: 106.28718185424805
+Error is: 160
+PID output is: 106.46693420410156
+Error is: 160
+PID output is: 106.64421081542969
+Error is: 160
+PID output is: 106.8234977722168
+Error is: 160
+PID output is: 107.0002212524414
+Error is: 160
+PID output is: 107.17851638793945
+Error is: 160
+PID output is: 107.38330078125
+Error is: 160
+PID output is: 107.56736373901367
+Error is: 160
+PID output is: 107.74921798706055
+Error is: 160
+PID output is: 107.933837890625
+Error is: 160
+PID output is: 108.12271499633789
+Error is: 160
+PID output is: 108.30266571044922
+Error is: 160
+PID output is: 108.47909545898438
+Error is: 160
+PID output is: 108.67955017089844
+Error is: 160
+PID output is: 108.86363220214844
+Error is: 160
+PID output is: 109.06022262573242
+Error is: 160
+PID output is: 109.26436996459961
+Error is: 160
+PID output is: 109.45795059204102
+Error is: 160
+PID output is: 109.64128112792969
+Error is: 160
+PID output is: 109.83979415893555
+Error is: 160
+PID output is: 110.02465057373047
+Error is: 160
+PID output is: 110.23587417602539
+Error is: 160
+PID output is: 110.43307495117188
+Error is: 160
+PID output is: 110.63579940795898
+Error is: 160
+PID output is: 110.84230041503906
+Error is: 160
+PID output is: 111.0538101196289
+Error is: 160
+PID output is: 111.28950500488281
+Error is: 160
+PID output is: 111.46337127685547
+Error is: 160
+PID output is: 111.64994812011719
+Error is: 160
+PID output is: 111.83480072021484
+Error is: 160
+PID output is: 112.01110458374023
+Error is: 160
+PID output is: 112.1867446899414
+Error is: 160
+PID output is: 112.36347198486328
+Error is: 160
+PID output is: 112.54219055175781
+Error is: 160
+PID output is: 112.71892547607422
+Error is: 160
+PID output is: 112.89513778686523
+Error is: 160
+PID output is: 113.07075119018555
+Error is: 160
+PID output is: 113.24357986450195
+Error is: 160
+PID output is: 113.41817474365234
+Error is: 160
+PID output is: 113.59613418579102
+Error is: 160
+PID output is: 113.77064895629883
+Error is: 160
+PID output is: 113.94671630859375
+Error is: 160
+PID output is: 114.12012100219727
+Error is: 160
+PID output is: 114.29366302490234
+Error is: 160
+PID output is: 114.54329681396484
+Error is: 160
+PID output is: 114.7269058227539
+Error is: 160
+PID output is: 114.91024017333984
+Error is: 160
+PID output is: 115.0862922668457
+Error is: 160
+PID output is: 115.2652702331543
+Error is: 160
+PID output is: 115.55790328979492
+Error is: 160
+PID output is: 115.73994064331055
+Error is: 160
+PID output is: 115.9189682006836
+Error is: 160
+PID output is: 116.09409713745117
+Error is: 160
+PID output is: 116.26938247680664
+Error is: 160
+PID output is: 116.44554138183594
+Error is: 160
+PID output is: 116.62005996704102
+Error is: 160
+PID output is: 116.79421997070312
+Error is: 160
+PID output is: 116.97261428833008
+Error is: 160
+PID output is: 117.15171813964844
+Error is: 160
+PID output is: 117.32938766479492
+Error is: 160
+PID output is: 117.50335693359375
+Error is: 160
+PID output is: 117.71551132202148
+Error is: 160
+PID output is: 117.90377044677734
+Error is: 160
+PID output is: 118.08315658569336
+Error is: 160
+PID output is: 118.29647445678711
+Error is: 160
+PID output is: 118.47883224487305
+Error is: 160
+PID output is: 118.65880584716797
+Error is: 160
+PID output is: 118.83467864990234
+Error is: 160
+PID output is: 119.01009368896484
+Error is: 160
+PID output is: 119.18618392944336
+Error is: 160
+PID output is: 119.36061096191406
+Error is: 160
+PID output is: 119.53363800048828
+Error is: 160
+PID output is: 119.72314071655273
+Error is: 160
+PID output is: 119.90118789672852
+Error is: 160
+PID output is: 120.0752182006836
+Error is: 160
+PID output is: 120.29424667358398
+Error is: 160
+PID output is: 120.47300338745117
+Error is: 160
+PID output is: 120.64963912963867
+Error is: 160
+PID output is: 120.82256698608398
+Error is: 160
+PID output is: 120.99880981445312
+Error is: 160
+PID output is: 121.18249893188477
+Error is: 160
+PID output is: 121.52374267578125
+Error is: 160
+PID output is: 121.70066833496094
+Error is: 160
+PID output is: 121.91601943969727
+Error is: 160
+PID output is: 122.11666107177734
+Error is: 160
+PID output is: 122.29644775390625
+Error is: 160
+PID output is: 122.50368881225586
+Error is: 160
+PID output is: 122.6952018737793
+Error is: 160
+PID output is: 122.8722038269043
+Error is: 160
+PID output is: 123.05630111694336
+Error is: 160
+PID output is: 123.24731826782227
+Error is: 160
+PID output is: 123.43449783325195
+Error is: 160
+PID output is: 123.61443710327148
+Error is: 160
+PID output is: 123.79534530639648
+Error is: 160
+PID output is: 123.97607040405273
+Error is: 160
+PID output is: 124.15365219116211
+Error is: 160
+PID output is: 124.34009552001953
+Error is: 160
+PID output is: 124.53245544433594
+Error is: 160
+PID output is: 124.86300659179688
+Error is: 160
+PID output is: 125.1052474975586
+Error is: 160
+PID output is: 125.28725051879883
+Error is: 160
+PID output is: 125.61689758300781
+Error is: 160
+PID output is: 125.81214904785156
+Error is: 160
+PID output is: 125.99886703491211
+Error is: 160
+PID output is: 126.18681716918945
+Error is: 160
+PID output is: 126.37208938598633
+Error is: 160
+PID output is: 126.54707336425781
+Error is: 160
+PID output is: 126.73055267333984
+Error is: 160
+PID output is: 126.9035415649414
+Error is: 160
+PID output is: 127.08096694946289
+Error is: 160
+PID output is: 127.26654434204102
+Error is: 160
+PID output is: 127.43857955932617
+Error is: 160
+PID output is: 127.62465286254883
+Error is: 160
+PID output is: 127.81278991699219
+Error is: 160
+PID output is: 128.10725784301758
+Error is: 160
+PID output is: 128.30706024169922
+Error is: 160
+PID output is: 128.50078582763672
+Error is: 160
+PID output is: 128.70666885375977
+Error is: 160
+PID output is: 128.89870834350586
+Error is: 160
+PID output is: 129.08290481567383
+Error is: 160
+PID output is: 129.2952537536621
+Error is: 160
+PID output is: 129.4766502380371
+Error is: 160
+PID output is: 129.68517684936523
+Error is: 160
+PID output is: 129.87733459472656
+Error is: 160
+PID output is: 130.06423950195312
+Error is: 160
+PID output is: 130.25707244873047
+Error is: 160
+PID output is: 130.44423294067383
+Error is: 160
+PID output is: 130.62120056152344
+Error is: 160
+PID output is: 130.79957962036133
+Error is: 160
+PID output is: 131.00039672851562
+Error is: 160
+PID output is: 131.17877960205078
+Error is: 160
+PID output is: 131.44000244140625
+Error is: 160
+PID output is: 131.67759704589844
+Error is: 160
+PID output is: 131.86094665527344
+Error is: 160
+PID output is: 132.04758071899414
+Error is: 160
+PID output is: 132.2247543334961
+Error is: 160
+PID output is: 132.41520309448242
+Error is: 160
+PID output is: 132.60947799682617
+Error is: 160
+PID output is: 132.80747985839844
+Error is: 160
+PID output is: 132.9931411743164
+Error is: 160
+PID output is: 133.1757469177246
+Error is: 160
+PID output is: 133.35861587524414
+Error is: 160
+PID output is: 133.54503631591797
+Error is: 160
+PID output is: 133.73240661621094
+Error is: 160
+PID output is: 133.91736221313477
+Error is: 160
+PID output is: 134.1297607421875
+Error is: 160
+PID output is: 134.3454360961914
+Error is: 160
+PID output is: 134.53176498413086
+Error is: 160
+PID output is: 134.8803482055664
+Error is: 160
+PID output is: 135.16945266723633
+Error is: 160
+PID output is: 135.41086196899414
+Error is: 160
+PID output is: 135.58978652954102
+Error is: 160
+PID output is: 135.7721405029297
+Error is: 160
+PID output is: 135.9554901123047
+Error is: 160
+PID output is: 136.18746185302734
+Error is: 160
+PID output is: 136.37582397460938
+Error is: 160
+PID output is: 136.5608253479004
+Error is: 160
+PID output is: 136.7407112121582Limited Pan angle is 80
+Set servo angle: 80
+Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 80
+Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 80
+Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 80
+
+Error is: 160
+PID output is: 279.5458984375
+Error is: 160
+PID output is: 279.9178771972656
+Error is: 160
+PID output is: 280.2792663574219
+Error is: 160
+PID output is: 280.7148895263672
+Error is: 160
+PID output is: 281.0903854370117
+Error is: 160
+PID output is: 281.45762634277344
+Error is: 160
+PID output is: 281.85963439941406
+Error is: 160
+PID output is: 282.2349395751953
+Error is: 160
+PID output is: 282.6021270751953
+Error is: 160
+PID output is: 282.97206115722656
+Error is: 160
+PID output is: 283.35152435302734
+Error is: 160
+PID output is: 283.7163543701172
+Error is: 160
+PID output is: 284.23020935058594
+Error is: 160
+PID output is: 284.68383026123047
+Error is: 160
+PID output is: 285.17137908935547
+Error is: 160
+PID output is: 285.54784393310547
+Error is: 160
+PID output is: 285.9304733276367
+Error is: 160
+PID output is: 286.38441467285156
+Error is: 160
+PID output is: 286.7559585571289
+Error is: 160
+PID output is: 287.1237030029297
+Error is: 160
+PID output is: 287.5028381347656
+Error is: 160
+PID output is: 287.87664794921875
+Error is: 160
+PID output is: 288.2607955932617
+Error is: 160
+PID output is: 288.66380310058594
+Error is: 160
+PID output is: 289.2640838623047
+Error is: 160
+PID output is: 289.6309585571289
+Error is: 160
+PID output is: 289.9937438964844
+Error is: 160
+PID output is: 290.36844635009766
+Error is: 160
+PID output is: 290.75516510009766
+Error is: 160
+PID output is: 291.3352508544922
+Error is: 160
+PID output is: 291.83526611328125
+Error is: 160
+PID output is: 292.1849670410156
+Error is: 160
+PID output is: 292.5660858154297
+Error is: 160
+PID output is: 292.93882751464844
+Error is: 160
+PID output is: 293.2946014404297
+Error is: 160
+PID output is: 293.6461410522461
+Error is: 160
+PID output is: 293.99705505371094
+Error is: 160
+PID output is: 294.35215759277344
+Error is: 160
+PID output is: 294.71849060058594
+Error is: 160
+PID output is: 295.0728454589844
+Error is: 160
+PID output is: 295.42288970947266
+Error is: 160
+PID output is: 295.78394317626953
+Error is: 160
+PID output is: 296.1452331542969
+Error is: 160
+PID output is: 296.5039520263672
+Error is: 160
+PID output is: 296.85743713378906
+Error is: 160
+PID output is: 297.8397521972656
+Error is: 160
+PID output is: 298.2289276123047
+Error is: 160
+PID output is: 298.69115447998047
+Error is: 160
+PID output is: 299.11287689208984
+Error is: 160
+PID output is: 299.7329788208008
+Error is: 160
+PID output is: 300.09745025634766
+Error is: 160
+PID output is: 300.4495544433594
+Error is: 160
+PID output is: 300.80226135253906
+Error is: 160
+PID output is: 301.17620849609375
+Error is: 160
+PID output is: 301.52945709228516
+Error is: 160
+PID output is: 301.88665771484375
+Error is: 160
+PID output is: 302.2414321899414
+Error is: 160
+PID output is: 302.5944061279297
+Error is: 160
+PID output is: 302.9514846801758
+Error is: 160
+PID output is: 303.30924224853516
+Error is: 160
+PID output is: 303.66357421875
+Error is: 160
+PID output is: 304.02222442626953
+Error is: 160
+PID output is: 304.37652587890625
+Error is: 160
+PID output is: 304.8475570678711
+Error is: 160
+PID output is: 305.22959899902344
+Error is: 160
+PID output is: 305.64796447753906
+Error is: 160
+PID output is: 306.1293182373047
+Error is: 160
+PID output is: 306.64134216308594
+Error is: 160
+PID output is: 306.9996109008789
+Error is: 160
+PID output is: 307.36521911621094
+Error is: 160
+PID output is: 307.72105407714844
+Error is: 160
+PID output is: 308.0806579589844
+Error is: 160
+PID output is: 308.44866943359375
+Error is: 160
+PID output is: 308.7977066040039
+Error is: 160
+PID output is: 309.14598846435547
+Error is: 160
+PID output is: 309.5024185180664
+Error is: 160
+PID output is: 309.8517608642578
+Error is: 160
+PID output is: 310.2276077270508
+Error is: 160
+PID output is: 310.5963592529297
+Error is: 160
+PID output is: 310.9510192871094
+Error is: 160
+PID output is: 311.4089813232422
+Error is: 160
+PID output is: 311.8246536254883
+Error is: 160
+PID output is: 312.2005310058594
+Error is: 160
+PID output is: 312.8092041015625
+Error is: 160
+PID output is: 313.40111541748047
+Error is: 160
+PID output is: 313.7514114379883
+Error is: 160
+PID output is: 314.1122741699219
+Error is: 160
+PID output is: 314.47452545166016
+Error is: 160
+PID output is: 314.882568359375
+Error is: 160
+PID output is: 315.2488098144531
+Error is: 160
+PID output is: 315.6192398071289
+Error is: 160
+PID output is: 315.984619140625
+Error is: 160
+PID output is: 316.6492691040039
+Error is: 160
+PID output is: 317.0113067626953
+Error is: 160
+PID output is: 317.36031341552734
+Error is: 160
+PID output is: 317.71329498291016
+Error is: 160
+PID output is: 318.31758880615234
+Error is: 160
+PID output is: 318.68164825439453
+Error is: 160
+PID output is: 319.09466552734375
+Error is: 160
+PID output is: 319.4776840209961
+Error is: 160
+PID output is: 319.8517837524414
+Error is: 160
+PID output is: 320.21395111083984
+Error is: 160
+PID output is: 320.5793151855469
+Error is: 160
+PID output is: 320.9432373046875
+Error is: 160
+PID output is: 321.29984283447266
+Error is: 160
+PID output is: 321.66172790527344
+Error is: 160
+PID output is: 322.0231475830078
+Error is: 160
+PID output is: 322.3813247680664
+Error is: 160
+PID output is: 322.7459945678711
+Error is: 160
+PID output is: 323.11605072021484
+Error is: 160
+PID output is: 323.49440002441406
+Error is: 160
+PID output is: 323.85279846191406
+Error is: 160
+PID output is: 324.23975372314453
+Error is: 160
+PID output is: 324.6337661743164
+Error is: 160
+PID output is: 325.0623474121094
+Error is: 160
+PID output is: 325.44771575927734
+Error is: 160
+PID output is: 325.80958557128906
+Error is: 160
+PID output is: 326.1845397949219
+Error is: 160
+PID output is: 326.55472564697266
+Error is: 160
+PID output is: 326.93729400634766
+Error is: 160
+PID output is: 327.3017120361328
+Error is: 160
+PID output is: 327.65997314453125
+Error is: 160
+PID output is: 328.01781463623047
+Error is: 160
+PID output is: 328.37782287597656
+Error is: 160
+PID output is: 328.74237060546875
+Error is: 160
+PID output is: 329.1033248901367
+Error is: 160
+PID output is: 329.47095489501953
+Error is: 160
+PID output is: 329.83358001708984
+Error is: 160
+PID output is: 330.1966323852539
+Error is: 160
+PID output is: 330.55396270751953
+Error is: 160
+PID output is: 330.91961669921875
+Error is: 160
+PID output is: 331.27867889404297
+Error is: 160
+PID output is: 331.7283706665039
+Error is: 160
+PID output is: 332.11548614501953
+Error is: 160
+PID output is: 332.51404571533203
+Error is: 160
+PID output is: 332.8732147216797
+Error is: 160
+PID output is: 333.25489044189453
+Error is: 160
+PID output is: 333.63594818115234
+Error is: 160
+PID output is: 333.9968719482422
+Error is: 160
+PID output is: 334.3522415161133
+Error is: 160
+PID output is: 334.7416458129883
+Error is: 160
+PID output is: 335.1087951660156
+Error is: 160
+PID output is: 335.47789001464844
+Error is: 160
+PID output is: 335.86595916748047
+Error is: 160
+PID output is: 336.2381286621094
+Error is: 160
+PID output is: 336.5939178466797
+Error is: 160
+PID output is: 336.95105743408203
+Error is: 160
+PID output is: 337.3089294433594
+Error is: 160
+PID output is: 337.67076873779297
+Error is: 160
+PID output is: 338.0389862060547
+Error is: 160
+PID output is: 338.39892578125
+Error is: 160
+PID output is: 338.8339538574219
+Error is: 160
+PID output is: 339.21170806884766
+Error is: 160
+PID output is: 339.60546875
+Error is: 160
+PID output is: 339.99646759033203
+Error is: 160
+PID output is: 340.4199981689453
+Error is: 160
+PID output is: 340.77520751953125
+Error is: 160
+PID output is: 341.1345443725586
+Error is: 160
+PID output is: 341.5011520385742
+Error is: 160
+PID output is: 341.86046600341797
+Error is: 160
+PID output is: 342.2205047607422
+Error is: 160
+PID output is: 342.64009857177734
+Error is: 160
+PID output is: 343.01251220703125
+Error is: 160
+PID output is: 343.4140167236328
+Error is: 160
+PID output is: 343.8284606933594
+Error is: 160
+PID output is: 344.2743911743164
+Error is: 160
+PID output is: 344.6267776489258
+Error is: 160
+PID output is: 345.02307891845703
+Error is: 160
+PID output is: 345.41978454589844
+Error is: 160
+PID output is: 345.8626251220703
+Error is: 160
+PID output is: 346.2130889892578
+Error is: 160
+PID output is: 346.6244430541992
+Error is: 160
+PID output is: 346.99011993408203
+Error is: 160
+PID output is: 136.93573379516602
+Error is: 160
+PID output is: 137.1181869506836
+Error is: 160
+PID output is: 137.30826950073242
+Error is: 160
+PID output is: 137.49433517456055
+Error is: 160
+PID output is: 137.68236923217773
+Error is: 160
+PID output is: 137.86888122558594
+Error is: 160
+PID output is: 138.15076446533203
+Error is: 160
+PID output is: 138.40390014648438
+Error is: 160
+PID output is: 138.5931282043457
+Error is: 160
+PID output is: 138.7850227355957
+Error is: 160
+PID output is: 138.9735336303711
+Error is: 160
+PID output is: 139.21045303344727
+Error is: 160
+PID output is: 139.39361190795898
+Error is: 160
+PID output is: 139.57382202148438
+Error is: 160
+PID output is: 139.75972366333008
+Error is: 160
+PID output is: 139.9493637084961
+Error is: 160
+PID output is: 140.13870239257812
+Error is: 160
+PID output is: 140.3249855041504
+Error is: 160
+PID output is: 140.64034271240234
+Error is: 160
+PID output is: 140.83101654052734
+Error is: 160
+PID output is: 141.00823593139648
+Error is: 160
+PID output is: 141.19897079467773
+Error is: 160
+PID output is: 141.38636016845703
+Error is: 160
+PID output is: 141.6519432067871
+Error is: 160
+PID output is: 141.8666877746582
+Error is: 160
+PID output is: 142.04570388793945
+Error is: 160
+PID output is: 142.36446380615234
+Error is: 160
+PID output is: 142.6387176513672
+Error is: 160
+PID output is: 142.8173713684082
+Error is: 160
+PID output is: 143.0006866455078
+Error is: 160
+PID output is: 143.1891746520996
+Error is: 160
+PID output is: 143.3720817565918
+Error is: 160
+PID output is: 143.5568389892578
+Error is: 160
+PID output is: 143.7359390258789
+Error is: 160
+PID output is: 143.96417999267578
+Error is: 160
+PID output is: 144.14232635498047
+Error is: 160
+PID output is: 144.32751083374023
+Error is: 160
+PID output is: 144.65847778320312
+Error is: 160
+PID output is: 144.9686508178711
+Error is: 160
+PID output is: 145.16377639770508
+Error is: 160
+PID output is: 145.3610382080078
+Error is: 160
+PID output is: 145.57075881958008
+Error is: 160
+PID output is: 146.027587890625
+Error is: 160
+PID output is: 146.2060890197754
+Error is: 160
+PID output is: 146.392822265625
+Error is: 160
+PID output is: 146.56900024414062
+Error is: 160
+PID output is: 146.7458038330078
+Error is: 160
+PID output is: 146.9201202392578
+Error is: 160
+PID output is: 147.10041046142578
+Error is: 160
+PID output is: 147.2755126953125
+Error is: 160
+PID output is: 147.45026397705078
+Error is: 160
+PID output is: 147.62656021118164
+Error is: 160
+PID output is: 147.80622100830078
+Error is: 160
+PID output is: 147.98150634765625
+Error is: 160
+PID output is: 148.1683235168457
+Error is: 160
+PID output is: 148.45155715942383
+Error is: 160
+PID output is: 148.67284774780273
+Error is: 160
+PID output is: 148.89997100830078
+Error is: 160
+PID output is: 149.18264770507812
+Error is: 160
+PID output is: 149.3609962463379
+Error is: 160
+PID output is: 149.54844284057617
+Error is: 160
+PID output is: 149.73596572875977
+Error is: 160
+PID output is: 149.92487716674805
+Error is: 160
+PID output is: 150.1208953857422
+Error is: 160
+PID output is: 150.34862899780273
+Error is: 160
+PID output is: 150.52408981323242
+Error is: 160
+PID output is: 150.70004272460938
+Error is: 160
+PID output is: 150.88182830810547
+Error is: 160
+PID output is: 151.06053161621094
+Error is: 160
+PID output is: 151.2399444580078
+Error is: 160
+PID output is: 151.4155616760254
+Error is: 160
+PID output is: 151.61724090576172
+Error is: 160
+PID output is: 151.98951721191406
+Error is: 160
+PID output is: 152.241455078125
+Error is: 160
+PID output is: 152.4250946044922
+Error is: 160
+PID output is: 152.6026611328125
+Error is: 160
+PID output is: 152.77629470825195
+Error is: 160
+PID output is: 152.9528045654297
+Error is: 160
+PID output is: 153.12904357910156
+Error is: 160
+PID output is: 153.3025894165039
+Error is: 160
+PID output is: 153.50059509277344
+Error is: 160
+PID output is: 153.6744041442871
+Error is: 160
+PID output is: 153.86825942993164
+Error is: 160
+PID output is: 154.07500839233398
+Error is: 160
+PID output is: 154.25322341918945
+Error is: 160
+PID output is: 154.43170547485352
+Error is: 160
+PID output is: 154.61032485961914
+Error is: 160
+PID output is: 154.78461456298828
+Error is: 160
+PID output is: 154.97342681884766
+Error is: 160
+PID output is: 155.24881744384766
+Error is: 160
+PID output is: 155.4642219543457
+Error is: 160
+PID output is: 155.64420318603516
+Error is: 160
+PID output is: 155.82297897338867
+Error is: 160
+PID output is: 156.0008316040039
+Error is: 160
+PID output is: 156.1764259338379
+Error is: 160
+PID output is: 156.35337448120117
+Error is: 160
+PID output is: 156.52837371826172
+Error is: 160
+PID output is: 156.70156860351562
+Error is: 160
+PID output is: 156.87654876708984
+Error is: 160
+PID output is: 157.04792404174805
+Error is: 160
+PID output is: 157.22525024414062
+Error is: 160
+PID output is: 157.39672470092773
+Error is: 160
+PID output is: 157.5723419189453
+Error is: 160
+PID output is: 157.74645614624023
+Error is: 160
+PID output is: 157.9371795654297
+Error is: 160
+PID output is: 158.11792755126953
+Error is: 160
+PID output is: 158.47361755371094
+Error is: 160
+PID output is: 158.68565368652344
+Error is: 160
+PID output is: 158.86980819702148
+Error is: 160
+PID output is: 159.18167114257812
+Error is: 160
+PID output is: 159.3689727783203
+Error is: 160
+PID output is: 159.55109405517578
+Error is: 160
+PID output is: 159.73194885253906
+Error is: 160
+PID output is: 159.91279220581055
+Error is: 160
+PID output is: 160.0925407409668
+Error is: 160
+PID output is: 160.27288055419922
+Error is: 160
+PID output is: 160.4532012939453
+Error is: 160
+PID output is: 160.63577270507812
+Error is: 160
+PID output is: 160.81775283813477
+Error is: 160
+PID output is: 160.99827575683594
+Error is: 160
+PID output is: 161.18062210083008
+Error is: 160
+PID output is: 161.36252212524414
+Error is: 160
+PID output is: 161.54804611206055
+Error is: 160
+PID output is: 161.7417449951172
+Error is: 160
+PID output is: 161.9448471069336
+Error is: 160
+PID output is: 162.13407516479492
+Error is: 160
+PID output is: 162.33023834228516
+Error is: 160
+PID output is: 162.51214599609375
+Error is: 160
+PID output is: 162.70835494995117
+Error is: 160
+PID output is: 162.8964385986328
+Error is: 160
+PID output is: 163.07780838012695
+Error is: 160
+PID output is: 163.26256942749023
+Error is: 160
+PID output is: 163.44122314453125
+Error is: 160
+PID output is: 163.63795471191406
+Error is: 160
+PID output is: 163.82751083374023
+Error is: 160
+PID output is: 164.01560592651367
+Error is: 160
+PID output is: 164.1973533630371
+Error is: 160
+PID output is: 164.37356567382812
+Error is: 160
+PID output is: 164.55460739135742
+Error is: 160
+PID output is: 164.73603057861328
+Error is: 160
+PID output is: 164.9165802001953
+Error is: 160
+PID output is: 165.12102508544922
+Error is: 160
+PID output is: 165.32863998413086
+Error is: 160
+PID output is: 165.51287460327148
+Error is: 160
+PID output is: 165.6989402770996
+Error is: 160
+PID output is: 165.8816261291504
+Error is: 160
+PID output is: 166.07746505737305
+Error is: 160
+PID output is: 166.25925064086914
+Error is: 160
+PID output is: 166.4346923828125
+Error is: 160
+PID output is: 166.6109504699707
+Error is: 160
+PID output is: 166.78746795654297
+Error is: 160
+PID output is: 166.96480178833008
+Error is: 160
+PID output is: 167.1468620300293
+Error is: 160
+PID output is: 167.32378387451172
+Error is: 160
+PID output is: 167.52301025390625
+Error is: 160
+PID output is: 167.7237663269043
+Error is: 160
+PID output is: 167.9118766784668
+Error is: 160
+PID output is: 168.13742065429688
+Error is: 160
+PID output is: 168.3336067199707
+Error is: 160
+PID output is: 168.5138931274414
+Error is: 160
+PID output is: 168.7319793701172
+Error is: 160
+PID output is: 168.92040252685547
+Error is: 160
+PID output is: 169.12562942504883
+Error is: 160
+PID output is: 169.32403182983398
+Error is: 160
+PID output is: 169.51454544067383
+Error is: 160
+PID output is: 169.7088279724121
+Error is: 160
+PID output is: 169.89083862304688
+Error is: 160
+PID output is: 170.07473754882812
+Error is: 160
+PID output is: 170.26478958129883
+Error is: 160
+PID output is: 170.44414138793945
+Error is: 160
+PID output is: 170.62261199951172
+Error is: 160
+PID output is: 170.80224990844727Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 80
+Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 80
+Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 80
+Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+
+Error is: 160
+PID output is: 170.98726272583008
+Error is: 160
+PID output is: 171.17053985595703
+Error is: 160
+PID output is: 171.35002517700195
+Error is: 160
+PID output is: 171.54296493530273
+Error is: 160
+PID output is: 171.7313346862793
+Error is: 160
+PID output is: 171.91170501708984
+Error is: 160
+PID output is: 172.10702896118164
+Error is: 160
+PID output is: 172.2981071472168
+Error is: 160
+PID output is: 172.48129653930664
+Error is: 160
+PID output is: 172.65890884399414
+Error is: 160
+PID output is: 172.84140396118164
+Error is: 160
+PID output is: 173.02711486816406
+Error is: 160
+PID output is: 173.20270919799805
+Error is: 160
+PID output is: 173.38535690307617
+Error is: 160
+PID output is: 173.5617790222168
+Error is: 160
+PID output is: 173.73794555664062
+Error is: 160
+PID output is: 173.9349479675293
+Error is: 160
+PID output is: 174.1121940612793
+Error is: 160
+PID output is: 174.28911590576172
+Error is: 160
+PID output is: 174.46750259399414
+Error is: 160
+PID output is: 174.64403533935547
+Error is: 160
+PID output is: 174.82665634155273
+Error is: 160
+PID output is: 175.01272583007812
+Error is: 160
+PID output is: 175.20639419555664
+Error is: 160
+PID output is: 175.43013763427734
+Error is: 160
+PID output is: 175.61835098266602
+Error is: 160
+PID output is: 175.80968856811523
+Error is: 160
+PID output is: 175.98487854003906
+Error is: 160
+PID output is: 176.16717529296875
+Error is: 160
+PID output is: 176.3563232421875
+Error is: 160
+PID output is: 176.5330696105957
+Error is: 160
+PID output is: 176.71591186523438
+Error is: 160
+PID output is: 176.9036521911621
+Error is: 160
+PID output is: 177.085693359375
+Error is: 160
+PID output is: 177.26441192626953
+Error is: 160
+PID output is: 177.44452667236328
+Error is: 160
+PID output is: 177.62086868286133
+Error is: 160
+PID output is: 177.806640625
+Error is: 160
+PID output is: 177.98433685302734
+Error is: 160
+PID output is: 178.16036987304688
+Error is: 160
+PID output is: 178.34020614624023
+Error is: 160
+PID output is: 178.51801681518555
+Error is: 160
+PID output is: 178.6992950439453
+Error is: 160
+PID output is: 178.89353561401367
+Error is: 160
+PID output is: 179.07627868652344
+Error is: 160
+PID output is: 179.2673110961914
+Error is: 160
+PID output is: 179.44428634643555
+Error is: 160
+PID output is: 179.73569107055664
+Error is: 160
+PID output is: 179.91653442382812
+Error is: 160
+PID output is: 180.1027603149414
+Error is: 160
+PID output is: 180.28578567504883
+Error is: 160
+PID output is: 180.46763610839844
+Error is: 160
+PID output is: 180.65422821044922
+Error is: 160
+PID output is: 180.8392448425293
+Error is: 160
+PID output is: 181.01461029052734
+Error is: 160
+PID output is: 181.19071197509766
+Error is: 160
+PID output is: 181.36779022216797
+Error is: 160
+PID output is: 181.5469741821289
+Error is: 160
+PID output is: 181.7305908203125
+Error is: 160
+PID output is: 181.91661071777344
+Error is: 160
+PID output is: 182.11631774902344
+Error is: 160
+PID output is: 182.40940475463867
+Error is: 160
+PID output is: 182.58694076538086
+Error is: 160
+PID output is: 182.79556274414062
+Error is: 160
+PID output is: 182.9704132080078
+Error is: 160
+PID output is: 183.1536979675293
+Error is: 160
+PID output is: 183.3306541442871
+Error is: 160
+PID output is: 183.50704193115234
+Error is: 160
+PID output is: 183.68081665039062
+Error is: 160
+PID output is: 183.8554458618164
+Error is: 160
+PID output is: 184.0279312133789
+Error is: 160
+PID output is: 184.20111465454102
+Error is: 160
+PID output is: 184.3755645751953
+Error is: 160
+PID output is: 184.54792022705078
+Error is: 160
+PID output is: 184.7206573486328
+Error is: 160
+PID output is: 184.8944969177246
+Error is: 160
+PID output is: 185.06627655029297
+Error is: 160
+PID output is: 185.24009704589844
+Error is: 160
+PID output is: 185.42560195922852
+Error is: 160
+PID output is: 185.80102157592773
+Error is: 160
+PID output is: 186.05596923828125
+Error is: 160
+PID output is: 186.33342742919922
+Error is: 160
+PID output is: 186.51725387573242
+Error is: 160
+PID output is: 186.6971664428711
+Error is: 160
+PID output is: 186.87274169921875
+Error is: 160
+PID output is: 187.0536231994629
+Error is: 160
+PID output is: 187.2360610961914
+Error is: 160
+PID output is: 187.48511505126953
+Error is: 160
+PID output is: 187.66030883789062
+Error is: 160
+PID output is: 187.90045166015625
+Error is: 160
+PID output is: 188.0843048095703
+Error is: 160
+PID output is: 188.2680206298828
+Error is: 160
+PID output is: 188.44021224975586
+Error is: 160
+PID output is: 188.62355041503906
+Error is: 160
+PID output is: 188.8056755065918
+Error is: 160
+PID output is: 189.11356353759766
+Error is: 160
+PID output is: 189.2942657470703
+Error is: 160
+PID output is: 189.51817321777344
+Error is: 160
+PID output is: 189.71104431152344
+Error is: 160
+PID output is: 189.889404296875
+Error is: 160
+PID output is: 190.06522750854492
+Error is: 160
+PID output is: 190.2477684020996
+Error is: 160
+PID output is: 190.57397842407227
+Error is: 160
+PID output is: 190.75345993041992
+Error is: 160
+PID output is: 190.92818069458008
+Error is: 160
+PID output is: 191.1029815673828
+Error is: 160
+PID output is: 191.27800369262695
+Error is: 160
+PID output is: 191.45531845092773
+Error is: 160
+PID output is: 191.63047409057617
+Error is: 160
+PID output is: 191.80984497070312
+Error is: 160
+PID output is: 191.98749923706055
+Error is: 160
+PID output is: 192.17303085327148
+Error is: 160
+PID output is: 192.45126724243164
+Error is: 160
+PID output is: 192.71067810058594
+Error is: 160
+PID output is: 192.98176956176758
+Error is: 160
+PID output is: 193.16032028198242
+Error is: 160
+PID output is: 193.33543395996094
+Error is: 160
+PID output is: 193.5146484375
+Error is: 160
+PID output is: 193.69003295898438
+Error is: 160
+PID output is: 193.8660545349121
+Error is: 160
+PID output is: 194.04119491577148
+Error is: 160
+PID output is: 194.21536254882812
+Error is: 160
+PID output is: 194.3909149169922
+Error is: 160
+PID output is: 194.56684494018555
+Error is: 160
+PID output is: 194.7418441772461
+Error is: 160
+PID output is: 194.91900634765625
+Error is: 160
+PID output is: 195.09331893920898
+Error is: 160
+PID output is: 195.26995849609375
+Error is: 160
+PID output is: 195.4468879699707
+Error is: 160
+PID output is: 195.68489456176758
+Error is: 160
+PID output is: 195.90909576416016
+Error is: 160
+PID output is: 196.17518615722656
+Error is: 160
+PID output is: 196.4258270263672
+Error is: 160
+PID output is: 196.60840225219727
+Error is: 160
+PID output is: 196.78872299194336
+Error is: 160
+PID output is: 196.97036361694336
+Error is: 160
+PID output is: 197.20365524291992
+Error is: 160
+PID output is: 197.45068740844727
+Error is: 160
+PID output is: 197.63594818115234
+Error is: 160
+PID output is: 197.81954956054688
+Error is: 160
+PID output is: 198.016357421875
+Error is: 160
+PID output is: 198.2268829345703
+Error is: 160
+PID output is: 198.40695571899414
+Error is: 160
+PID output is: 198.59618759155273
+Error is: 160
+PID output is: 198.7801170349121
+Error is: 160
+PID output is: 198.97808837890625
+Error is: 160
+PID output is: 199.16414642333984
+Error is: 160
+PID output is: 199.3477668762207
+Error is: 160
+PID output is: 199.5246238708496
+Error is: 160
+PID output is: 199.7091407775879
+Error is: 160
+PID output is: 199.8918228149414
+Error is: 160
+PID output is: 200.07487869262695
+Error is: 160
+PID output is: 200.25485610961914
+Error is: 160
+PID output is: 200.4337043762207
+Error is: 160
+PID output is: 200.60986328125
+Error is: 160
+PID output is: 200.78834915161133
+Error is: 160
+PID output is: 200.96804809570312
+Error is: 160
+PID output is: 201.14689254760742
+Error is: 160
+PID output is: 201.32955169677734
+Error is: 160
+PID output is: 201.5183448791504
+Error is: 160
+PID output is: 201.70706176757812
+Error is: 160
+PID output is: 201.89429092407227
+Error is: 160
+PID output is: 202.07568740844727
+Error is: 160
+PID output is: 202.30862426757812
+Error is: 160
+PID output is: 202.4977569580078
+Error is: 160
+PID output is: 202.69775772094727
+Error is: 160
+PID output is: 202.8900375366211
+Error is: 160
+PID output is: 203.07707977294922
+Error is: 160
+PID output is: 203.2594451904297
+Error is: 160
+PID output is: 203.44745254516602
+Error is: 160
+PID output is: 203.6263542175293
+Error is: 160
+PID output is: 203.80795288085938
+Error is: 160
+Error is: 160
+PID output is: 347.5535583496094
+Error is: 160
+PID output is: 347.9144744873047
+Error is: 160
+PID output is: 348.2769088745117
+Error is: 160
+PID output is: 348.6258010864258
+Error is: 160
+PID output is: 348.9926528930664
+Error is: 160
+PID output is: 349.3463592529297
+Error is: 160
+PID output is: 349.69246673583984
+Error is: 160
+PID output is: 350.03649139404297
+Error is: 160
+PID output is: 350.3826904296875
+Error is: 160
+PID output is: 350.7270736694336
+Error is: 160
+PID output is: 351.0789031982422
+Error is: 160
+PID output is: 351.4306335449219
+Error is: 160
+PID output is: 351.78157806396484
+Error is: 160
+PID output is: 352.67115020751953
+Error is: 160
+PID output is: 353.075439453125
+Error is: 160
+PID output is: 353.5640411376953
+Error is: 160
+PID output is: 353.93603515625
+Error is: 160
+PID output is: 354.3019561767578
+Error is: 160
+PID output is: 354.6564483642578
+Error is: 160
+PID output is: 355.0165328979492
+Error is: 160
+PID output is: 355.3825225830078
+Error is: 160
+PID output is: 355.82796478271484
+Error is: 160
+PID output is: 356.2522659301758
+Error is: 160
+PID output is: 356.60514068603516
+Error is: 160
+PID output is: 356.94835662841797
+Error is: 160
+PID output is: 357.29432678222656
+Error is: 160
+PID output is: 357.64080810546875
+Error is: 160
+PID output is: 358.0059280395508
+Error is: 160
+PID output is: 358.37200927734375
+Error is: 160
+PID output is: 358.82920837402344
+Error is: 160
+PID output is: 359.56712341308594
+Error is: 160
+PID output is: 359.9259262084961
+Error is: 160
+PID output is: 360.3019027709961
+Error is: 160
+PID output is: 360.67618560791016
+Error is: 160
+PID output is: 361.04412841796875
+Error is: 160
+PID output is: 361.4151840209961
+Error is: 160
+PID output is: 361.9078140258789
+Error is: 160
+PID output is: 362.39928436279297
+Error is: 160
+PID output is: 362.76453399658203
+Error is: 160
+PID output is: 363.11798095703125
+Error is: 160
+PID output is: 363.4721908569336
+Error is: 160
+PID output is: 363.84217071533203
+Error is: 160
+PID output is: 364.21268463134766
+Error is: 160
+PID output is: 364.72393798828125
+Error is: 160
+PID output is: 365.1806106567383
+Error is: 160
+PID output is: 365.5841598510742
+Error is: 160
+PID output is: 366.17142486572266
+Error is: 160
+PID output is: 366.63097381591797
+Error is: 160
+PID output is: 366.9860153198242
+Error is: 160
+PID output is: 367.3905944824219
+Error is: 160
+PID output is: 367.8163375854492
+Error is: 160
+PID output is: 368.1990051269531
+Error is: 160
+PID output is: 368.55467987060547
+Error is: 160
+PID output is: 368.9190444946289
+Error is: 160
+PID output is: 369.2917251586914
+Error is: 160
+PID output is: 369.6536331176758
+Error is: 160
+PID output is: 370.03607177734375
+Error is: 160
+PID output is: 370.3853073120117
+Error is: 160
+PID output is: 370.73272705078125
+Error is: 160
+PID output is: 371.08470153808594
+Error is: 160
+PID output is: 371.45401763916016
+Error is: 160
+PID output is: 371.82720947265625
+Error is: 160
+PID output is: 372.2231903076172
+Error is: 160
+PID output is: 372.8544616699219
+Error is: 160
+PID output is: 373.2801818847656
+Error is: 160
+PID output is: 373.6417541503906
+Error is: 160
+PID output is: 374.04798889160156
+Error is: 160
+PID output is: 374.5061721801758
+Error is: 160
+PID output is: 374.8649368286133
+Error is: 160
+PID output is: 375.2192077636719
+Error is: 160
+PID output is: 375.5700149536133
+Error is: 160
+PID output is: 375.9342803955078
+Error is: 160
+PID output is: 376.28929138183594
+Error is: 160
+PID output is: 376.6615447998047
+Error is: 160
+PID output is: 377.0213394165039
+Error is: 160
+PID output is: 377.3721466064453
+Error is: 160
+PID output is: 377.72972869873047
+Error is: 160
+PID output is: 378.07909393310547
+Error is: 160
+PID output is: 378.4336166381836
+Error is: 160
+PID output is: 378.8306884765625
+Error is: 160
+PID output is: 379.2266616821289
+Error is: 160
+PID output is: 380.00301361083984
+Error is: 160
+PID output is: 380.44361114501953
+Error is: 160
+PID output is: 380.8700942993164
+Error is: 160
+PID output is: 381.22410583496094
+Error is: 160
+PID output is: 381.57518005371094
+Error is: 160
+PID output is: 381.92347717285156
+Error is: 160
+PID output is: 382.27874755859375
+Error is: 160
+PID output is: 382.63226318359375
+Error is: 160
+PID output is: 383.0243606567383
+Error is: 160
+PID output is: 383.37171173095703
+Error is: 160
+PID output is: 384.02017974853516
+Error is: 160
+PID output is: 384.4776306152344
+Error is: 160
+PID output is: 384.8304977416992
+Error is: 160
+PID output is: 385.23741912841797
+Error is: 160
+PID output is: 385.59935760498047
+Error is: 160
+PID output is: 386.1518783569336
+Error is: 160
+PID output is: 386.6065673828125
+Error is: 160
+PID output is: 387.03475189208984
+Error is: 160
+PID output is: 387.4234390258789
+Error is: 160
+PID output is: 387.7853698730469
+Error is: 160
+PID output is: 388.14986419677734
+Error is: 160
+PID output is: 388.49710845947266
+Error is: 160
+PID output is: 389.2114944458008
+Error is: 160
+PID output is: 389.56436920166016
+Error is: 160
+PID output is: 389.91382598876953
+Error is: 160
+PID output is: 390.26493072509766
+Error is: 160
+PID output is: 390.61450958251953
+Error is: 160
+PID output is: 390.96500396728516
+Error is: 160
+PID output is: 391.3140335083008
+Error is: 160
+PID output is: 391.6789321899414
+Error is: 160
+PID output is: 392.0515365600586
+Error is: 160
+PID output is: 392.4446105957031
+Error is: 160
+PID output is: 392.85528564453125
+Error is: 160
+PID output is: 393.34429931640625
+Error is: 160
+PID output is: 393.9106216430664
+Error is: 160
+PID output is: 394.36766052246094
+Error is: 160
+PID output is: 394.71131896972656
+Error is: 160
+PID output is: 395.08592987060547
+Error is: 160
+PID output is: 395.43733978271484
+Error is: 160
+PID output is: 395.80179595947266
+Error is: 160
+PID output is: 396.15734100341797
+Error is: 160
+PID output is: 396.5086441040039
+Error is: 160
+PID output is: 396.8600769042969
+Error is: 160
+PID output is: 397.2107238769531
+Error is: 160
+PID output is: 397.5642623901367
+Error is: 160
+PID output is: 397.9150695800781
+Error is: 160
+PID output is: 398.26924896240234
+Error is: 160
+PID output is: 398.6232452392578
+Error is: 160
+PID output is: 398.9725341796875
+Error is: 160
+PID output is: 399.3451385498047
+Error is: 160
+PID output is: 399.73301696777344
+Error is: 160
+PID output is: 400.2381362915039
+Error is: 160
+PID output is: 400.62694549560547
+Error is: 160
+PID output is: 400.98777770996094
+Error is: 160
+PID output is: 401.3584899902344
+Error is: 160
+PID output is: 401.9561233520508
+Error is: 160
+PID output is: 402.3699417114258
+Error is: 160
+PID output is: 402.73145294189453
+Error is: 160
+PID output is: 403.08679962158203
+Error is: 160
+PID output is: 403.4587631225586
+Error is: 160
+PID output is: 403.81300354003906
+Error is: 160
+PID output is: 404.1623001098633
+Error is: 160
+PID output is: 404.51692962646484
+Error is: 160
+PID output is: 404.86901092529297
+Error is: 160
+PID output is: 405.2168426513672
+Error is: 160
+PID output is: 405.5656509399414
+Error is: 160
+PID output is: 406.0789108276367
+Error is: 160
+PID output is: 406.6082229614258
+Error is: 160
+PID output is: 406.9617385864258
+Error is: 160
+PID output is: 407.3153610229492
+Error is: 160
+PID output is: 407.69110107421875
+Error is: 160
+PID output is: 408.0558776855469
+Error is: 160
+PID output is: 408.4053421020508
+Error is: 160
+PID output is: 408.7573013305664
+Error is: 160
+PID output is: 409.10677337646484
+Error is: 160
+PID output is: 409.45753479003906
+Error is: 160
+PID output is: 409.80799865722656
+Error is: 160
+PID output is: 410.1581268310547
+Error is: 160
+PID output is: 410.50950622558594
+Error is: 160
+PID output is: 410.86963653564453
+Error is: 160
+PID output is: 411.2174072265625
+Error is: 160
+PID output is: 411.5906677246094
+Error is: 160
+PID output is: 412.1348876953125
+Error is: 160
+PID output is: 412.4927673339844
+Error is: 160
+PID output is: 413.1210021972656
+Error is: 160
+PID output is: 413.5974426269531
+Error is: 160
+PID output is: 413.95189666748047
+Error is: 160
+PID output is: 414.30379486083984
+Error is: 160
+PID output is: 414.75728607177734
+Error is: 160
+PID output is: 415.1176071166992
+Error is: 160
+PID output is: 415.48065185546875
+Error is: 160
+PID output is: 415.83265686035156Limited Pan angle is 80
+Set servo angle: 80
+Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 80
+Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 80
+Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 80
+
+PID output is: 203.9896583557129
+Error is: 160
+PID output is: 204.18053817749023
+Error is: 160
+PID output is: 204.3598289489746
+Error is: 160
+PID output is: 204.53694915771484
+Error is: 160
+PID output is: 204.71498489379883
+Error is: 160
+PID output is: 204.8923797607422
+Error is: 160
+PID output is: 205.0695343017578
+Error is: 160
+PID output is: 205.24933624267578
+Error is: 160
+PID output is: 205.4268341064453
+Error is: 160
+PID output is: 205.60754013061523
+Error is: 160
+PID output is: 205.78347396850586
+Error is: 160
+PID output is: 205.96184539794922
+Error is: 160
+PID output is: 206.15040969848633
+Error is: 160
+PID output is: 206.3436393737793
+Error is: 160
+PID output is: 206.56445693969727
+Error is: 160
+PID output is: 206.7632942199707
+Error is: 160
+PID output is: 206.94861602783203
+Error is: 160
+PID output is: 207.1297149658203
+Error is: 160
+PID output is: 207.3114013671875
+Error is: 160
+PID output is: 207.4905128479004
+Error is: 160
+PID output is: 207.67321014404297
+Error is: 160
+PID output is: 207.85242080688477
+Error is: 160
+PID output is: 208.03062057495117
+Error is: 160
+PID output is: 208.20945358276367
+Error is: 160
+PID output is: 208.3894271850586
+Error is: 160
+PID output is: 208.56998825073242
+Error is: 160
+PID output is: 208.75890731811523
+Error is: 160
+PID output is: 208.93723678588867
+Error is: 160
+PID output is: 209.11459732055664
+Error is: 160
+PID output is: 209.30330657958984
+Error is: 160
+PID output is: 209.49077606201172
+Error is: 160
+PID output is: 209.66954040527344
+Error is: 160
+PID output is: 209.86835098266602
+Error is: 160
+PID output is: 210.05083847045898
+Error is: 160
+PID output is: 210.23244094848633
+Error is: 160
+PID output is: 210.43967056274414
+Error is: 160
+PID output is: 210.6156120300293
+Error is: 160
+PID output is: 210.79681777954102
+Error is: 160
+PID output is: 210.97193145751953
+Error is: 160
+PID output is: 211.1484603881836
+Error is: 160
+PID output is: 211.3251075744629
+Error is: 160
+PID output is: 211.4995460510254
+Error is: 160
+PID output is: 211.67606353759766
+Error is: 160
+PID output is: 211.86181259155273
+Error is: 160
+PID output is: 212.04112243652344
+Error is: 160
+PID output is: 212.23257064819336
+Error is: 160
+PID output is: 212.42204666137695
+Error is: 160
+PID output is: 212.62894821166992
+Error is: 160
+PID output is: 212.81300735473633
+Error is: 160
+PID output is: 213.01728057861328
+Error is: 160
+PID output is: 213.20172882080078
+Error is: 160
+PID output is: 213.4542350769043
+Error is: 160
+PID output is: 213.65500259399414
+Error is: 160
+PID output is: 213.83416366577148
+Error is: 160
+PID output is: 214.04236602783203
+Error is: 160
+PID output is: 214.27102661132812
+Error is: 160
+PID output is: 214.4549903869629
+Error is: 160
+PID output is: 214.6491355895996
+Error is: 160
+PID output is: 214.836181640625
+Error is: 160
+PID output is: 215.02594375610352
+Error is: 160
+PID output is: 215.21345901489258
+Error is: 160
+PID output is: 215.39606475830078
+Error is: 160
+PID output is: 215.5799903869629
+Error is: 160
+PID output is: 215.76287460327148
+Error is: 160
+PID output is: 216.1033935546875
+Error is: 160
+PID output is: 216.37593460083008
+Error is: 160
+PID output is: 216.65745544433594
+Error is: 160
+PID output is: 216.87131881713867
+Error is: 160
+PID output is: 217.05031967163086
+Error is: 160
+PID output is: 217.2703094482422
+Error is: 160
+PID output is: 217.45119094848633
+Error is: 160
+PID output is: 217.62851333618164
+Error is: 160
+PID output is: 217.81233596801758
+Error is: 160
+PID output is: 217.9990119934082
+Error is: 160
+PID output is: 218.18123626708984
+Error is: 160
+PID output is: 218.37084197998047
+Error is: 160
+PID output is: 218.55356979370117
+Error is: 160
+PID output is: 218.74191665649414
+Error is: 160
+PID output is: 218.92335891723633
+Error is: 160
+PID output is: 219.10486221313477
+Error is: 160
+PID output is: 219.31421661376953
+Error is: 160
+PID output is: 219.51530838012695
+Error is: 160
+PID output is: 219.71062469482422
+Error is: 160
+PID output is: 219.8918685913086
+Error is: 160
+PID output is: 220.08147811889648
+Error is: 160
+PID output is: 220.26755905151367
+Error is: 160
+PID output is: 220.44795989990234
+Error is: 160
+PID output is: 220.6291160583496
+Error is: 160
+PID output is: 220.80905151367188
+Error is: 160
+PID output is: 221.02564239501953
+Error is: 160
+PID output is: 221.2093391418457
+Error is: 160
+PID output is: 221.38920974731445
+Error is: 160
+PID output is: 221.57172012329102
+Error is: 160
+PID output is: 221.75312042236328
+Error is: 160
+PID output is: 221.9339141845703
+Error is: 160
+PID output is: 222.11717987060547
+Error is: 160
+PID output is: 222.29689025878906
+Error is: 160
+PID output is: 222.47531509399414
+Error is: 160
+PID output is: 222.6604881286621
+Error is: 160
+PID output is: 222.8622169494629
+Error is: 160
+PID output is: 223.04738235473633
+Error is: 160
+PID output is: 223.26384735107422
+Error is: 160
+PID output is: 223.4549789428711
+Error is: 160
+PID output is: 223.6799774169922
+Error is: 160
+PID output is: 223.86239624023438
+Error is: 160
+PID output is: 224.0414161682129
+Error is: 160
+PID output is: 224.2202911376953
+Error is: 160
+PID output is: 224.39818954467773
+Error is: 160
+PID output is: 224.59193420410156
+Error is: 160
+PID output is: 224.7719841003418
+Error is: 160
+PID output is: 224.9503631591797
+Error is: 160
+PID output is: 225.12930297851562
+Error is: 160
+PID output is: 225.30813598632812
+Error is: 160
+PID output is: 225.49554061889648
+Error is: 160
+PID output is: 225.68214416503906
+Error is: 160
+PID output is: 225.8756561279297
+Error is: 160
+PID output is: 226.05639266967773
+Error is: 160
+PID output is: 226.25995635986328
+Error is: 160
+PID output is: 226.44673538208008
+Error is: 160
+PID output is: 226.62929153442383
+Error is: 160
+PID output is: 226.85562896728516
+Error is: 160
+PID output is: 227.0443115234375
+Error is: 160
+PID output is: 227.22514724731445
+Error is: 160
+PID output is: 227.40445709228516
+Error is: 160
+PID output is: 227.58343505859375
+Error is: 160
+PID output is: 227.76696395874023
+Error is: 160
+PID output is: 227.96381378173828
+Error is: 160
+PID output is: 228.1598892211914
+Error is: 160
+PID output is: 228.34136199951172
+Error is: 160
+PID output is: 228.5225601196289
+Error is: 160
+PID output is: 228.69995498657227
+Error is: 160
+PID output is: 228.88017654418945
+Error is: 160
+PID output is: 229.06562042236328
+Error is: 160
+PID output is: 229.24750900268555
+Error is: 160
+PID output is: 229.4560661315918
+Error is: 160
+PID output is: 229.64831924438477
+Error is: 160
+PID output is: 229.83099365234375
+Error is: 160
+PID output is: 230.0528450012207
+Error is: 160
+PID output is: 230.23750686645508
+Error is: 160
+PID output is: 230.42022323608398
+Error is: 160
+PID output is: 230.6003646850586
+Error is: 160
+PID output is: 230.77818298339844
+Error is: 160
+PID output is: 230.96167755126953
+Error is: 160
+PID output is: 231.1704559326172
+Error is: 160
+PID output is: 231.3486442565918
+Error is: 160
+PID output is: 231.5254135131836
+Error is: 160
+PID output is: 231.70294189453125
+Error is: 160
+PID output is: 231.89063262939453
+Error is: 160
+PID output is: 232.07581329345703
+Error is: 160
+PID output is: 232.26564025878906
+Error is: 160
+PID output is: 232.45322036743164
+Error is: 160
+PID output is: 232.65142822265625
+Error is: 160
+PID output is: 232.82951736450195
+Error is: 160
+PID output is: 233.0247802734375
+Error is: 160
+PID output is: 233.25793838500977
+Error is: 160
+PID output is: 233.45062637329102
+Error is: 160
+PID output is: 233.64650344848633
+Error is: 160
+PID output is: 233.82537078857422
+Error is: 160
+PID output is: 234.00880813598633
+Error is: 160
+PID output is: 234.19061279296875
+Error is: 160
+PID output is: 234.3822135925293
+Error is: 160
+PID output is: 234.56001663208008
+Error is: 160
+PID output is: 234.7358627319336
+Error is: 160
+PID output is: 234.91343688964844
+Error is: 160
+PID output is: 235.09093475341797
+Error is: 160
+PID output is: 235.2694320678711
+Error is: 160
+PID output is: 235.45116424560547
+Error is: 160
+PID output is: 235.65333938598633
+Error is: 160
+PID output is: 235.85655975341797
+Error is: 160
+PID output is: 236.05082321166992
+Error is: 160
+PID output is: 236.2332534790039
+Error is: 160
+PID output is: 236.50498962402344
+Error is: 160
+Error is: 160
+PID output is: 416.19444274902344
+Error is: 160
+PID output is: 416.5501022338867
+Error is: 160
+PID output is: 416.91221618652344
+Error is: 160
+PID output is: 417.26531982421875
+Error is: 160
+PID output is: 417.6146011352539
+Error is: 160
+PID output is: 417.9671325683594
+Error is: 160
+PID output is: 418.3228302001953
+Error is: 160
+PID output is: 418.6829071044922
+Error is: 160
+PID output is: 419.03182220458984
+Error is: 160
+PID output is: 419.4466323852539
+Error is: 160
+PID output is: 419.80892181396484
+Error is: 160
+PID output is: 420.2859802246094
+Error is: 160
+PID output is: 420.64852142333984
+Error is: 160
+PID output is: 421.05110931396484
+Error is: 160
+PID output is: 421.6850891113281
+Error is: 160
+PID output is: 422.0390853881836
+Error is: 160
+PID output is: 422.39298248291016
+Error is: 160
+PID output is: 422.74063873291016
+Error is: 160
+PID output is: 423.091064453125
+Error is: 160
+PID output is: 423.4410095214844
+Error is: 160
+PID output is: 423.79248046875
+Error is: 160
+PID output is: 424.1405944824219
+Error is: 160
+PID output is: 424.487548828125
+Error is: 160
+PID output is: 424.84315490722656
+Error is: 160
+PID output is: 425.1919250488281
+Error is: 160
+PID output is: 425.53743743896484
+Error is: 160
+PID output is: 425.89270782470703
+Error is: 160
+PID output is: 426.23641204833984
+Error is: 160
+PID output is: 426.5883560180664
+Error is: 160
+PID output is: 426.9498825073242
+Error is: 160
+PID output is: 427.31544494628906
+Error is: 160
+PID output is: 427.6947555541992
+Error is: 160
+PID output is: 428.059814453125
+Error is: 160
+PID output is: 428.4475326538086
+Error is: 160
+PID output is: 428.8228454589844
+Error is: 160
+PID output is: 429.18379974365234
+Error is: 160
+PID output is: 429.53429412841797
+Error is: 160
+PID output is: 429.8894805908203
+Error is: 160
+PID output is: 430.23858642578125
+Error is: 160
+PID output is: 430.58660888671875
+Error is: 160
+PID output is: 430.93971252441406
+Error is: 160
+PID output is: 431.29309844970703
+Error is: 160
+PID output is: 431.6453552246094
+Error is: 160
+PID output is: 432.0426559448242
+Error is: 160
+PID output is: 432.41475677490234
+Error is: 160
+PID output is: 432.88243103027344
+Error is: 160
+PID output is: 433.24114990234375
+Error is: 160
+PID output is: 433.71604919433594
+Error is: 160
+PID output is: 434.08536529541016
+Error is: 160
+PID output is: 434.51404571533203
+Error is: 160
+PID output is: 434.89295959472656
+Error is: 160
+PID output is: 435.2764358520508
+Error is: 160
+PID output is: 435.6560592651367
+Error is: 160
+PID output is: 436.04734802246094
+Error is: 160
+PID output is: 436.54161071777344
+Error is: 160
+PID output is: 436.89986419677734
+Error is: 160
+PID output is: 437.2656936645508
+Error is: 160
+PID output is: 437.65575408935547
+Error is: 160
+PID output is: 438.03527069091797
+Error is: 160
+PID output is: 438.4103088378906
+Error is: 160
+PID output is: 438.79198455810547
+Error is: 160
+PID output is: 439.15616607666016
+Error is: 160
+PID output is: 439.54864501953125
+Error is: 160
+PID output is: 440.31964111328125
+Error is: 160
+PID output is: 440.70465087890625
+Error is: 160
+PID output is: 441.1941146850586
+Error is: 160
+PID output is: 441.6377410888672
+Error is: 160
+PID output is: 442.1034393310547
+Error is: 160
+PID output is: 442.4732360839844
+Error is: 160
+PID output is: 442.86463165283203
+Error is: 160
+PID output is: 443.2399444580078
+Error is: 160
+PID output is: 443.60645294189453
+Error is: 160
+PID output is: 443.96532440185547
+Error is: 160
+PID output is: 444.3389358520508
+Error is: 160
+PID output is: 444.70706939697266
+Error is: 160
+PID output is: 445.08226013183594
+Error is: 160
+PID output is: 445.4525451660156
+Error is: 160
+PID output is: 445.81556701660156
+Error is: 160
+PID output is: 446.18031311035156
+Error is: 160
+PID output is: 446.60838317871094
+Error is: 160
+PID output is: 447.15877532958984
+Error is: 160
+PID output is: 447.5164108276367
+Error is: 160
+PID output is: 447.86878204345703
+Error is: 160
+PID output is: 448.22896575927734
+Error is: 160
+PID output is: 448.58545684814453
+Error is: 160
+PID output is: 448.93114471435547
+Error is: 160
+PID output is: 449.29286193847656
+Error is: 160
+PID output is: 449.6531066894531
+Error is: 160
+PID output is: 450.0145721435547
+Error is: 160
+PID output is: 450.3740921020508
+Error is: 160
+PID output is: 450.7249221801758
+Error is: 160
+PID output is: 451.3007049560547
+Error is: 160
+PID output is: 451.6563415527344
+Error is: 160
+PID output is: 452.020751953125
+Error is: 160
+PID output is: 452.36974334716797
+Error is: 160
+PID output is: 452.7187957763672
+Error is: 160
+PID output is: 453.07142639160156
+Error is: 160
+PID output is: 453.5885696411133
+Error is: 160
+PID output is: 454.12635040283203
+Error is: 160
+PID output is: 454.50950622558594
+Error is: 160
+PID output is: 454.87242126464844
+Error is: 160
+PID output is: 455.27481842041016
+Error is: 160
+PID output is: 455.6858673095703
+Error is: 160
+PID output is: 456.1994094848633
+Error is: 160
+PID output is: 456.54490661621094
+Error is: 160
+PID output is: 456.8974609375
+Error is: 160
+PID output is: 457.2443618774414
+Error is: 160
+PID output is: 457.58861541748047
+Error is: 160
+PID output is: 457.9383239746094
+Error is: 160
+PID output is: 458.2810287475586
+Error is: 160
+PID output is: 458.6249084472656
+Error is: 160
+PID output is: 458.9734878540039
+Error is: 160
+PID output is: 459.3336944580078
+Error is: 160
+PID output is: 459.7033157348633
+Error is: 160
+PID output is: 460.1037292480469
+Error is: 160
+PID output is: 461.08453369140625
+Error is: 160
+PID output is: 461.5558090209961
+Error is: 160
+PID output is: 462.1766815185547
+Error is: 160
+PID output is: 462.5348892211914
+Error is: 160
+PID output is: 462.8896255493164
+Error is: 160
+PID output is: 463.24939727783203
+Error is: 160
+PID output is: 463.5996856689453
+Error is: 160
+PID output is: 463.9492874145508
+Error is: 160
+PID output is: 464.3101501464844
+Error is: 160
+PID output is: 464.6639099121094
+Error is: 160
+PID output is: 465.0258255004883
+Error is: 160
+PID output is: 465.38328552246094
+Error is: 160
+PID output is: 465.74015045166016
+Error is: 160
+PID output is: 466.1026382446289
+Error is: 160
+PID output is: 466.5172882080078
+Error is: 160
+PID output is: 467.1631622314453
+Error is: 160
+PID output is: 467.5198287963867
+Error is: 160
+PID output is: 467.91319274902344
+Error is: 160
+PID output is: 468.6764221191406
+Error is: 160
+PID output is: 469.03011322021484
+Error is: 160
+PID output is: 469.3804931640625
+Error is: 160
+PID output is: 469.8458251953125
+Error is: 160
+PID output is: 470.2117614746094
+Error is: 160
+PID output is: 470.61268615722656
+Error is: 160
+PID output is: 470.9697494506836
+Error is: 160
+PID output is: 471.33390045166016
+Error is: 160
+PID output is: 472.1390151977539
+Error is: 160
+PID output is: 472.4961700439453
+Error is: 160
+PID output is: 472.91407775878906
+Error is: 160
+PID output is: 473.53426361083984
+Error is: 160
+PID output is: 473.89676666259766
+Error is: 160
+PID output is: 474.2812194824219
+Error is: 160
+PID output is: 474.98065185546875
+Error is: 160
+PID output is: 475.33274841308594
+Error is: 160
+PID output is: 475.68450927734375
+Error is: 160
+PID output is: 476.038818359375
+Error is: 160
+PID output is: 476.38513946533203
+Error is: 160
+PID output is: 476.7358703613281
+Error is: 160
+PID output is: 477.09729766845703
+Error is: 160
+PID output is: 477.45284271240234
+Error is: 160
+PID output is: 477.8080291748047
+Error is: 160
+PID output is: 478.16343688964844
+Error is: 160
+PID output is: 478.52076721191406
+Error is: 160
+PID output is: 478.87646484375
+Error is: 160
+PID output is: 479.2556610107422
+Error is: 160
+PID output is: 479.8615036010742
+Error is: 160
+PID output is: 480.2278366088867
+Error is: 160
+PID output is: 481.06568145751953
+Error is: 160
+PID output is: 481.43017578125
+Error is: 160
+PID output is: 481.7784881591797
+Error is: 160
+PID output is: 482.1369934082031
+Error is: 160
+PID output is: 482.5005187988281
+Error is: 160
+PID output is: 482.8610534667969
+Error is: 160
+PID output is: 483.22789764404297
+Error is: 160
+PID output is: 483.5902786254883
+Error is: 160
+PID output is: 483.9430160522461
+Error is: 160
+PID output is: 484.2983856201172
+Error is: 160
+PID output is: 484.6769714355469Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 80
+Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 80
+Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 80
+Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+
+PID output is: 236.7019386291504
+Error is: 160
+PID output is: 236.8916778564453
+Error is: 160
+PID output is: 237.07207107543945
+Error is: 160
+PID output is: 237.25381469726562
+Error is: 160
+PID output is: 237.4341812133789
+Error is: 160
+PID output is: 237.61773300170898
+Error is: 160
+PID output is: 237.79904556274414
+Error is: 160
+PID output is: 237.98417282104492
+Error is: 160
+PID output is: 238.16357040405273
+Error is: 160
+PID output is: 238.34022521972656
+Error is: 160
+PID output is: 238.52399826049805
+Error is: 160
+PID output is: 238.71145248413086
+Error is: 160
+PID output is: 238.89458465576172
+Error is: 160
+PID output is: 239.0881805419922
+Error is: 160
+PID output is: 239.52918243408203
+Error is: 160
+PID output is: 239.71705627441406
+Error is: 160
+PID output is: 239.90153884887695
+Error is: 160
+PID output is: 240.08576202392578
+Error is: 160
+PID output is: 240.27167892456055
+Error is: 160
+PID output is: 240.50117874145508
+Error is: 160
+PID output is: 240.76914978027344
+Error is: 160
+PID output is: 240.97999954223633
+Error is: 160
+PID output is: 241.29529190063477
+Error is: 160
+PID output is: 241.4743194580078
+Error is: 160
+PID output is: 241.65302658081055
+Error is: 160
+PID output is: 241.8320770263672
+Error is: 160
+PID output is: 242.03611373901367
+Error is: 160
+PID output is: 242.34589004516602
+Error is: 160
+PID output is: 242.58866119384766
+Error is: 160
+PID output is: 242.7667999267578
+Error is: 160
+PID output is: 242.95124435424805
+Error is: 160
+PID output is: 243.1364631652832
+Error is: 160
+PID output is: 243.31938552856445
+Error is: 160
+PID output is: 243.4968719482422
+Error is: 160
+PID output is: 243.67599487304688
+Error is: 160
+PID output is: 243.85250091552734
+Error is: 160
+PID output is: 244.0319480895996
+Error is: 160
+PID output is: 244.21087646484375
+Error is: 160
+PID output is: 244.39138412475586
+Error is: 160
+PID output is: 244.57168197631836
+Error is: 160
+PID output is: 244.74843215942383
+Error is: 160
+PID output is: 244.92663955688477
+Error is: 160
+PID output is: 245.10759735107422
+Error is: 160
+PID output is: 245.28892135620117
+Error is: 160
+PID output is: 245.48906707763672
+Error is: 160
+PID output is: 245.80662536621094
+Error is: 160
+PID output is: 246.08105850219727
+Error is: 160
+PID output is: 246.36896133422852
+Error is: 160
+PID output is: 246.55999755859375
+Error is: 160
+PID output is: 246.7403335571289
+Error is: 160
+PID output is: 246.92795944213867
+Error is: 160
+PID output is: 247.12075805664062
+Error is: 160
+PID output is: 247.31334686279297
+Error is: 160
+PID output is: 247.49951553344727
+Error is: 160
+PID output is: 247.68770599365234
+Error is: 160
+PID output is: 247.8697738647461
+Error is: 160
+PID output is: 248.0620994567871
+Error is: 160
+PID output is: 248.24867248535156
+Error is: 160
+PID output is: 248.44244766235352
+Error is: 160
+PID output is: 248.66790008544922
+Error is: 160
+PID output is: 248.90562438964844
+Error is: 160
+PID output is: 249.10271835327148
+Error is: 160
+PID output is: 249.2946434020996
+Error is: 160
+PID output is: 249.55376052856445
+Error is: 160
+PID output is: 249.73468399047852
+Error is: 160
+PID output is: 249.91255569458008
+Error is: 160
+PID output is: 250.09502410888672
+Error is: 160
+PID output is: 250.26918411254883
+Error is: 160
+PID output is: 250.44532775878906
+Error is: 160
+PID output is: 250.64674758911133
+Error is: 160
+PID output is: 250.84174728393555
+Error is: 160
+PID output is: 251.02522659301758
+Error is: 160
+PID output is: 251.21000289916992
+Error is: 160
+PID output is: 251.4017105102539
+Error is: 160
+PID output is: 251.64141082763672
+Error is: 160
+PID output is: 251.82802200317383
+Error is: 160
+PID output is: 252.24636840820312
+Error is: 160
+PID output is: 252.42963409423828
+Error is: 160
+PID output is: 252.61797332763672
+Error is: 160
+PID output is: 252.80146408081055
+Error is: 160
+PID output is: 252.98856353759766
+Error is: 160
+PID output is: 253.17019653320312
+Error is: 160
+PID output is: 253.3474235534668
+Error is: 160
+PID output is: 253.52428817749023
+Error is: 160
+PID output is: 253.710205078125
+Error is: 160
+PID output is: 253.88949584960938
+Error is: 160
+PID output is: 254.06837844848633
+Error is: 160
+PID output is: 254.2446517944336
+Error is: 160
+PID output is: 254.42108917236328
+Error is: 160
+PID output is: 254.5984344482422
+Error is: 160
+PID output is: 254.78289413452148
+Error is: 160
+PID output is: 254.96873092651367
+Error is: 160
+PID output is: 255.17855072021484
+Error is: 160
+PID output is: 255.3614616394043
+Error is: 160
+PID output is: 255.56218338012695
+Error is: 160
+PID output is: 255.74691009521484
+Error is: 160
+PID output is: 255.93415451049805
+Error is: 160
+PID output is: 256.1182289123535
+Error is: 160
+PID output is: 256.29706954956055
+Error is: 160
+PID output is: 256.47365951538086
+Error is: 160
+PID output is: 256.65098571777344
+Error is: 160
+PID output is: 256.83041763305664
+Error is: 160
+PID output is: 257.00905990600586
+Error is: 160
+PID output is: 257.1853828430176
+Error is: 160
+PID output is: 257.36376571655273
+Error is: 160
+PID output is: 257.5445861816406
+Error is: 160
+PID output is: 257.72391510009766
+Error is: 160
+PID output is: 257.9074172973633
+Error is: 160
+PID output is: 258.08404541015625
+Error is: 160
+PID output is: 258.26646423339844
+Error is: 160
+PID output is: 258.45374298095703
+Error is: 160
+PID output is: 258.65171813964844
+Error is: 160
+PID output is: 258.83728408813477
+Error is: 160
+PID output is: 259.0867233276367
+Error is: 160
+PID output is: 259.2655487060547
+Error is: 160
+PID output is: 259.44387435913086
+Error is: 160
+PID output is: 259.6711311340332
+Error is: 160
+PID output is: 259.88999938964844
+Error is: 160
+PID output is: 260.1028137207031
+Error is: 160
+PID output is: 260.2957000732422
+Error is: 160
+PID output is: 260.5054016113281
+Error is: 160
+PID output is: 260.6949691772461
+Error is: 160
+PID output is: 260.8929557800293
+Error is: 160
+PID output is: 261.08131408691406
+Error is: 160
+PID output is: 261.2841567993164
+Error is: 160
+PID output is: 261.45798110961914
+Error is: 160
+PID output is: 261.68902587890625
+Error is: 160
+PID output is: 261.8967704772949
+Error is: 160
+PID output is: 262.1174507141113
+Error is: 160
+PID output is: 262.3077583312988
+Error is: 160
+PID output is: 262.5387992858887
+Error is: 160
+PID output is: 262.72084045410156
+Error is: 160
+PID output is: 262.9078025817871
+Error is: 160
+PID output is: 263.1142807006836
+Error is: 160
+PID output is: 263.3355903625488
+Error is: 160
+PID output is: 263.51388931274414
+Error is: 160
+PID output is: 263.69934844970703
+Error is: 160
+PID output is: 263.8939971923828
+Error is: 160
+PID output is: 264.0788917541504
+Error is: 160
+PID output is: 264.27922439575195
+Error is: 160
+PID output is: 264.4654769897461
+Error is: 160
+PID output is: 264.6742820739746
+Error is: 160
+PID output is: 264.877498626709
+Error is: 160
+PID output is: 265.111328125
+Error is: 160
+PID output is: 265.3192901611328
+Error is: 160
+PID output is: 265.5222511291504
+Error is: 160
+PID output is: 265.7277030944824
+Error is: 160
+PID output is: 265.9329643249512
+Error is: 160
+PID output is: 266.1129684448242
+Error is: 160
+PID output is: 266.3123245239258
+Error is: 160
+PID output is: 266.52397537231445
+Error is: 160
+PID output is: 266.7050895690918
+Error is: 160
+PID output is: 266.8958549499512
+Error is: 160
+PID output is: 267.09255599975586
+Error is: 160
+PID output is: 267.2868232727051
+Error is: 160
+PID output is: 267.47465896606445
+Error is: 160
+PID output is: 267.667293548584
+Error is: 160
+PID output is: 267.85046005249023
+Error is: 160
+PID output is: 268.0924758911133
+Error is: 160
+PID output is: 268.30259704589844
+Error is: 160
+PID output is: 268.52566146850586
+Error is: 160
+PID output is: 268.70724868774414
+Error is: 160
+PID output is: 268.9147720336914
+Error is: 160
+PID output is: 269.11041259765625
+Error is: 160
+PID output is: 269.31161880493164
+Error is: 160
+PID output is: 269.5281181335449
+Error is: 160
+PID output is: 269.7429847717285
+Error is: 160
+PID output is: 269.94165802001953
+Error is: 160
+PID output is: 270.166934967041
+Error is: 160
+PID output is: 270.34643936157227
+Error is: 160
+PID output is: 270.5307388305664
+Error is: 160
+PID output is: 270.71678924560547
+Error is: 160
+PID output is: 270.9030342102051Tracking person X 189 Y 294
+Tracking person X 299 Y 260
+Tracking person X 222 Y 292
+Tracking person X 187 Y 294
+Tracking person X 299 Y 260
+Tracking person X 181 Y 292
+Tracking person X 296 Y 263
+Tracking person X 190 Y 289
+Tracking person X 289 Y 260
+FPS: 0.8997472352582682
+Tracking person X 184 Y 289
+Tracking person X 295 Y 260
+Tracking person X 178 Y 292
+Tracking person X 299 Y 260
+Tracking person X 189 Y 294
+Tracking person X 299 Y 262
+Tracking person X 184 Y 292
+Tracking person X 299 Y 260
+Tracking person X 195 Y 296
+Tracking person X 292 Y 263
+FPS: 0.9101629668207365
+Tracking person X 189 Y 294
+Tracking person X 295 Y 260
+Tracking person X 189 Y 294
+Tracking person X 299 Y 260
+Tracking person X 189 Y 290
+Tracking person X 299 Y 262
+Tracking person X 189 Y 292
+Tracking person X 306 Y 260
+Tracking person X 192 Y 290
+Tracking person X 306 Y 260
+FPS: 0.9278280001468844
+Tracking person X 190 Y 292
+Tracking person X 296 Y 260
+Tracking person X 212 Y 281
+Tracking person X 192 Y 294
+Tracking person X 299 Y 263
+Tracking person X 186 Y 292
+Tracking person X 302 Y 260
+Tracking person X 192 Y 292
+Tracking person X 299 Y 260
+FPS: 0.9279688203835681
+Tracking person X 299 Y 262
+Tracking person X 187 Y 290
+Tracking person X 303 Y 260
+Tracking person X 303 Y 273
+Tracking person X 303 Y 271
+Tracking person X 299 Y 279
+Tracking person X 187 Y 285
+FPS: 0.9322355651207362
+Tracking person X 303 Y 276
+Tracking person X 301 Y 282
+Tracking person X 193 Y 288
+Tracking person X 301 Y 282
+Tracking person X 301 Y 282
+Tracking person X 304 Y 282
+FPS: 0.9423045427065095
+Tracking person X 301 Y 282
+Tracking person X 305 Y 282
+Tracking person X 201 Y 292
+Tracking person X 299 Y 285
+Tracking person X 303 Y 284
+Tracking person X 301 Y 282
+FPS: 0.9487520991371823
+Tracking person X 306 Y 273
+Tracking person X 198 Y 266
+Tracking person X 313 Y 263
+Tracking person X 343 Y 268
+Tracking person X 308 Y 260
+Tracking person X 313 Y 258
+Tracking person X 476 Y 187
+FPS: 0.9440575054559598
+Tracking person X 310 Y 263
+Tracking person X 295 Y 265
+Tracking person X 198 Y 275
+Tracking person X 325 Y 265
+Tracking person X 303 Y 274
+Tracking person X 204 Y 288
+FPS: 0.9510776965542825
+Tracking person X 291 Y 263
+Tracking person X 299 Y 263
+Tracking person X 295 Y 260
+Tracking person X 181 Y 286
+Tracking person X 292 Y 271
+Tracking person X 204 Y 283
+Tracking person X 296 Y 271
+Tracking person X 206 Y 288
+FPS: 0.9456135750868497
+Tracking person X 292 Y 268
+Tracking person X 207 Y 283
+Tracking person X 296 Y 266
+Tracking person X 296 Y 265
+Tracking person X 192 Y 279
+Tracking person X 299 Y 263
+Tracking person X 299 Y 260
+Tracking person X 190 Y 285
+FPS: 0.9539119266964767
+Tracking person X 289 Y 265
+Tracking person X 303 Y 266
+Tracking person X 296 Y 271
+Tracking person X 203 Y 300
+Tracking person X 224 Y 302
+Tracking person X 310 Y 254
+Tracking person X 314 Y 249
+Tracking person X 189 Y 285
+FPS: 0.9852345329506998
+Tracking person X 205 Y 298
+Tracking person X 321 Y 249
+Tracking person X 186 Y 288
+Tracking person X 321 Y 249
+Tracking person X 189 Y 293
+Tracking person X 321 Y 252
+Tracking person X 189 Y 296
+Tracking person X 318 Y 254
+Tracking person X 195 Y 300
+Tracking person X 318 Y 257
+Tracking person X 195 Y 296
+Tracking person X 318 Y 257
+FPS: 0.8339362397172219
+Tracking person X 213 Y 295
+Tracking person X 314 Y 260
+Tracking person X 192 Y 296
+Tracking person X 310 Y 260
+
+Error is: 160
+PID output is: 485.04080963134766
+Error is: 160
+PID output is: 485.4149856567383
+Error is: 160
+PID output is: 485.78302001953125
+Error is: 160
+PID output is: 486.18788146972656
+Error is: 160
+PID output is: 487.05565643310547
+Error is: 160
+PID output is: 487.43798065185547
+Error is: 160
+PID output is: 487.7902526855469
+Error is: 160
+PID output is: 488.1520767211914
+Error is: 160
+PID output is: 488.6183319091797
+Error is: 160
+PID output is: 489.470703125
+Error is: 160
+PID output is: 489.9344482421875
+Error is: 160
+PID output is: 490.29549407958984
+Error is: 160
+PID output is: 490.64644622802734
+Error is: 160
+PID output is: 490.99217224121094
+Error is: 160
+PID output is: 491.3375244140625
+Error is: 160
+PID output is: 491.68736267089844
+Error is: 160
+PID output is: 492.0487365722656
+Error is: 160
+PID output is: 492.41477966308594
+Error is: 160
+PID output is: 493.03775787353516
+Error is: 160
+PID output is: 493.41846466064453
+Error is: 160
+PID output is: 493.8448486328125
+Error is: 160
+PID output is: 494.29442596435547
+Error is: 160
+PID output is: 494.65806579589844
+Error is: 160
+PID output is: 495.0076675415039
+Error is: 160
+PID output is: 495.36905670166016
+Error is: 160
+PID output is: 495.7162399291992
+Error is: 160
+PID output is: 496.0623016357422
+Error is: 160
+PID output is: 496.4158477783203
+Error is: 160
+PID output is: 496.76895904541016
+Error is: 160
+PID output is: 497.1219024658203
+Error is: 160
+PID output is: 497.4775848388672
+Error is: 160
+PID output is: 497.8308792114258
+Error is: 160
+PID output is: 498.20018768310547
+Error is: 160
+PID output is: 498.55712890625
+Error is: 160
+PID output is: 498.96041107177734
+Error is: 160
+PID output is: 499.6004104614258
+Error is: 160
+PID output is: 500.29720306396484
+Error is: 160
+PID output is: 500.70719146728516
+Error is: 160
+PID output is: 501.1033248901367
+Error is: 160
+PID output is: 501.48043060302734
+Error is: 160
+PID output is: 501.8389205932617
+Error is: 160
+PID output is: 502.2444610595703
+Error is: 160
+PID output is: 502.6258087158203
+Error is: 160
+PID output is: 502.9882278442383
+Error is: 160
+PID output is: 503.35128021240234
+Error is: 160
+PID output is: 503.72291564941406
+Error is: 160
+PID output is: 504.1075439453125
+Error is: 160
+PID output is: 504.4807434082031
+Error is: 160
+PID output is: 504.9648208618164
+Error is: 160
+PID output is: 505.3948440551758
+Error is: 160
+PID output is: 505.8158721923828
+Error is: 160
+PID output is: 506.20970916748047
+Error is: 160
+PID output is: 506.6524658203125
+Error is: 160
+PID output is: 507.14871978759766
+Error is: 160
+PID output is: 507.5085906982422
+Error is: 160
+PID output is: 507.8583068847656
+Error is: 160
+PID output is: 508.2042694091797
+Error is: 160
+PID output is: 508.55762481689453
+Error is: 160
+PID output is: 508.912109375
+Error is: 160
+PID output is: 509.2998352050781
+Error is: 160
+PID output is: 509.66075134277344
+Error is: 160
+PID output is: 510.0506362915039
+Error is: 160
+PID output is: 510.40824127197266
+Error is: 160
+PID output is: 510.76954650878906
+Error is: 160
+PID output is: 511.2662124633789
+Error is: 160
+PID output is: 511.6385803222656
+Error is: 160
+PID output is: 512.6097183227539
+Error is: 160
+PID output is: 512.9957580566406
+Error is: 160
+PID output is: 513.4896850585938
+Error is: 160
+PID output is: 513.848014831543
+Error is: 160
+PID output is: 514.1976852416992
+Error is: 160
+PID output is: 514.546516418457
+Error is: 160
+PID output is: 514.8948364257812
+Error is: 160
+PID output is: 515.2469329833984
+Error is: 160
+PID output is: 515.5995101928711
+Error is: 160
+PID output is: 515.9457702636719
+Error is: 160
+PID output is: 516.2910308837891
+Error is: 160
+PID output is: 516.6385879516602
+Error is: 160
+PID output is: 516.9858779907227
+Error is: 160
+PID output is: 517.3335647583008
+Error is: 160
+PID output is: 517.6917266845703
+Error is: 160
+PID output is: 518.0439071655273
+Error is: 160
+PID output is: 518.5723724365234
+Error is: 160
+PID output is: 518.9541931152344
+Error is: 160
+PID output is: 519.3206634521484
+Error is: 160
+PID output is: 519.6843338012695
+Error is: 160
+PID output is: 520.0391693115234
+Error is: 160
+PID output is: 520.3896026611328
+Error is: 160
+PID output is: 520.7388916015625
+Error is: 160
+PID output is: 521.0989456176758
+Error is: 160
+PID output is: 521.4612579345703
+Error is: 160
+PID output is: 521.8997802734375
+Error is: 160
+PID output is: 522.2649383544922
+Error is: 160
+PID output is: 522.6140060424805
+Error is: 160
+PID output is: 522.9616546630859
+Error is: 160
+PID output is: 523.3160781860352
+Error is: 160
+PID output is: 523.7160339355469
+Error is: 160
+PID output is: 524.0722503662109
+Error is: 160
+PID output is: 524.4253768920898
+Error is: 160
+PID output is: 524.9353942871094
+Error is: 160
+PID output is: 525.3351287841797
+Error is: 160
+PID output is: 525.6961669921875
+Error is: 160
+PID output is: 526.1149368286133
+Error is: 160
+PID output is: 526.4786682128906
+Error is: 160
+PID output is: 526.8889465332031
+Error is: 160
+PID output is: 527.343864440918
+Error is: 160
+PID output is: 527.7873840332031
+Error is: 160
+PID output is: 528.2044906616211
+Error is: 160
+PID output is: 528.5914154052734
+Error is: 160
+PID output is: 528.9769744873047
+Error is: 160
+PID output is: 529.3888854980469
+Error is: 160
+PID output is: 529.7527389526367
+Error is: 160
+PID output is: 530.1549835205078
+Error is: 160
+PID output is: 530.5247650146484
+Error is: 160
+PID output is: 530.9273910522461
+Error is: 160
+PID output is: 531.3477020263672
+Error is: 160
+PID output is: 531.795280456543
+Error is: 160
+PID output is: 532.2087554931641
+Error is: 160
+PID output is: 532.6176834106445
+Error is: 160
+PID output is: 533.021125793457
+Error is: 160
+PID output is: 533.4020004272461
+Error is: 160
+PID output is: 533.8150177001953
+Error is: 160
+PID output is: 534.1909255981445
+Error is: 160
+PID output is: 534.6223602294922
+Error is: 160
+PID output is: 534.9889297485352
+Error is: 160
+PID output is: 535.3661575317383
+Error is: 160
+PID output is: 535.7559585571289
+Error is: 160
+PID output is: 536.161376953125
+Error is: 160
+PID output is: 536.5332489013672
+Error is: 160
+PID output is: 536.9301376342773
+Error is: 160
+PID output is: 537.3155517578125
+Error is: 160
+PID output is: 537.7675323486328
+Error is: 160
+PID output is: 538.2251892089844
+Error is: 160
+PID output is: 538.6108703613281
+Error is: 160
+PID output is: 539.0461883544922
+Error is: 160
+PID output is: 539.4587326049805
+Error is: 160
+PID output is: 539.8275527954102
+Error is: 160
+PID output is: 540.2326431274414
+Error is: 160
+PID output is: 540.6354217529297
+Error is: 160
+PID output is: 541.021728515625
+Error is: 160
+PID output is: 541.4087677001953
+Error is: 160
+PID output is: 541.7952575683594
+Error is: 160
+PID output is: 542.1527633666992
+Error is: 160
+PID output is: 542.541374206543
+Error is: 160
+PID output is: 542.9412002563477
+Error is: 160
+PID output is: 543.3030166625977
+Error is: 160
+PID output is: 543.6996612548828
+Error is: 160
+PID output is: 544.1790542602539
+Error is: 160
+PID output is: 544.5630798339844
+Error is: 160
+PID output is: 545.0168380737305
+Error is: 160
+PID output is: 545.41796875
+Error is: 160
+PID output is: 545.8300399780273
+Error is: 160
+PID output is: 546.2212066650391
+Error is: 160
+PID output is: 546.629264831543
+Error is: 160
+PID output is: 547.0065460205078
+Error is: 160
+PID output is: 547.4863586425781
+Error is: 160
+PID output is: 547.8471832275391
+Error is: 160
+PID output is: 548.2640228271484
+Error is: 160
+PID output is: 548.6389999389648
+Error is: 160
+PID output is: 549.0186996459961
+Error is: 160
+PID output is: 549.4018707275391
+Error is: 160
+PID output is: 549.8045043945312
+Error is: 160
+PID output is: 550.1619720458984
+Error is: 160
+PID output is: 550.5638046264648
+Error is: 160
+PID output is: 550.9505615234375
+Error is: 160
+PID output is: 551.3507385253906
+Error is: 160
+PID output is: 551.7448120117188
+Error is: 160
+PID output is: 552.1114654541016
+Error is: 160
+PID output is: 552.4809341430664
+Error is: 160
+PID output is: 552.8507690429688
+Error is: 160
+PID output is: 553.2291641235352
+Error is: 160
+PID output is: 553.5771942138672
+Error is: 160
+PID output is: 553.9251403808594
+Error is: 160
+PID output is: 554.2651214599609
+Error is: 160Limited Pan angle is 80
+Set servo angle: 80
+Limited Tilt angle is 80
+Inside set_servos loop
+Set servo angle: 80
+Limited Pan angle is 80
+Set servo angle: 80
+[INFO] You pressed `ctrl + c`! Exiting...
+
+Error is: 160
+PID output is: 271.09925842285156
+Error is: 160
+PID output is: 271.2862739562988
+Error is: 160
+PID output is: 271.5033760070801
+Error is: 160
+PID output is: 271.73326110839844
+Error is: 160
+PID output is: 271.9159126281738
+Error is: 160
+PID output is: 272.1305351257324
+Error is: 160
+PID output is: 272.3070602416992
+Error is: 160
+PID output is: 272.50366973876953
+Error is: 160
+PID output is: 272.6825180053711
+Error is: 160
+PID output is: 272.8533401489258
+Error is: 160
+PID output is: 273.0265808105469
+Error is: 160
+PID output is: 273.1989860534668
+Error is: 160
+PID output is: 273.36943435668945
+Error is: 160
+PID output is: 273.5451354980469
+Error is: 160
+PID output is: 273.71543884277344
+Error is: 160
+PID output is: 273.88623809814453
+Error is: 160
+PID output is: 274.06090927124023
+Error is: 160
+PID output is: 274.2319030761719
+Error is: 160
+PID output is: 274.41918563842773
+Error is: 160
+PID output is: 274.5986022949219
+Error is: 160
+PID output is: 274.77173614501953
+Error is: 160
+PID output is: 274.9592971801758
+Error is: 160
+PID output is: 275.14190673828125
+Error is: 160
+PID output is: 275.31676864624023
+Error is: 160
+PID output is: 275.49303817749023
+Error is: 160
+PID output is: 275.66527938842773
+Error is: 160
+PID output is: 275.83706283569336
+Error is: 160
+PID output is: 276.00975799560547
+Error is: 160
+PID output is: 276.18242263793945
+Error is: 160
+PID output is: 276.35522842407227
+Error is: 160
+PID output is: 276.5274085998535
+Error is: 160
+PID output is: 276.6987113952637
+Error is: 160
+PID output is: 276.8717041015625
+Error is: 160
+PID output is: 277.04443740844727
+Error is: 160
+PID output is: 277.2178039550781
+Error is: 160
+PID output is: 277.38922119140625
+Error is: 160
+PID output is: 277.5615005493164
+Error is: 160
+PID output is: 277.73466873168945
+Error is: 160
+PID output is: 277.9075241088867
+Error is: 160
+PID output is: 278.0810775756836
+Error is: 160
+PID output is: 278.2528305053711
+Error is: 160
+PID output is: 278.4247398376465
+Error is: 160
+PID output is: 278.5966911315918
+Error is: 160
+PID output is: 278.7690734863281
+Error is: 160
+PID output is: 278.95667266845703
+Error is: 160
+PID output is: 279.13046646118164
+Error is: 160
+PID output is: 279.30494689941406
+Error is: 160
+PID output is: 279.4799575805664
+Error is: 160
+PID output is: 279.65051651000977
+Error is: 160
+PID output is: 279.8256301879883
+Error is: 160
+PID output is: 280.00154876708984
+Error is: 160
+PID output is: 280.1719055175781
+Error is: 160
+PID output is: 280.34378814697266
+Error is: 160
+PID output is: 280.5143013000488
+Error is: 160
+PID output is: 280.68346786499023
+Error is: 160
+PID output is: 280.8534355163574
+Error is: 160
+PID output is: 281.02306747436523
+Error is: 160
+PID output is: 281.1921081542969
+Error is: 160
+PID output is: 281.363094329834
+Error is: 160
+PID output is: 281.53195571899414
+Error is: 160
+PID output is: 281.7006034851074
+Error is: 160
+PID output is: 281.87089920043945
+Error is: 160
+PID output is: 282.03958892822266
+Error is: 160
+PID output is: 282.2092475891113
+Error is: 160
+PID output is: 282.3781623840332
+Error is: 160
+PID output is: 282.5513153076172
+Error is: 160
+PID output is: 282.7208557128906
+Error is: 160
+PID output is: 282.8900451660156
+Error is: 160
+PID output is: 283.0593566894531
+Error is: 160
+PID output is: 283.2288284301758
+Error is: 160
+PID output is: 283.3999824523926
+Error is: 160
+PID output is: 283.57087326049805
+Error is: 160
+PID output is: 283.7416458129883
+Error is: 160
+PID output is: 283.9135627746582
+Error is: 160
+PID output is: 284.0905418395996
+Error is: 160
+PID output is: 284.2646141052246
+Error is: 160
+PID output is: 284.4367485046387
+Error is: 160
+PID output is: 284.62646102905273
+Error is: 160
+PID output is: 284.80083084106445
+Error is: 160
+PID output is: 284.97719955444336
+Error is: 160
+PID output is: 285.1476707458496
+Error is: 160
+PID output is: 285.3166923522949
+Error is: 160
+PID output is: 285.4856376647949
+Error is: 160
+PID output is: 285.6557807922363
+Error is: 160
+PID output is: 285.826114654541
+Error is: 160
+PID output is: 285.99498748779297
+Error is: 160
+PID output is: 286.1654739379883
+Error is: 160
+PID output is: 286.3348388671875
+Error is: 160
+PID output is: 286.50415420532227
+Error is: 160
+PID output is: 286.6730308532715
+Error is: 160
+PID output is: 286.8419761657715
+Error is: 160
+[INFO] You pressed `ctrl + c`! Exiting...
+
+PID output is: 554.6184005737305
+Error is: 160
+PID output is: 554.9663314819336
+Error is: 160
+PID output is: 555.3148574829102
+Error is: 160
+PID output is: 555.6606063842773
+Error is: 160
+PID output is: 556.0019836425781
+Error is: 160
+PID output is: 556.3504180908203
+Error is: 160
+PID output is: 556.7047882080078
+Error is: 160
+PID output is: 557.0528564453125
+Error is: 160
+PID output is: 557.4012985229492
+Error is: 160
+PID output is: 557.755241394043
+Error is: 160
+PID output is: 558.1409683227539
+Error is: 160
+PID output is: 558.4900207519531
+Error is: 160
+PID output is: 558.8502731323242
+Error is: 160
+PID output is: 559.1932754516602
+Error is: 160
+PID output is: 559.5318450927734
+Error is: 160
+PID output is: 559.8714141845703
+Error is: 160
+PID output is: 560.2125473022461
+Error is: 160
+PID output is: 560.5509490966797
+Error is: 160
+PID output is: 560.8889617919922
+Error is: 160
+PID output is: 561.2281494140625
+Error is: 160
+PID output is: 561.5669555664062
+Error is: 160
+PID output is: 561.9074783325195
+Error is: 160
+PID output is: 562.2452239990234
+Error is: 160
+PID output is: 562.5841064453125
+Error is: 160
+PID output is: 562.9248504638672
+Error is: 160
+PID output is: 563.2629318237305
+Error is: 160
+PID output is: 563.6028366088867
+Error is: 160
+PID output is: 563.9401931762695
+Error is: 160
+PID output is: 564.2788619995117
+Error is: 160
+PID output is: 564.6189651489258
+Error is: 160
+PID output is: 564.9569091796875
+Error is: 160
+PID output is: 565.2955474853516
+Error is: 160
+PID output is: 565.6333770751953
+Error is: 160
+PID output is: 565.9757461547852
+Error is: 160
+PID output is: 566.3272552490234
+Error is: 160
+PID output is: 566.6726837158203
+Error is: 160
+PID output is: 567.0278549194336
+Error is: 160
+PID output is: 567.3749618530273
+Error is: 160
+PID output is: 567.7254943847656
+Error is: 160
+PID output is: 568.0689468383789
+Error is: 160
+PID output is: 568.4096984863281
+Error is: 160
+PID output is: 568.7492141723633
+Error is: 160
+PID output is: 569.0894393920898
+Error is: 160
+PID output is: 569.4288864135742
+Error is: 160
+PID output is: 569.7671737670898
+Error is: 160
+PID output is: 570.1067352294922
+Error is: 160
+PID output is: 570.4461364746094
+Error is: 160
+PID output is: 570.7841644287109
+Error is: 160
+PID output is: 571.1234664916992
+Error is: 160
+PID output is: 571.4609756469727
+Error is: 160
+PID output is: 571.8008193969727
+Error is: 160
+PID output is: 572.138298034668
+Error is: 160
+PID output is: 572.4759826660156
+Error is: 160
+PID output is: 572.8277359008789
+Error is: 160
+PID output is: 573.170295715332
+Error is: 160
+PID output is: 573.5092086791992
+Error is: 160
+PID output is: 573.8493499755859
+Error is: 160
+PID output is: 574.1875228881836
+Error is: 160
+PID output is: 574.5255889892578
+Error is: 160
+PID output is: 574.8633270263672
+Error is: 160
+PID output is: 575.2036895751953
+Error is: 160
+PID output is: 575.5600280761719
+Error is: 160
+PID output is: 575.9169616699219
+Error is: 160
+PID output is: 576.2644424438477
+Error is: 160
+PID output is: 576.6230239868164
+Error is: 160
+PID output is: 576.9671096801758
+Error is: 160
+PID output is: 577.333122253418
+Error is: 160
+PID output is: 577.6822814941406
+Error is: 160
+PID output is: 578.0285034179688
+Error is: 160
+PID output is: 578.3731689453125
+Error is: 160
+PID output is: 578.7185668945312
+Error is: 160
+PID output is: 579.0618438720703
+Error is: 160
+PID output is: 579.4048919677734
+Error is: 160
+PID output is: 579.7488555908203
+Error is: 160
+PID output is: 580.0933532714844
+Error is: 160
+PID output is: 580.4377517700195
+Error is: 160
+PID output is: 580.7801742553711
+Error is: 160
+PID output is: 581.1240768432617
+Error is: 160
+PID output is: 581.4679870605469
+Error is: 160
+PID output is: 581.8124084472656
+Error is: 160
+[INFO] You pressed `ctrl + c`! Exiting...
