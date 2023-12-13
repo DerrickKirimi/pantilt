@@ -59,7 +59,7 @@ GPIO.setup(tilt_pin, GPIO.OUT)
 
 #servoRange = (130, 145)
 #servoRange = (40, 130)
-servoRange = (0, 180)
+servoRange = (-90, 90)
 
 # Paths and parameters
 # Define and parse input arguments
@@ -273,6 +273,10 @@ def limit_range(val, start, end):
     # Determine if the input value is in the supplied range
     return max(start, min(val,end))
 
+def in_range(val, start, end):
+	# determine the input value is in the supplied range
+	return (val >= start and val <= end)
+
 def set_servos(tlt, pan, pan_position, tilt_position):
     signal.signal(signal.SIGINT, signal_handler)
     time.sleep(0.2)
@@ -311,15 +315,15 @@ def set_tilt(tilt, tilt_position):
         #tilt_angle = tilt_position.value + tilt.value
         tilt_angle = tilt.value
         
-        tilt_angle = limit_range(tilt_angle, servoRange[0], servoRange[1])
-        setServoAngle(tilt_pin, tilt_angle)
+        if in_range(tilt_angle, servoRange[0], servoRange[1]):
+            setServoAngle(tilt_pin, tilt_angle)
 
-        logging.info(f"Limited Tilt angle is {tilt_angle}")
-        ##logging.info(f"Limited Tilt angle is {tilt_angle}")
+            logging.info(f" Tilt angle is {tilt_angle}")
+            ##logging.info(f"Limited Tilt angle is {tilt_angle}")
 
-        tilt_position.value = tilt_angle
+            tilt_position.value = tilt_angle
 
-        logging.debug(f"Tracking {crosshair_y}Y from {frame_cy} Y")
+        logging.debug(f"Tracking {crosshair_y.value}Y from {frame_cy.value} Y")
         logging.debug(f"Error is: {crosshair_y.value - frame_cy.value}")
         logging.debug(f"PID TiLt output: {tilt_output}")
         logging.debug(f"Tilt angle: {tilt_position}")
@@ -335,20 +339,20 @@ def set_pan(pan, pan_position):
         pan_angle = pan.value
         
 #filter out noisy angle changes lower than 5deg with a lowpass filter
-        pan_angle = limit_range(pan_angle, servoRange[0], servoRange[1])
-        setServoAngle(pan_pin, pan_angle)
+        if in_range(pan_angle, servoRange[0], servoRange[1]):
+            setServoAngle(pan_pin, pan_angle)
 
-        logging.info(f"Limited Pan angle is {pan_angle}")
-        ##logging.info(f"Limited Pan angle is {pan_angle}")
+            logging.info(f"Pan angle is {pan_angle}")
+            ##logging.info(f"Limited Pan angle is {pan_angle}")
 
-        pan_position.value = pan_angle
+            pan_position.value = pan_angle
 
-        #logging.info(f"New Pan position is {pan_angle}")
+            #logging.info(f"New Pan position is {pan_angle}")
 
-        logging.debug(f"Tracking {crosshair_x}X from {frame_cx} X")
+        logging.debug(f"Tracking {crosshair_x.value}X from {frame_cx.value} X")
         logging.debug(f"Error is: {crosshair_x.value - frame_cx.value}")
-        logging.debug(f"PID PAN output: {pan_output}")
-        logging.debug(f"PAN angle: {pan_position}")
+        logging.debug(f"PID PAN output: {pan_output.value}")
+        logging.debug(f"PAN angle: {pan_position.value}")
 
 def pan_pid(output, p, i, d, obj_center, frame_center, action):
     signal.signal(signal.SIGINT, signal_handler)
