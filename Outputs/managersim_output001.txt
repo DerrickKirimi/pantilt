@@ -1,0 +1,129 @@
+Observation from the below: 
+    These messages from set_pan are never output:
+        logging.debug(f"Tracking {crosshair_x}X from {frame_cx} X")
+        logging.debug(f"Error is: {crosshair_x.value - frame_cx.value}")
+        logging.debug(f"PID PAN output: {pan_output}")
+        logging.debug(f"PAN angle: {pan_position}")
+
+Detector Tracking person X 455 Y 299
+DETECTION TIME: 0.39827585220336914
+Limited Pan angle is 180
+INFO:root:Limited Pan angle is 180
+Inside set_pan loop
+INFO:root:Detector Tracking person X 455 Y 305
+Detector Tracking person X 455 Y 305
+DETECTION TIME: 0.5981559753417969
+Limited Pan angle is 180
+INFO:root:Limited Pan angle is 180
+Inside set_pan loop
+PID output is: 211.10571579933168 
+PAN:
+PID OBJ_X: 455X
+PID FRAME_X: 320X
+INFO:root:PAN PID Tracking 455X From 320X
+PAN PID Tracking 455X From 320X
+Error is: -135
+DETECTION TIME: 0.796553373336792
+Limited Pan angle is 180
+INFO:root:Limited Pan angle is 180
+Inside set_pan loop
+DETECTION TIME: 0.9967684745788574
+Limited Pan angle is 180
+INFO:root:Limited Pan angle is 180
+Inside set_pan loop
+DETECTION TIME: 1.1963658332824707
+DEBUG:root:FPS: 0.8340292684478814
+FPS: 0.8340292684478814
+DETECTION TIME: 3.0994415283203125e-06
+PID output is: 204.29521803855897 
+PAN:
+PID OBJ_X: 455X
+PID FRAME_X: 320X
+INFO:root:PAN PID Tracking 455X From 320X
+PAN PID Tracking 455X From 320X
+Error is: -135
+Limited Pan angle is 180
+INFO:root:Limited Pan angle is 180
+Inside set_pan loop
+DETECTION TIME: 0.19672346115112305
+Limited Pan angle is 180
+INFO:root:Limited Pan angle is 180
+Inside set_pan loop
+DETECTION TIME: 0.39611124992370605
+Limited Pan angle is 180
+INFO:root:Limited Pan angle is 180
+Inside set_pan loop
+PID output is: 197.49626557826997 
+PAN:
+PID OBJ_X: 455X
+PID FRAME_X: 320X
+INFO:root:PAN PID Tracking 455X From 320X
+PAN PID Tracking 455X From 320X
+Error is: -135
+DETECTION TIME: 0.597752571105957
+Limited Pan angle is 180
+INFO:root:Limited Pan angle is 180
+Inside set_pan loop
+DETECTION TIME: 0.7957849502563477
+Limited Pan angle is 180
+INFO:root:Limited Pan angle is 180
+Inside set_pan loop
+DETECTION TIME: 0.9944336414337158
+PID output is: 190.68768613338472 
+PAN:
+PID OBJ_X: 455X
+PID FRAME_X: 320X
+INFO:root:PAN PID Tracking 455X From 320X
+PAN PID Tracking 455X From 320X
+Error is: -135
+Limited Pan angle is 180
+INFO:root:Limited Pan angle is 180
+Inside set_pan loop
+DETECTION TIME: 1.193114995956421
+DEBUG:root:FPS: 0.8363555804941877
+FPS: 0.8363555804941877
+DETECTION TIME: 3.337860107421875e-06
+Limited Pan angle is 180
+INFO:root:Limited Pan angle is 180
+Inside set_pan loop
+DETECTION TIME: 0.1986839771270752
+Limited Pan angle is 180
+INFO:root:Limited Pan angle is 180
+Inside set_pan loop
+DETECTION TIME: 0.3983755111694336
+PID output is: 183.88498072624208 
+PAN:
+PID OBJ_X: 455X
+PID FRAME_X: 320X
+INFO:root:PAN PID Tracking 455X From 320X
+PAN PID Tracking 455X From 320X
+Error is: -135
+Limited Pan angle is 180
+INFO:root:Limited Pan angle is 180
+Inside set_pan loop
+DETECTION TIME: 0.5976641178131104
+Limited Pan angle is 180
+INFO:root:Limited Pan angle is 180
+Inside set_pan loop
+PID output is: 177.03004627227784 
+PAN:
+PID OBJ_X: 455X
+PID FRAME_X: 320X
+INFO:root:PAN PID Tracking 455X From 320X
+PAN PID Tracking 455X From 320X
+Error is: -135
+Limited Pan angle is 180
+INFO:root:Limited Pan angle is 180
+Inside set_pan loop
+^C[INFO] You pressed `ctrl + c`! Exiting...
+[INFO] You pressed `ctrl + c`! Exiting...
+Traceback (most recent call last):
+  File "/home/pi/del/pantilt-copy/control/managercopy.py", line 496, in <module>
+    ppid_pan.join()
+  File "/usr/lib/python3.9/multiprocessing/process.py", line 149, in join
+    res = self._popen.wait(timeout)
+  File "/usr/lib/python3.9/multiprocessing/popen_fork.py", line 43, in wait
+    return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+  File "/usr/lib/python3.9/multiprocessing/popen_fork.py", line 27, in poll
+    pid, sts = os.waitpid(self.pid, flag)
+KeyboardInterrupt

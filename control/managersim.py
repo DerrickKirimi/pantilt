@@ -17,6 +17,21 @@ logging.basicConfig()
 logging.getLogger().setLevel(logging.DEBUG)
 LOGLEVEL = logging.getLogger().getEffectiveLevel()
 
+# Create a StreamHandler
+console_handler = logging.StreamHandler()
+
+# Set the logging level for the console handler
+console_handler.setLevel(logging.DEBUG)
+
+# Create a formatter and add it to the console handler
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+console_handler.setFormatter(formatter)
+
+# Add the console handler to the root logger
+root_logger = logging.getLogger()
+root_logger.addHandler(console_handler)
+
+
 #RESOLUTION = (320, 320)
 RESOLUTION = (640, 480)
 
@@ -304,6 +319,11 @@ def set_tilt(tilt, tilt_position):
 
         tilt_position.value = tilt_angle
 
+        logging.debug(f"Tracking {crosshair_y}Y from {frame_cy} Y")
+        logging.debug(f"Error is: {crosshair_y.value - frame_cy.value}")
+        logging.debug(f"PID TiLt output: {tilt_output}")
+        logging.debug(f"Tilt angle: {tilt_position}")
+
 def set_pan(pan, pan_position):
     signal.signal(signal.SIGINT, signal_handler)
     time.sleep(0.2)
@@ -324,6 +344,11 @@ def set_pan(pan, pan_position):
         pan_position.value = pan_angle
 
         #logging.info(f"New Pan position is {pan_angle}")
+
+        logging.debug(f"Tracking {crosshair_x}X from {frame_cx} X")
+        logging.debug(f"Error is: {crosshair_x.value - frame_cx.value}")
+        logging.debug(f"PID PAN output: {pan_output}")
+        logging.debug(f"PAN angle: {pan_position}")
 
 def pan_pid(output, p, i, d, obj_center, frame_center, action):
     signal.signal(signal.SIGINT, signal_handler)
