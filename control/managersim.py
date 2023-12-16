@@ -264,7 +264,7 @@ def setServoAngle(servo, angle):
     elif angle > servoRange[1]:
         angle = servoRange[1]
         logging.debug ("[ERROR] Too far")
-    dutyCycle = angle / 18. + 3.
+    dutyCycle = angle / 18. + 8.
     logging.debug("Duty cycle: {dutyCycle}")
     servo.ChangeDutyCycle(dutyCycle)
     time.sleep(0.2)
