@@ -258,13 +258,14 @@ def signal_handler(sig, frame):
 def setServoAngle(servo, angle):
     servo = GPIO.PWM(servo, 50)
     servo.start(0)
-    if angle <0:
-        angle = 1
-        logging.info ("[ERROR] Too far")
-    elif angle > 180:
-        angle = 180
-        logging.info ("[ERROR] Too far")
+    if angle < servoRange[0]:
+        angle = servoRange[0]
+        logging.debug ("[ERROR] Too far")
+    elif angle > servoRange[1]:
+        angle = servoRange[1]
+        logging.debug ("[ERROR] Too far")
     dutyCycle = angle / 18. + 3.
+    logging.debug("Duty cycle: {dutyCycle}")
     servo.ChangeDutyCycle(dutyCycle)
     time.sleep(0.2)
     servo.stop()
@@ -414,11 +415,14 @@ def tilt_pid(output, p, i, d, obj_center, frame_center, action):
 def servoTest():
     for i in range (40, 130, 15):
         setServoAngle(pan_pin, i)
+        setServoAngle(tilt_pin, i)
     
     for i in range (130, 40, -15):
         setServoAngle(pan_pin, i)
+        setServoAngle(tilt_pin, i)
         
     setServoAngle(pan_pin, 100)
+    setServoAngle(tilt_pin, 100)
 
 
 
@@ -466,9 +470,10 @@ def pantilt_pid(output, p, i, d, obj_center, frame_center, action):
    
 if __name__ == '__main__':
     #pantilt_process_manager()
-    for i in range(60, 100, 10):
+    #for i in range(60, 100, 10):
         #setServoAngle(pan_pin, i)
-        setServoAngle(tilt_pin, i)
+        #setServoAngle(tilt_pin, i)
+    servoTest()
         
 
     with Manager() as manager:
@@ -518,16 +523,16 @@ if __name__ == '__main__':
         detect_process.start()
         ppid_pan.start()
         pset_pan.start()
-        #ppid_tilt.start()
-        #pset_tilt.start()
+        ppid_tilt.start()
+        pset_tilt.start()
         ptest_pan.start()
         
 
         detect_process.join()
         ppid_pan.join()
         pset_pan.join()
-        #ppid_tilt.join()
-        #pset_tilt.join()
+        ppid_tilt.join()
+        pset_tilt.join()
         ptest_pan.join()
         
 

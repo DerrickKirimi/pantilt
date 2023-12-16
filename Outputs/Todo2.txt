@@ -1,2 +1,38 @@
 map pid output values 
-map servo input values after pid calculation in set_servo funtion(set_pan, set_tilt)
+map servo input values after pid calculation in set_servo funtion(set_pan, set_tilt):
+    Now pid output values are set only if in range -90 to 90.
+    
+//Reasons for selection of towerpro: weight of cam, weight of system, stalling torque of 1.8kg/cm, speed 
+According to the towerPro sg 90 datasheet:  
+    //Dutycycle ranges from 1ms to 2ms with 1.5ms as midpoint
+    //With the PWM frequency as 50Hz, period = 20ms.
+    //Therefore: 1ms/20ms = 5%
+                1.5ms/20ms = 7.5%
+                2ms/20ms = 10%
+
+Dutycycle calculation equation: angle/18. + 3, 
+where the bias term 3 is used to account for the fact that when the angle is zero the neutral point of the pan motor, 
+the dutycycle should be 5% 
+
+Change dutyCycle calculation bias to 8. 
+    -90/18 + 8 = 3%
+    0/18 + 8 = 8%
+    90/18 + 8 = 13%
+This is a closer approximation than a bias of 2 or 3.
+
+This comes from the error calculation as:
+    setPoint - actualValue = :
+    framecenter - objectCenter
+
+    This is negative when the person is to the left,    
+    for which pid update output results to a value 0 to -90%, 
+    for which the duty cycle calculation results range from 3% to 8%, panning the camera to the left,
+    with further left locations of object giving larger errors close to abs(-90%), hence dutycycles closer to 3%, which is equivalent
+    to 1ms for all way left according to the towerPro sg90 datasheet.
+
+    This is positive when the person is to the right, 
+    for which pid update output results to a value 0 to 90%, 
+    for which the duty cycle calculation results range from 8% to 13%, panning the camera to the right,
+    with further right locations of object giving larger errors close to 90%, hence dutycycles closer to 13%, which is equivalent
+    to 2ms for all way right according to the towerPro sg90 datasheet.
+
