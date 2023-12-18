@@ -155,7 +155,8 @@ freq = cv2.getTickFrequency()
 
 
 def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter, input_mean, input_std, imW, imH, 
-                min_conf_threshold, output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position):
+                min_conf_threshold, output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position,
+                DutyCycleX, DutyCycleY):
     videostream = VideoStream(resolution=(imW, imH), framerate=30).start()
     time.sleep(2.0)
     cv2.namedWindow('Object detector', cv2.WINDOW_NORMAL)
@@ -218,6 +219,8 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
                 ##logging.info(f'Detector Tracking {object_name} X {obj_cx} Y {obj_cy}')
                 #logging.info(f'Detector Tracking {object_name} X {obj_cx} Y {obj_cy}')
 
+                error_tilt.value = frame_cx - obj_cx
+                error_pan.value = frame_cy - obj_cy
 
 
 
@@ -232,6 +235,7 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
         info_label_2 = f'Frame center:   {frame_cx} X {frame_cy} Y'
         info_label_3 = f'Object Center:  {crosshair_x.value} X {crosshair_y.value} Y'
         info_label_4 = f'Error:          {error_pan.value} X {error_tilt.value} Y'
+        info_label_7 = f'DutyCycle        {float(DutyCycleX.value):.2f} X {float(DutyCycleY.value):.1f} Y'
         info_label_5 = f'PID output:     {pan_output.value:.0f} X {tilt_output.value:.2f} Y'
         info_label_6 = f'Position:       {pan_position.value:.0f} X {tilt_position.value:.2f} Y'
 
@@ -265,8 +269,9 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
         cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
         cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
         cv2.putText(frame, info_label_4, (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
-        cv2.putText(frame, info_label_5, (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
-        cv2.putText(frame, info_label_6, (10, 140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_7, (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_5, (10, 140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_6, (10, 160), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
 
         
         cv2.imshow('Object detector', frame)
@@ -428,7 +433,7 @@ def pan_pid(output, p, i, d, obj_center, frame_center, action):
 
             logging.info(f"Error is: {error} X")
 
-            output.value = pid.update(error/8)
+            output.value = pid.update(error)
             #pan_output.value = output.value #unnecessary mfa
              
 
@@ -459,7 +464,7 @@ def tilt_pid(output, p, i, d, obj_center, frame_center, action):
 
             logging.info(f"Error is: {error} Y")
 
-            output.value = pid.update(error/8)
+            output.value = pid.update(error)
             #tilt_output.value = output.value #unncecessary mfa
 
             logging.info(f"PID output is: {output.value}")
@@ -514,6 +519,38 @@ def pantilt_pid(output, p, i, d, obj_center, frame_center, action):
 
         ###logging.info(f'{action} error {error} angle: {output.value}')
 
+def set_pan_direct(frame_center, obj_center, error, DutyCycle):
+    signal.signal(signal.SIGINT, signal_handler)
+    while True:
+        error.value = frame_center.value - obj_center.value
+        #if error.value >= abs(40):
+        if (abs(error_tilt.value)/30) == 0:
+            pan_servo = GPIO.PWM(pan_pin, 50)
+            start = DutyCycle.value
+            pan_servo.start(start)
+            DutyCycle.value = 7.5 + error.value/320. * 2.5
+            dc = DutyCycle.value
+            pan_servo.ChangeDutyCycle(dc)
+            time.sleep(4)
+            pan_servo.stop()
+            #time.sleep(1)
+
+def set_tilt_direct (frame_center, obj_center, error_tilt, DutyCycle):
+    signal.signal(signal.SIGINT, signal_handler)
+    while True:
+        error_tilt.value = frame_center.value - obj_center.value
+        if (abs(error_tilt.value)/30) == 0:
+            tilt_servo = GPIO.PWM(tilt_pin, 50)
+            start = DutyCycle.value
+            tilt_servo.start(start)
+            DutyCycle.value = 7.5 + error_tilt.value/240. * 2.5
+            DutyCycleY.value = DutyCycle.value
+            dc = DutyCycle.value
+            tilt_servo.ChangeDutyCycle(dc)
+            time.sleep(6)
+            tilt_servo.stop()
+            #time.sleep(1)
+
 #def pantilt_process_manager(
 #):
    
@@ -554,8 +591,13 @@ if __name__ == '__main__':
         tilt_i = manager.Value('f', 0.2)
         tilt_d = manager.Value('f', 0)
 
+        DutyCycleX = manager.Value('f', 0)
+        DutyCycleY = manager.Value('f', 0)
+
+
         detect_process = Process(target=run_detect,
-                                  args=(crosshair_x, crosshair_y, frame_cx, frame_cy, labels, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position))
+                                  args=(crosshair_x, crosshair_y, frame_cx, frame_cy, labels, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, 
+                                  output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position, DutyCycleX, DutyCycleY))
 
         ppid_pan = Process(target=pan_pid,
                               args=(pan_output, pan_p, pan_i, pan_d, crosshair_x, frame_cx, 'pan'))
@@ -566,21 +608,28 @@ if __name__ == '__main__':
         pset_pan = Process(target=set_pan, args=(pan_output, pan_position))
         pset_tilt = Process(target=set_tilt, args=(tilt_output, tilt_position))
 
+        pset_pan_direct = Process(target = set_pan_direct, args=(frame_cx, crosshair_x,error_pan, DutyCycleX ))
+        pset_tilt_direct = Process(target = set_tilt_direct, args=(frame_cy,crosshair_y,error_tilt, DutyCycleY ))
+
         ptest_pan = Process(target=servoTest)
 
         detect_process.start()
-        ppid_pan.start()
+        #ppid_pan.start()
         #pset_pan.start()
-        ppid_tilt.start()
+        #ppid_tilt.start()
         #pset_tilt.start()
-        ptest_pan.start()
+        #ptest_pan.start()
+        pset_pan_direct.start()
+        pset_tilt_direct.start()
         
 
         detect_process.join()
-        ppid_pan.join()
-        pset_pan.join()
-        ppid_tilt.join()
-        pset_tilt.join()
-        ptest_pan.join()
+        #ppid_pan.join()
+        #pset_pan.join()
+        #ppid_tilt.join()
+        #pset_tilt.join()
+        #ptest_pan.join()
+        pset_pan_direct.join()
+        pset_tilt_direct.join()
         
 
