@@ -137,8 +137,8 @@ else:
     interpreter = Interpreter(model_path=PATH_TO_CKPT)
 
 interpreter.allocate_tensors()
-
-# Get model details
+cexxxxxxxxxtfhgsdrfsvs
+# Get model detaxfwms
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 height = input_details[0]['shape'][1]
@@ -378,8 +378,8 @@ def pan_pid(output, p, i, d, obj_center, frame_center, action):
 
             logging.info(f"Error is: {error}")
 
-            ns_output = pid.update(error)
-            output.value =  ns_output
+            output.value = pid.update(error)
+             
 
             logging.info(f"PID output is: {output.value} ")
 
@@ -462,7 +462,6 @@ def pantilt_pid(output, p, i, d, obj_center, frame_center, action):
 
 #def pantilt_process_manager(
     #edge_tpu=False,
-    #labels=('person',)
 #):
 
     #tilt_servo.start(8)
