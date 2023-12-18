@@ -524,7 +524,7 @@ def set_pan_direct(frame_center, obj_center, error, DutyCycle):
     while True:
         error.value = frame_center.value - obj_center.value
         #if error.value >= abs(40):
-        if (abs(error_tilt.value)/30) == 0:
+        if (abs(error_tilt.value)%40) == 0:
             pan_servo = GPIO.PWM(pan_pin, 50)
             start = DutyCycle.value
             pan_servo.start(start)
@@ -539,7 +539,7 @@ def set_tilt_direct (frame_center, obj_center, error_tilt, DutyCycle):
     signal.signal(signal.SIGINT, signal_handler)
     while True:
         error_tilt.value = frame_center.value - obj_center.value
-        if (abs(error_tilt.value)/30) == 0:
+        if (abs(error_tilt.value)%30) == 0:
             tilt_servo = GPIO.PWM(tilt_pin, 50)
             start = DutyCycle.value
             tilt_servo.start(start)
