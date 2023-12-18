@@ -121,10 +121,14 @@ Next steps:
         Check both
 
     
-    
+    Debug to cv window:
         Detection time: {timeofDetection}
         Frame center:   {frame_cx} X {frame_cy} Y 
         Object Center:  {crosshair_x.value} X {crosshair_y.value} Y
         error:          {error_pan} X {error_tilt} Y 
         PID output:     {pan_output} X {tilt_output} Y 
         Position:       {pan_position} X {tilt_position} Y 
+
+//Next tune pids
+//add function to limit pid outputs
+//Then map output to -90 to 90

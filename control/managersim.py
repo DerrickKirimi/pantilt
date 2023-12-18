@@ -235,13 +235,39 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
         info_label_5 = f'PID output:     {pan_output.value:.0f} X {tilt_output.value:.2f} Y'
         info_label_6 = f'Position:       {pan_position.value:.0f} X {tilt_position.value:.2f} Y'
 
-        # Add labels to the frame
-        cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
-        cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
-        cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
-        cv2.putText(frame, info_label_4, (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
-        cv2.putText(frame, info_label_5, (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
-        cv2.putText(frame, info_label_6, (10,140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+        # Add labels to the frame 
+        #colour-coded
+#        cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+#        cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+#        cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (10, 255, 0), 2, cv2.LINE_AA)
+#        cv2.putText(frame, info_label_4, (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2, cv2.LINE_AA)
+#        cv2.putText(frame, info_label_5, (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+#        cv2.putText(frame, info_label_6, (10,140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+
+       # #Black
+       # cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
+       # cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
+       # cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
+       # cv2.putText(frame, info_label_4, (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
+       # cv2.putText(frame, info_label_5, (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
+       # cv2.putText(frame, info_label_6, (10,140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
+
+        ##Blue
+        #cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
+        #cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
+        #cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
+        #cv2.putText(frame, info_label_4, (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
+        #cv2.putText(frame, info_label_5, (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
+        #cv2.putText(frame, info_label_6, (10, 140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
+
+        #Cyan
+        cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_4, (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_5, (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_6, (10, 140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+
         
         cv2.imshow('Object detector', frame)
     
@@ -402,8 +428,8 @@ def pan_pid(output, p, i, d, obj_center, frame_center, action):
 
             logging.info(f"Error is: {error} X")
 
-            output.value = pid.update(error)
-            pan_output.value = output.value #unnecessary mfa
+            output.value = pid.update(error/8)
+            #pan_output.value = output.value #unnecessary mfa
              
 
             logging.info(f"PID output is: {output.value} ")
@@ -433,8 +459,8 @@ def tilt_pid(output, p, i, d, obj_center, frame_center, action):
 
             logging.info(f"Error is: {error} Y")
 
-            output.value = pid.update(error)
-            tilt_output.value = output.value #unncecessary mfa
+            output.value = pid.update(error/8)
+            #tilt_output.value = output.value #unncecessary mfa
 
             logging.info(f"PID output is: {output.value}")
 
@@ -520,11 +546,11 @@ if __name__ == '__main__':
         pan_position = manager.Value('i', 0)
         tilt_position = manager.Value('i', 0)
 
-        pan_p = manager.Value('f', 0.05)
+        pan_p = manager.Value('f', 2)
         pan_i = manager.Value('f', 0.1)
         pan_d = manager.Value('f', 0)
 
-        tilt_p = manager.Value('f', 0.15)
+        tilt_p = manager.Value('f', 10)
         tilt_i = manager.Value('f', 0.2)
         tilt_d = manager.Value('f', 0)
 
@@ -552,9 +578,9 @@ if __name__ == '__main__':
 
         detect_process.join()
         ppid_pan.join()
-        #pset_pan.join()
+        pset_pan.join()
         ppid_tilt.join()
-        #pset_tilt.join()
+        pset_tilt.join()
         ptest_pan.join()
         
 
