@@ -223,23 +223,25 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
 
 
 
-        cv2.putText(frame, 'FPS: {0:.2f}'.format(frame_rate_calc), (30, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame, 'FPS: {0:.2f}'.format(frame_rate_calc), (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
         
         # Add labels for additional information
+        timeofDetection = time.time() - detect_start_time
+
         info_label_1 = f'Detection time: {timeofDetection:.2f} seconds'
-        info_label_2 = f'Frame center: {frame_cx} X {frame_cy} Y'
-        info_label_3 = f'Object Center: {crosshair_x.value} X {crosshair_y.value} Y'
-        info_label_4 = f'Error: {error_pan} X {error_tilt} Y'
-        info_label_5 = f'PID output: {pan_output} X {tilt_output} Y'
-        info_label_6 = f'Position: {pan_position} X {tilt_position} Y'
+        info_label_2 = f'Frame center:   {frame_cx} X {frame_cy} Y'
+        info_label_3 = f'Object Center:  {crosshair_x.value} X {crosshair_y.value} Y'
+        info_label_4 = f'Error:          {error_pan.value} X {error_tilt.value} Y'
+        info_label_5 = f'PID output:     {pan_output.value:.0f} X {tilt_output.value:.2f} Y'
+        info_label_6 = f'Position:       {pan_position.value:.0f} X {tilt_position.value:.2f} Y'
 
         # Add labels to the frame
-        cv2.putText(frame, info_label_1, (30, 80), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
-        cv2.putText(frame, info_label_2, (30, 110), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
-        cv2.putText(frame, info_label_3, (30, 140), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
-        cv2.putText(frame, info_label_4, (30, 170), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
-        cv2.putText(frame, info_label_5, (30, 200), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
-        cv2.putText(frame, info_label_6, (30, 230), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_4, (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_5, (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_6, (10,140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
         
         cv2.imshow('Object detector', frame)
     
@@ -248,8 +250,6 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
         time1 = (t2 - t1) / freq
         frame_rate_calc = 1 / time1
 
-        timeofDetection = time.time() - detect_start_time
-        logging.info(f'DETECTION TIME: {timeofDetection}')
 
         if cv2.waitKey(1) == ord('q'):
             break
@@ -287,7 +287,7 @@ def setServoAngle(servo, angle):
         angle = servoRange[1]
         logging.debug ("[ERROR] Too far")
     dutyCycle = angle / 18. + 8.
-    logging.debug("Duty cycle: {dutyCycle}")
+    logging.debug(f"Duty cycle: {dutyCycle}")
     servo.ChangeDutyCycle(dutyCycle)
     time.sleep(0.2)
     servo.stop()
@@ -341,7 +341,7 @@ def set_tilt(tilt, tilt_position):
         if in_range(tilt_angle, servoRange[0], servoRange[1]):
             setServoAngle(tilt_pin, tilt_angle)
 
-            logging.info(f" Tilt angle is {tilt_angle}")
+            logging.info(f" Tilt angle is {tilt_angle.value}Y")
             ##logging.info(f"Limited Tilt angle is {tilt_angle}")
 
             tilt_position.value = tilt_angle
@@ -400,7 +400,7 @@ def pan_pid(output, p, i, d, obj_center, frame_center, action):
 
             error_pan.value = error
 
-            logging.info(f"Error is: {error}")
+            logging.info(f"Error is: {error} X")
 
             output.value = pid.update(error)
             pan_output.value = output.value #unnecessary mfa
@@ -431,7 +431,7 @@ def tilt_pid(output, p, i, d, obj_center, frame_center, action):
 
             error_tilt.value = error
 
-            logging.info(f"Error is: {error}")
+            logging.info(f"Error is: {error} Y")
 
             output.value = pid.update(error)
             tilt_output.value = output.value #unncecessary mfa
@@ -493,13 +493,13 @@ def pantilt_pid(output, p, i, d, obj_center, frame_center, action):
    
 if __name__ == '__main__':
     
-    servoTest()
+    logging.info("[INFO] Moving servos to initial position")
+
+    #servoTest()
         
     with Manager() as manager:
         start_time = time.time()
         logging.info(f"Program started at: {start_time}")
-
-        logging.info("[INFO] Moving servos to initial position")
 
         
         frame_cx = manager.Value('i', 0)
@@ -544,17 +544,17 @@ if __name__ == '__main__':
 
         detect_process.start()
         ppid_pan.start()
-        pset_pan.start()
+        #pset_pan.start()
         ppid_tilt.start()
-        pset_tilt.start()
+        #pset_tilt.start()
         ptest_pan.start()
         
 
         detect_process.join()
         ppid_pan.join()
-        pset_pan.join()
+        #pset_pan.join()
         ppid_tilt.join()
-        pset_tilt.join()
+        #pset_tilt.join()
         ptest_pan.join()
         
 
