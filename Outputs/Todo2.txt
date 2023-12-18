@@ -122,3 +122,9 @@ Next steps:
 
     
     
+        Detection time: {timeofDetection}
+        Frame center:   {frame_cx} X {frame_cy} Y 
+        Object Center:  {crosshair_x.value} X {crosshair_y.value} Y
+        error:          {error_pan} X {error_tilt} Y 
+        PID output:     {pan_output} X {tilt_output} Y 
+        Position:       {pan_position} X {tilt_position} Y 

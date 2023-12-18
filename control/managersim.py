@@ -137,8 +137,8 @@ else:
     interpreter = Interpreter(model_path=PATH_TO_CKPT)
 
 interpreter.allocate_tensors()
-cexxxxxxxxxtfhgsdrfsvs
-# Get model detaxfwms
+
+# Get model details
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 height = input_details[0]['shape'][1]
@@ -154,7 +154,8 @@ frame_rate_calc = 1
 freq = cv2.getTickFrequency()
 
 
-def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter, input_mean, input_std, imW, imH, min_conf_threshold, output_details):
+def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter, input_mean, input_std, imW, imH, 
+                min_conf_threshold, output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position):
     videostream = VideoStream(resolution=(imW, imH), framerate=30).start()
     time.sleep(2.0)
     cv2.namedWindow('Object detector', cv2.WINDOW_NORMAL)
@@ -219,8 +220,29 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
 
 
 
+
+
+
         cv2.putText(frame, 'FPS: {0:.2f}'.format(frame_rate_calc), (30, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0), 2, cv2.LINE_AA)
+        
+        # Add labels for additional information
+        info_label_1 = f'Detection time: {timeofDetection:.2f} seconds'
+        info_label_2 = f'Frame center: {frame_cx} X {frame_cy} Y'
+        info_label_3 = f'Object Center: {crosshair_x.value} X {crosshair_y.value} Y'
+        info_label_4 = f'Error: {error_pan} X {error_tilt} Y'
+        info_label_5 = f'PID output: {pan_output} X {tilt_output} Y'
+        info_label_6 = f'Position: {pan_position} X {tilt_position} Y'
+
+        # Add labels to the frame
+        cv2.putText(frame, info_label_1, (30, 80), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_2, (30, 110), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_3, (30, 140), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_4, (30, 170), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_5, (30, 200), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_6, (30, 230), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
+        
         cv2.imshow('Object detector', frame)
+    
 
         t2 = cv2.getTickCount()
         time1 = (t2 - t1) / freq
@@ -376,9 +398,12 @@ def pan_pid(output, p, i, d, obj_center, frame_center, action):
             
             error = frame_center.value - obj_center.value
 
+            error_pan.value = error
+
             logging.info(f"Error is: {error}")
 
             output.value = pid.update(error)
+            pan_output.value = output.value #unnecessary mfa
              
 
             logging.info(f"PID output is: {output.value} ")
@@ -404,9 +429,12 @@ def tilt_pid(output, p, i, d, obj_center, frame_center, action):
 
             error = frame_center.value - obj_center.value
 
+            error_tilt.value = error
+
             logging.info(f"Error is: {error}")
 
             output.value = pid.update(error)
+            tilt_output.value = output.value #unncecessary mfa
 
             logging.info(f"PID output is: {output.value}")
 
@@ -461,20 +489,12 @@ def pantilt_pid(output, p, i, d, obj_center, frame_center, action):
         ###logging.info(f'{action} error {error} angle: {output.value}')
 
 #def pantilt_process_manager(
-    #edge_tpu=False,
 #):
-
-    #tilt_servo.start(8)
-    #pan_servo.start(8)
    
 if __name__ == '__main__':
-    #pantilt_process_manager()
-    #for i in range(60, 100, 10):
-        #setServoAngle(pan_pin, i)
-        #setServoAngle(tilt_pin, i)
+    
     servoTest()
         
-
     with Manager() as manager:
         start_time = time.time()
         logging.info(f"Program started at: {start_time}")
@@ -491,6 +511,9 @@ if __name__ == '__main__':
         crosshair_x = manager.Value('i', 0)
         crosshair_y = manager.Value('i', 0)
 
+        error_pan = manager.Value('i', 0)
+        error_tilt = manager.Value('i', 0)
+
         pan_output = manager.Value('i', 0)
         tilt_output = manager.Value('i', 0)
 
@@ -506,7 +529,7 @@ if __name__ == '__main__':
         tilt_d = manager.Value('f', 0)
 
         detect_process = Process(target=run_detect,
-                                  args=(crosshair_x, crosshair_y, frame_cx, frame_cy, labels, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, output_details))
+                                  args=(crosshair_x, crosshair_y, frame_cx, frame_cy, labels, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position))
 
         ppid_pan = Process(target=pan_pid,
                               args=(pan_output, pan_p, pan_i, pan_d, crosshair_x, frame_cx, 'pan'))
