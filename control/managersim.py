@@ -55,6 +55,8 @@ GPIO.setup(tilt_pin, GPIO.OUT)
 
 #pan_servo = GPIO.PWM(pan_pin, 50)
 #tilt_servo = GPIO.PWM(tilt_pin, 50)
+#pan_servo.start(8)
+#tilt_servo.start(8)
 
 
 #servoRange = (130, 145)
@@ -241,13 +243,13 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
 
         # Add labels to the frame 
         #colour-coded
-#        cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
-#        cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
-#        cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (10, 255, 0), 2, cv2.LINE_AA)
-#        cv2.putText(frame, info_label_4, (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2, cv2.LINE_AA)
-#        cv2.putText(frame, info_label_5, (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
-#        cv2.putText(frame, info_label_6, (10,140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
-
+##        cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+##        cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+##        cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (10, 255, 0), 2, cv2.LINE_AA)
+##        cv2.putText(frame, info_label_4, (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2, cv2.LINE_AA)
+##        cv2.putText(frame, info_label_5, (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+##        cv2.putText(frame, info_label_6, (10,140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+#
        # #Black
        # cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
        # cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
@@ -524,26 +526,26 @@ def set_pan_direct(frame_center, obj_center, error, DutyCycle):
     while True:
         error.value = frame_center.value - obj_center.value
         #if error.value >= abs(40):
-        if (abs(error_tilt.value)%40) == 0:
-            pan_servo = GPIO.PWM(pan_pin, 50)
-            start = DutyCycle.value
-            pan_servo.start(start)
-            DutyCycle.value = 7.5 + error.value/320. * 2.5
-            dc = DutyCycle.value
-            pan_servo.ChangeDutyCycle(dc)
-            time.sleep(4)
-            pan_servo.stop()
-            #time.sleep(1)
+        #if (abs(error_tilt.value)%2) == 0:
+        pan_servo = GPIO.PWM(pan_pin, 50)
+        start = DutyCycle.value
+        pan_servo.start(8)
+        DutyCycle.value = 7.5 + error.value/320. * 2.5
+        dc = DutyCycle.value
+        pan_servo.ChangeDutyCycle(dc)
+        time.sleep(4)
+        pan_servo.stop()
+        #time.sleep(1)
 
 def set_tilt_direct (frame_center, obj_center, error_tilt, DutyCycle):
     signal.signal(signal.SIGINT, signal_handler)
     while True:
         error_tilt.value = frame_center.value - obj_center.value
-        if (abs(error_tilt.value)%30) == 0:
+        if (abs(error_tilt.value)%2) == 0:
             tilt_servo = GPIO.PWM(tilt_pin, 50)
             start = DutyCycle.value
-            tilt_servo.start(start)
-            DutyCycle.value = 7.5 + error_tilt.value/240. * 2.5
+            tilt_servo.start(8)
+            DutyCycle.value = 6.5 + error_tilt.value/240. * 2.5
             DutyCycleY.value = DutyCycle.value
             dc = DutyCycle.value
             tilt_servo.ChangeDutyCycle(dc)
@@ -559,7 +561,7 @@ if __name__ == '__main__':
     logging.info("[INFO] Moving servos to initial position")
 
     #servoTest()
-        
+
     with Manager() as manager:
         start_time = time.time()
         logging.info(f"Program started at: {start_time}")
@@ -583,11 +585,11 @@ if __name__ == '__main__':
         pan_position = manager.Value('i', 0)
         tilt_position = manager.Value('i', 0)
 
-        pan_p = manager.Value('f', 2)
-        pan_i = manager.Value('f', 0.1)
+        pan_p = manager.Value('f', 0.15)
+        pan_i = manager.Value('f', 0)
         pan_d = manager.Value('f', 0)
 
-        tilt_p = manager.Value('f', 10)
+        tilt_p = manager.Value('f', 0.15)
         tilt_i = manager.Value('f', 0.2)
         tilt_d = manager.Value('f', 0)
 
@@ -614,22 +616,22 @@ if __name__ == '__main__':
         ptest_pan = Process(target=servoTest)
 
         detect_process.start()
-        #ppid_pan.start()
-        #pset_pan.start()
+        ppid_pan.start()
+        pset_pan.start()
         #ppid_tilt.start()
         #pset_tilt.start()
         #ptest_pan.start()
-        pset_pan_direct.start()
-        pset_tilt_direct.start()
+        #pset_pan_direct.start()
+        #pset_tilt_direct.start()
         
 
         detect_process.join()
-        #ppid_pan.join()
-        #pset_pan.join()
+        ppid_pan.join()
+        pset_pan.join()
         #ppid_tilt.join()
         #pset_tilt.join()
         #ptest_pan.join()
-        pset_pan_direct.join()
-        pset_tilt_direct.join()
+        #pset_pan_direct.join()
+        #pset_tilt_direct.join()
         
 
