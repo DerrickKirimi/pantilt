@@ -190,7 +190,13 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
         scores = interpreter.get_tensor(output_details[2]['index'])[0]
 
         max_confidence = min_conf_threshold
-        person_coordinates = None
+        #person_coordinates = None
+
+        if len(boxes) == 0:
+            obj_cx = RESOLUTION[0] // 2
+            obj_cy = RESOLUTION[1] // 2
+            logging.info(f'No person found')
+
 
         for i in range(len(scores)):
             if ((0 <= int(classes[i]) < len(labels)) and (scores[i] > max_confidence) and (scores[i] <= 1.0)):
@@ -201,7 +207,7 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
                 ymax = int(min(imH,(boxes[i][2] * imH)))
                 xmax = int(min(imW,(boxes[i][3] * imW)))
 
-                person_coordinates = (xmin, ymin, xmax, ymax)
+                #person_coordinates = (xmin, ymin, xmax, ymax)
                 
                 cv2.rectangle(frame, (xmin, ymin), (xmax, ymax), (10, 255, 0), 2)
 
@@ -212,14 +218,15 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
                 cv2.rectangle(frame, (xmin, label_ymin - labelSize[1] - 10), (xmin + labelSize[0], label_ymin + baseLine - 10), (255, 255, 255), cv2.FILLED)
                 cv2.putText(frame, label, (xmin, label_ymin - 7), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2)
 
-                if person_coordinates is not None:
-                    # Draw circle in center
-                    obj_cx = xmin + (int(round((xmax - xmin) / 2)))
-                    obj_cy = ymin + (int(round((ymax - ymin) / 2)))
-                else:
-                    obj_cx = RESOLUTION[0] // 2
-                    obj_cy = RESOLUTION[1] // 2
-                    logging.info(f'No person found')
+                #if person_coordinates is not None:
+                #if len(labels) == 0:
+                    ### Draw circle in center
+                    #obj_cx = RESOLUTION[0] // 2
+                    #obj_cy = RESOLUTION[1] // 2
+                #else:
+                    #logging.info(f'No person found')
+                obj_cx = xmin + (int(round((xmax - xmin) / 2)))
+                obj_cy = ymin + (int(round((ymax - ymin) / 2)))
 
                 frame_cx = RESOLUTION[0] // 2
                 frame_cy = RESOLUTION[1] // 2
