@@ -189,56 +189,49 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
         classes = interpreter.get_tensor(output_details[1]['index'])[0]
         scores = interpreter.get_tensor(output_details[2]['index'])[0]
 
-        max_confidence = 0
+        max_confidence = min_conf_threshold
         person_coordinates = None
 
         for i in range(len(scores)):
-            if ((0 <= int(classes[i]) < len(labels)) and (scores[i] > min_conf_threshold) and (scores[i] <= 1.0)):
-                if ((classes[i] == 1) and scores[i] > max_confidence):
-                    max_confidence = scores[i]
-                    ymin = int(max(1,(boxes[i][0] * imH)))
-                    xmin = int(max(1,(boxes[i][1] * imW)))
-                    ymax = int(min(imH,(boxes[i][2] * imH)))
-                    xmax = int(min(imW,(boxes[i][3] * imW)))
-
-                    person_coordinates = (xmin, ymin, xmax, ymax)
+            if ((0 <= int(classes[i]) < len(labels)) and (scores[i] > max_confidence) and (scores[i] <= 1.0)):
                 
-                    cv2.rectangle(frame, (xmin, ymin), (xmax, ymax), (10, 255, 0), 2)
+                max_confidence = scores[i]
+                ymin = int(max(1,(boxes[i][0] * imH)))
+                xmin = int(max(1,(boxes[i][1] * imW)))
+                ymax = int(min(imH,(boxes[i][2] * imH)))
+                xmax = int(min(imW,(boxes[i][3] * imW)))
 
-                    object_name = labels[int(classes[i])]
-                    label = '%s: %d%%' % (object_name, int(scores[i] * 100))
-                    labelSize, baseLine = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)
-                    label_ymin = max(ymin, labelSize[1] + 10)
-                    cv2.rectangle(frame, (xmin, label_ymin - labelSize[1] - 10), (xmin + labelSize[0], label_ymin + baseLine - 10), (255, 255, 255), cv2.FILLED)
-                    cv2.putText(frame, label, (xmin, label_ymin - 7), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2)
+                person_coordinates = (xmin, ymin, xmax, ymax)
+                
+                cv2.rectangle(frame, (xmin, ymin), (xmax, ymax), (10, 255, 0), 2)
 
-                    if person_coordinates is not None:
-                        # Draw circle in center
-                        obj_cx = xmin + (int(round((xmax - xmin) / 2)))
-                        obj_cy = ymin + (int(round((ymax - ymin) / 2)))
-                        frame_cx.value = RESOLUTION[0] // 2
-                        frame_cy.value = RESOLUTION[1] // 2
-                        cv2.circle(frame, (obj_cx, obj_cy), 5, (0, 0, 255), thickness=-1)
-                        #logging.info(f'DETECTOR OBJ_CENTER: {obj_cx}X {obj_cy}Y')
-                        cv2.circle(frame,(frame_cx, frame_cy), 5, (0, 255, 0), thickness=-1)
-                        #logging.info(f'DETECTOR FRAME_CENTER: {frame_cx}X {frame_cy}Y')
+                object_name = labels[int(classes[i])]
+                label = '%s: %d%%' % (object_name, int(scores[i] * 100))
+                labelSize, baseLine = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)
+                label_ymin = max(ymin, labelSize[1] + 10)
+                cv2.rectangle(frame, (xmin, label_ymin - labelSize[1] - 10), (xmin + labelSize[0], label_ymin + baseLine - 10), (255, 255, 255), cv2.FILLED)
+                cv2.putText(frame, label, (xmin, label_ymin - 7), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2)
 
-                        crosshair_x.value = obj_cx
-                        crosshair_y.value = obj_cy
+                if person_coordinates is not None:
+                    # Draw circle in center
+                    obj_cx = xmin + (int(round((xmax - xmin) / 2)))
+                    obj_cy = ymin + (int(round((ymax - ymin) / 2)))
+                else:
+                    obj_cx = RESOLUTION[0] // 2
+                    obj_cy = RESOLUTION[1] // 2
+                    logging.info(f'No person found')
 
-                        ##logging.info(f'Detector Tracking {object_name} X {obj_cx} Y {obj_cy}')
-                        #logging.info(f'Detector Tracking {object_name} X {obj_cx} Y {obj_cy}')
-
-                        error_tilt.value = frame_cx.value - crosshair_x.value
-                        error_pan.value = frame_cy - crosshair_y.value
-                    else:
-                        obj_cx = RESOLUTION[0] // 2
-                        obj_cy = RESOLUTION[1] // 2
-                        logging.info(f'No person found')
-                        crosshair_x.value = obj_cx
-                        crosshair_y.value = obj_cy
-                        error_tilt.value = frame_cx - crosshair_x.value
-                        error_pan.value = frame_cy - crosshair_y.value
+                frame_cx = RESOLUTION[0] // 2
+                frame_cy = RESOLUTION[1] // 2
+                cv2.circle(frame, (obj_cx, obj_cy), 5, (0, 0, 255), thickness=-1)
+                #logging.info(f'DETECTOR OBJ_CENTER: {obj_cx}X {obj_cy}Y')
+                cv2.circle(frame,(frame_cx, frame_cy), 5, (0, 255, 0), thickness=-1)
+                #logging.info(f'DETECTOR FRAME_CENTER: {frame_cx}X {frame_cy}Y')
+                    
+                crosshair_x.value = obj_cx
+                crosshair_y.value = obj_cy
+                error_pan.value = frame_cx - crosshair_x.value
+                error_tilt.value = frame_cy - crosshair_y.value
 
 
 
@@ -250,7 +243,7 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
         timeofDetection = time.time() - detect_start_time
 
         info_label_1 = f'Detection time: {timeofDetection:.2f} seconds'
-        info_label_2 = f'Frame center:   {frame_cx.value} X {frame_cy.value} Y'
+        info_label_2 = f'Frame center:   {frame_cx} X {frame_cy} Y'
         info_label_3 = f'Object Center:  {crosshair_x.value} X {crosshair_y.value} Y'
         info_label_4 = f'Error:          {error_pan.value} X {error_tilt.value} Y'
         info_label_7 = f'DutyCycle        {float(DutyCycleX.value):.2f} X {float(DutyCycleY.value):.1f} Y'
