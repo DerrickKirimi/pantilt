@@ -35,14 +35,7 @@ root_logger.addHandler(console_handler)
 #RESOLUTION = (320, 320)
 
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
 
-pan_pin = 5
-tilt_pin = 13
-
-GPIO.setup(pan_pin, GPIO.OUT)
-GPIO.setup(tilt_pin, GPIO.OUT)
 
 #pan_servo = GPIO.PWM(pan_pin, 50)
 #tilt_servo = GPIO.PWM(tilt_pin, 50)
@@ -52,7 +45,11 @@ GPIO.setup(tilt_pin, GPIO.OUT)
 
 #servoRange = (130, 145)
 #servoRange = (40, 130)
-servoRange = (-90, 90)
+#pan_pin = 5
+#tilt_pin = 13
+#servoRange = (-90, 90)
+
+
 
 # Paths and parameters
 # Define and parse input arguments
@@ -71,21 +68,43 @@ parser.add_argument('--resolution', help='Desired webcam resolution in WxH. If t
 parser.add_argument('--edgetpu', help='Use Coral Edge TPU Accelerator to speed up detection',
                     action='store_true')
 
+parser.add_argument('--pan_pin', type=int, default=5, help='Pan servo pin (default: 5)')
+parser.add_argument('--tilt_pin', type=int, default=13, help='Tilt servo pin (default: 13)')
+parser.add_argument('--servo_range', default='-90x90', help='Servo range in degrees. Default: -90,90')
+parser.add_argument('--framerate', type=int, default=30, help='Camera framerate')
+
 args = parser.parse_args()
 
+PAN_PIN = args.pan_pin
+TILT_PIN = args.tilt_pin
+servo_min, servo_max = args.servo_range.split('x')
+servo_min = -1 * int(servo_min)
+servo_max = int(servo_max)
+SERVORANGE = (servo_min, servo_max)
+FRAMERATE = args.framerate
+
 MODEL_NAME = args.modeldir
+CAMERA_PORT =  args.camera
 GRAPH_NAME = args.graph
 LABELMAP_NAME = args.labels
-min_conf_threshold = float(args.threshold)
+MIN_CONF_THRESHOLD = float(args.threshold)
 resW, resH = args.resolution.split('x')
 imW, imH = int(resW), int(resH)
+RESOLUTION = (imW, imH)
 use_TPU = args.edgetpu
 MIN_CONF_THRESHOLD = 0.5
 use_TPU = False
 
-#RESOLUTION = (640, 480)
+print(args.camera)
+print(args.pan_pin)
+print(args.tilt_pin)
+print(args.servo_range)
 
-RESOLUTION = (imW, imH)
+print(CAMERA_PORT)
+print(PAN_PIN)
+print(TILT_PIN)
+print(SERVORANGE)
+#RESOLUTION = (640, 480)
 
 #SERVO_MIN = 30
 #SERVO_MAX = 145
@@ -95,6 +114,11 @@ CENTER = (
     RESOLUTION[1] // 2
 )
 
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+
+GPIO.setup(PAN_PIN, GPIO.OUT)
+GPIO.setup(TILT_PIN, GPIO.OUT)
 
 # Import TensorFlow libraries
 # If tflite_runtime is installed, import interpreter from tflite_runtime, else import from regular tensorflow
@@ -164,7 +188,7 @@ freq = cv2.getTickFrequency()
 def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter, input_mean, input_std, imW, imH, 
                 min_conf_threshold, output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position,
                 DutyCycleX, DutyCycleY):
-    videostream = VideoStream(resolution=(imW, imH), framerate=30).start()
+    videostream = VideoStream(src=CAMERA_PORT,resolution=(imW, imH), framerate=FRAMERATE).start()
     time.sleep(2.0)
     cv2.namedWindow('Object detector', cv2.WINDOW_NORMAL)
 
@@ -340,11 +364,11 @@ def signal_handler(sig, frame):
 def setServoAngle(servo, angle):
     servo = GPIO.PWM(servo, 50)
     servo.start(0)
-    if angle < servoRange[0]:
-        angle = servoRange[0]
+    if angle < SERVORANGE[0]:
+        angle = SERVORANGE[0]
         logging.debug ("[ERROR] Too far")
-    elif angle > servoRange[1]:
-        angle = servoRange[1]
+    elif angle > SERVORANGE[1]:
+        angle = SERVORANGE[1]
         logging.debug ("[ERROR] Too far")
     dutyCycle = angle / 18. + 8.
     logging.debug(f"Duty cycle: {dutyCycle}")
@@ -371,14 +395,14 @@ def set_servos(tlt, pan, pan_position, tilt_position):
         tilt_angle = tilt_position.value + tlt.value
 
 #filter out noisy angle changes lower than 5deg with a lowpass filter
-        pan_angle = limit_range(pan_angle, servoRange[0], servoRange[1])
-        setServoAngle(pan_pin, pan_angle)
+        pan_angle = limit_range(pan_angle, SERVORANGE[0], SERVORANGE[1])
+        setServoAngle(PAN_PIN, pan_angle)
 
         logging.info(f"Limited Pan angle is {pan_angle}")
         ##logging.info(f"Limited Pan angle is {pan_angle}")
 
-        tilt_angle = limit_range(tilt_angle, servoRange[0], servoRange[1])
-        setServoAngle(tilt_pin, tilt_angle)
+        tilt_angle = limit_range(tilt_angle, SERVORANGE[0], SERVORANGE[1])
+        setServoAngle(TILT_PIN, tilt_angle)
 
         logging.info(f"Limited Tilt angle is {tilt_angle}")
         ##logging.info(f"Limited Tilt angle is {tilt_angle}")
@@ -398,8 +422,8 @@ def set_tilt(tilt, tilt_position):
         #tilt_angle = tilt_position.value + tilt.value
         tilt_angle = tilt.value
         
-        if in_range(tilt_angle, servoRange[0], servoRange[1]):
-            setServoAngle(tilt_pin, tilt_angle)
+        if in_range(tilt_angle, SERVORANGE[0], SERVORANGE[1]):
+            setServoAngle(TILT_PIN, tilt_angle)
 
             logging.info(f" Tilt angle is {tilt_angle.value}Y")
             ##logging.info(f"Limited Tilt angle is {tilt_angle}")
@@ -422,8 +446,8 @@ def set_pan(pan, pan_position):
         pan_angle = -1 * pan.value
         
 #filter out noisy angle changes lower than 5deg with a lowpass filter
-        if in_range(pan_angle, servoRange[0], servoRange[1]):
-            setServoAngle(pan_pin, pan_angle)
+        if in_range(pan_angle, SERVORANGE[0], SERVORANGE[1]):
+            setServoAngle(PAN_PIN, pan_angle)
 
             logging.info(f"Pan angle is {pan_angle}")
             ##logging.info(f"Limited Pan angle is {pan_angle}")
@@ -502,15 +526,15 @@ def tilt_pid(output, p, i, d, obj_center, frame_center, action):
 
 def servoTest():
     for i in range (40, 130, 15):
-        setServoAngle(pan_pin, i)
-        setServoAngle(tilt_pin, i)
+        setServoAngle(PAN_PIN, i)
+        setServoAngle(TILT_PIN, i)
     
     for i in range (130, 40, -15):
-        setServoAngle(pan_pin, i)
-        setServoAngle(tilt_pin, i)
+        setServoAngle(PAN_PIN, i)
+        setServoAngle(TILT_PIN, i)
         
-    setServoAngle(pan_pin, 100)
-    setServoAngle(tilt_pin, 100)
+    setServoAngle(PAN_PIN, 100)
+    setServoAngle(TILT_PIN, 100)
 
 
 
@@ -554,7 +578,7 @@ def set_pan_direct(frame_center, obj_center, error, DutyCycle):
         error.value = frame_center.value - obj_center.value
         #if error.value >= abs(40):
         #if (abs(error_tilt.value)%2) == 0:
-        pan_servo = GPIO.PWM(pan_pin, 50)
+        pan_servo = GPIO.PWM(PAN_PIN, 50)
         start = DutyCycle.value
         pan_servo.start(8)
         DutyCycle.value = 7.5 + error.value/320. * 2.5
@@ -569,7 +593,7 @@ def set_tilt_direct (frame_center, obj_center, error_tilt, DutyCycle):
     while True:
         error_tilt.value = frame_center.value - obj_center.value
         if (abs(error_tilt.value)%2) == 0:
-            tilt_servo = GPIO.PWM(tilt_pin, 50)
+            tilt_servo = GPIO.PWM(TILT_PIN, 50)
             start = DutyCycle.value
             tilt_servo.start(8)
             DutyCycle.value = 6.5 + error_tilt.value/240. * 2.5
