@@ -170,14 +170,19 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
 
     while True:
         t1 = cv2.getTickCount()
-        frame1 = videostream.read()
-        frame1 = cv2.flip(frame1, 1)
+        frame1 = videostream.read() 
+        #Set lateral inversion
+        #with the camera flipped 90 deg clockwise, flip around X(0)
+        #Else flip horizontally(around Y(1))
+        frame1 = cv2.flip(frame1, 0)
         frame1 = cv2.rotate(frame1, cv2.ROTATE_90_COUNTERCLOCKWISE)
 
         # Acquire frame and resize to expected shape [1xHxWx3]
         frame = frame1.copy()
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        frame_resized = cv2.resize(frame_rgb, (width, height))
+        #frame_resized = cv2.resize(frame_rgb, (width, height))
+        frame_resized = cv2.resize(frame_rgb, (height, width))
+        #input_data = np.expand_dims(frame_resized, axis=0)
         input_data = np.expand_dims(frame_resized, axis=0)
 
     # Normalize pixel values if using a floating model (i.e. if model is non-quantized)
