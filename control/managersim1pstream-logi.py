@@ -73,6 +73,23 @@ parser.add_argument('--tilt_pin', type=int, default=13, help='Tilt servo pin (de
 parser.add_argument('--servo_range', default='-90x90', help='Servo range in degrees. Default: -90,90')
 parser.add_argument('--framerate', type=int, default=30, help='Camera framerate')
 
+# Initialize default values
+default_pan_p = 0.15
+default_pan_i = 0.0
+default_pan_d = 0.0
+default_tilt_p = 0.15
+default_tilt_i = 0.2
+default_tilt_d = 0.0
+
+parser.add_argument('--pan_p', type=float, default=default_pan_p, help='Specify the pan P parameter')
+parser.add_argument('--pan_i', type=float, default=default_pan_i, help='Specify the pan I parameter')
+parser.add_argument('--pan_d', type=float, default=default_pan_d, help='Specify the pan D parameter')
+
+parser.add_argument('--tilt_p', type=float, default=default_tilt_p, help='Specify the tilt P parameter')
+parser.add_argument('--tilt_i', type=float, default=default_tilt_i, help='Specify the tilt I parameter')
+parser.add_argument('--tilt_d', type=float, default=default_tilt_d, help='Specify the tilt D parameter')
+
+
 args = parser.parse_args()
 
 PAN_PIN = args.pan_pin
@@ -636,13 +653,13 @@ if __name__ == '__main__':
         pan_position = manager.Value('i', 0)
         tilt_position = manager.Value('i', 0)
 
-        pan_p = manager.Value('f', 0.15)
-        pan_i = manager.Value('f', 0)
-        pan_d = manager.Value('f', 0)
+        pan_p = manager.Value('f', args.pan_p)
+        pan_i = manager.Value('f', args.pan_i)
+        pan_d = manager.Value('f', args.pan_d)
 
-        tilt_p = manager.Value('f', 0.15)
-        tilt_i = manager.Value('f', 0.2)
-        tilt_d = manager.Value('f', 0)
+        tilt_p = manager.Value('f', args.tilt_p)
+        tilt_i = manager.Value('f', args.tilt_i)
+        tilt_d = manager.Value('f', args.tilt_d)
 
         DutyCycleX = manager.Value('f', 0)
         DutyCycleY = manager.Value('f', 0)
