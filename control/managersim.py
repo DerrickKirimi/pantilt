@@ -172,6 +172,8 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
         t1 = cv2.getTickCount()
         frame1 = videostream.read()
         frame1 = cv2.flip(frame1, 1)
+        frame1 = cv2.rotate(frame1, cv2.ROTATE_90_COUNTERCLOCKWISE)
+
 
         # Acquire frame and resize to expected shape [1xHxWx3]
         frame = frame1.copy()
