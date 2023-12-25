@@ -33,15 +33,6 @@ root_logger.addHandler(console_handler)
 
 
 #RESOLUTION = (320, 320)
-RESOLUTION = (640, 480)
-
-#SERVO_MIN = 30
-#SERVO_MAX = 145
-
-CENTER = (
-    RESOLUTION[0] // 2,
-    RESOLUTION[1] // 2
-)
 
 
 GPIO.setmode(GPIO.BCM)
@@ -68,6 +59,7 @@ servoRange = (-90, 90)
 parser = argparse.ArgumentParser()
 parser.add_argument('--modeldir', help='Folder the .tflite file is located in',
                     required=True)
+parser.add_argument('--camera', type=int, default=0, help='Camera index (default: 0')
 parser.add_argument('--graph', help='Name of the .tflite file, if different than detect.tflite',
                     default='detect.tflite')
 parser.add_argument('--labels', help='Name of the labelmap file, if different than labelmap.txt',
@@ -90,6 +82,19 @@ imW, imH = int(resW), int(resH)
 use_TPU = args.edgetpu
 MIN_CONF_THRESHOLD = 0.5
 use_TPU = False
+
+#RESOLUTION = (640, 480)
+
+RESOLUTION = (imW, imH)
+
+#SERVO_MIN = 30
+#SERVO_MAX = 145
+
+CENTER = (
+    RESOLUTION[0] // 2,
+    RESOLUTION[1] // 2
+)
+
 
 # Import TensorFlow libraries
 # If tflite_runtime is installed, import interpreter from tflite_runtime, else import from regular tensorflow
@@ -174,10 +179,8 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
         #Set lateral inversion
         #with the camera flipped 90 deg clockwise, flip around X(0)
         #Else flip horizontally(around Y(1))
-        #frame1 = cv2.flip(frame1, 0)
+        frame1 = cv2.flip(frame1, 1)
         #frame1 = cv2.rotate(frame1, cv2.ROTATE_90_COUNTERCLOCKWISE)
-
-        frame1 = cv2.flip(frame1, 1)        
 
         # Acquire frame and resize to expected shape [1xHxWx3]
         frame = frame1.copy()
