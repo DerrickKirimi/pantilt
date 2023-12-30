@@ -14,7 +14,11 @@ import argparse
 import importlib.util
 import os
 import RPi.GPIO as GPIO
+import ctypes
+#from flask_socketio import SocketIO, send, emit
 
+SCREEN_WIDTH = 640
+SCREEN_HEIGHT = 480
 logging.basicConfig()
 logging.getLogger().setLevel(logging.DEBUG)
 LOGLEVEL = logging.getLogger().getEffectiveLevel()
@@ -141,7 +145,10 @@ GPIO.setup(TILT_PIN, GPIO.OUT)
 
 
 # Global variables for frame_buffer and lock
-frame_buffer = Array('B', 921600)  # Assuming the frame size is 640x480 and 3 channels (921600 = 640 * 480 * 3)
+#frame_buffer = Array('B', 921600)  # Assuming the frame size is 640x480 and 3 channels (921600 = 640 * 480 * 3)
+frame_buffer = np.ctypeslib.as_array(Array(ctypes.c_uint8, SCREEN_HEIGHT * SCREEN_WIDTH * 3).get_obj()).reshape(SCREEN_HEIGHT, SCREEN_WIDTH, 3)
+stopped = Value(ctypes.c_bool, False)
+
 #frame_buffer = None
 lock = Lock()
 motor_lock = Lock()
@@ -189,11 +196,12 @@ def gen():
     global frame_buffer, lock
     while True:
         with lock:
-            frame = np.frombuffer(frame_buffer.get_obj(), dtype=np.uint8).reshape((480, 640, 3))
-        flag, jpeg = cv2.imencode('.jpg', frame)
-        frame = jpeg.tobytes()
+            #frame_buffer = np.frombuffer(frame_buffer.get_obj(), dtype=np.uint8).reshape((480, 640, 3))
+            (flag, encodedImage) = cv2.imencode('.jpg', frame_buffer)
+            if not flag:
+                continue
         yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+               b'Content-Type: image/jpeg\r\n\r\n' + bytearray(encodedImage) + b'\r\n\r\n')
 #def gen():
     ## grab global references to the output frame and lock variables
 	#global frame_buffer, lock
@@ -439,7 +447,8 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
             logging.info(f"DETECTION TIME: {timeofDetection}")
 
     with lock: 
-        frame_buffer[:,:] = frame[:]
+        #frame_buffer[:,:] = frame[:]
+        frame_buffer[:] = frame
 
     cv2.destroyAllWindows()
     videostream.stop()
@@ -763,7 +772,11 @@ if __name__ == '__main__':
         #pset_pan_direct.start()
         #pset_tilt_direct.start()
         
-        app.run(host='0.0.0.0', port=5000, debug=False)
+        #app.run(host='0.0.0.0', port=5000, debug=False)
+        thread_flask = Thread(target=app.run, kwargs=dict(host='0.0.0.0', port=5000, debug=False, threaded=True))  # threaded Werkzeug server
+        # thread_flask = Thread(target=socketio.run, args=(app,), kwargs=dict(debug=False, log_output=True))  # eventlet server
+        thread_flask.daemon = True
+        thread_flask.start()
 
         detect_process.join()
         ppid_pan.join()
