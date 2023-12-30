@@ -1,8 +1,10 @@
 import logging
-from multiprocessing import Value, Process, Manager
+from flask import Flask, Response, render_template_string, request
+from multiprocessing import Value, Process, Manager, Lock, Array
 import signal
 import sys
 import time
+from time import sleep
 import cv2
 import numpy as np
 from pid import PIDController
@@ -137,6 +139,98 @@ GPIO.setwarnings(False)
 GPIO.setup(PAN_PIN, GPIO.OUT)
 GPIO.setup(TILT_PIN, GPIO.OUT)
 
+
+# Global variables for frame_buffer and lock
+frame_buffer = Array('B', 921600)  # Assuming the frame size is 640x480 and 3 channels (921600 = 640 * 480 * 3)
+lock = Lock()
+pwm_lock = Lock()
+
+app = Flask(__name__)
+
+TPL = '''
+<html>
+    <head>
+        <title>Flask Stream with Servo Control</title>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    </head>
+    <body>
+        <h2>Flask Stream with Servo Control</h2>
+        <img id="video_feed" src="{{ url_for('video_feed') }}" alt="Video Feed">
+
+        <p>Slider <input type="range" min="1" max="12.5" id="slider" /> <span id="sliderValue">7.5</span></p>
+        
+        <script>
+            var slider = document.getElementById("slider");
+            var sliderValueDisplay = document.getElementById("sliderValue");
+
+            // Update the slider value display and send update to the server
+            slider.addEventListener("input", function() {
+                var sliderValue = slider.value;
+                sliderValueDisplay.innerText = sliderValue;
+
+                // Send the slider value to the server using AJAX
+                $.ajax({
+                    type: "POST",
+                    url: "/update",
+                    data: { slider: sliderValue },
+                    success: function(response) {
+                        console.log(response);
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
+'''
+
+@app.route("/")
+def home():
+    return render_template_string(TPL)
+
+#def gen():
+    ## Your video streaming code here
+    #while True:
+        #with lock:
+            #frame = np.frombuffer(frame_buffer.get_obj(), dtype=np.uint8).reshape((480, 640, 3))
+        #flag, jpeg = cv2.imencode('.jpg', frame)
+        #frame = jpeg.tobytes()
+        #yield (b'--frame\r\n'
+               #b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+def gen():
+    # grab global references to the output frame and lock variables
+	global frame_buffer, lock
+	# loop over frames from the output stream
+	while True:
+		# wait until the lock is acquired
+		with lock:
+			# check if the output frame is available, otherwise skip
+			# the iteration of the loop
+			if frame_buffer is None:
+				continue
+			# encode the frame in JPEG format
+			(flag, encodedImage) = cv2.imencode(".jpg", frame_buffer)
+			# ensure the frame was successfully encoded
+			if not flag:
+				continue
+		# yield the output frame in the byte format
+		yield(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + 
+			bytearray(encodedImage) + b'\r\n')
+@app.route('/video_feed')
+def video_feed():
+    return Response(gen(),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route("/update", methods=["POST"])
+def update():
+    #while True:
+    slider = request.form.get("slider")
+    p = GPIO.PWM(PAN_PIN, 50)
+    p.start(0)
+    p.ChangeDutyCycle(float(slider))
+    sleep(0.1)  # Add a small delay
+    p.ChangeDutyCycle(0)
+    return "OK"
+
 # Import TensorFlow libraries
 # If tflite_runtime is installed, import interpreter from tflite_runtime, else import from regular tensorflow
 # If using Coral Edge TPU, import the load_delegate library
@@ -204,7 +298,7 @@ freq = cv2.getTickFrequency()
 
 def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter, input_mean, input_std, imW, imH, 
                 min_conf_threshold, output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position,
-                DutyCycleX, DutyCycleY):
+                DutyCycleX, DutyCycleY, frame_buffer, lock):
     videostream = VideoStream(src=CAMERA_PORT,resolution=(imW, imH), framerate=FRAMERATE).start()
     time.sleep(2.0)
     cv2.namedWindow('Object detector', cv2.WINDOW_NORMAL)
@@ -367,6 +461,9 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
 
             timeofDetection = time.time() - detect_start_time
             logging.info(f"DETECTION TIME: {timeofDetection}")
+
+    with lock: 
+        frame_buffer[:,:] = frame[:]
 
     cv2.destroyAllWindows()
     videostream.stop()
@@ -667,7 +764,7 @@ if __name__ == '__main__':
 
         detect_process = Process(target=run_detect,
                                   args=(crosshair_x, crosshair_y, frame_cx, frame_cy, labels, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, 
-                                  output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position, DutyCycleX, DutyCycleY))
+                                  output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position, DutyCycleX, DutyCycleY, frame_buffer, lock))
 
         ppid_pan = Process(target=pan_pid,
                               args=(pan_output, pan_p, pan_i, pan_d, crosshair_x, frame_cx, 'pan'))
@@ -692,6 +789,7 @@ if __name__ == '__main__':
         #pset_pan_direct.start()
         #pset_tilt_direct.start()
         
+        app.run(host='0.00.0.0', port=5000, debug=False)
 
         detect_process.join()
         ppid_pan.join()
