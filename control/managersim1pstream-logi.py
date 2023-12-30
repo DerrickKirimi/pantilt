@@ -404,31 +404,7 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
         info_label_6 = f'Position:       {pan_position.value:.0f} X {tilt_position.value:.2f} Y'
 
         # Add labels to the frame 
-        #colour-coded
-##        cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
-##        cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
-##        cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (10, 255, 0), 2, cv2.LINE_AA)
-##        cv2.putText(frame, info_label_4, (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2, cv2.LINE_AA)
-##        cv2.putText(frame, info_label_5, (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
-##        cv2.putText(frame, info_label_6, (10,140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
-#
-       # #Black
-       # cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
-       # cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
-       # cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
-       # cv2.putText(frame, info_label_4, (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
-       # cv2.putText(frame, info_label_5, (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
-       # cv2.putText(frame, info_label_6, (10,140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
-
-        ##Blue
-        #cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
-        #cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
-        #cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
-        #cv2.putText(frame, info_label_4, (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
-        #cv2.putText(frame, info_label_5, (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
-        #cv2.putText(frame, info_label_6, (10, 140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
-
-        #Cyan
+               #Cyan
         cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
         cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
         cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
@@ -523,9 +499,7 @@ def set_servos(tlt, pan, pan_position, tilt_position):
         pan_position.value = pan_angle
         tilt_position.value = tilt_angle
 
-#def set_pan ():
-#def set_tilt():
-#def pan_pid(output, p, i, d, obj_center, frame_center, action):
+
 
 def set_tilt(tilt, tilt_position):
     signal.signal(signal.SIGINT, signal_handler)
