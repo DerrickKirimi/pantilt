@@ -142,8 +142,9 @@ GPIO.setup(TILT_PIN, GPIO.OUT)
 
 # Global variables for frame_buffer and lock
 frame_buffer = Array('B', 921600)  # Assuming the frame size is 640x480 and 3 channels (921600 = 640 * 480 * 3)
+#frame_buffer = None
 lock = Lock()
-pwm_lock = Lock()
+motor_lock = Lock()
 
 app = Flask(__name__)
 
@@ -169,14 +170,10 @@ TPL = '''
                 sliderValueDisplay.innerText = sliderValue;
 
                 // Send the slider value to the server using AJAX
-                $.ajax({
-                    type: "POST",
-                    url: "/update",
-                    data: { slider: sliderValue },
-                    success: function(response) {
-                        console.log(response);
-                    }
-                });
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/update", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.send("slider=" + sliderValue);
             });
         </script>
     </body>
@@ -187,34 +184,35 @@ TPL = '''
 def home():
     return render_template_string(TPL)
 
-#def gen():
-    ## Your video streaming code here
-    #while True:
-        #with lock:
-            #frame = np.frombuffer(frame_buffer.get_obj(), dtype=np.uint8).reshape((480, 640, 3))
-        #flag, jpeg = cv2.imencode('.jpg', frame)
-        #frame = jpeg.tobytes()
-        #yield (b'--frame\r\n'
-               #b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 def gen():
-    # grab global references to the output frame and lock variables
-	global frame_buffer, lock
-	# loop over frames from the output stream
-	while True:
-		# wait until the lock is acquired
-		with lock:
-			# check if the output frame is available, otherwise skip
-			# the iteration of the loop
-			if frame_buffer is None:
-				continue
-			# encode the frame in JPEG format
-			(flag, encodedImage) = cv2.imencode(".jpg", frame_buffer)
-			# ensure the frame was successfully encoded
-			if not flag:
-				continue
-		# yield the output frame in the byte format
-		yield(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + 
-			bytearray(encodedImage) + b'\r\n')
+    # Your video streaming code here
+    
+    while True:
+        with lock:
+            frame = np.frombuffer(frame_buffer.get_obj(), dtype=np.uint8).reshape((480, 640, 3))
+        flag, jpeg = cv2.imencode('.jpg', frame)
+        frame = jpeg.tobytes()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+#def gen():
+    ## grab global references to the output frame and lock variables
+	#global frame_buffer, lock
+	## loop over frames from the output stream
+	#while True:
+		## wait until the lock is acquired
+		#with lock:
+			## check if the output frame is available, otherwise skip
+			## the iteration of the loop
+			#if frame_buffer is None:
+				#continue
+			## encode the frame in JPEG format
+			#(flag, encodedImage) = cv2.imencode(".jpg", frame_buffer)
+			## ensure the frame was successfully encoded
+			#if not flag:
+				#continue
+		## yield the output frame in the byte format
+		#yield(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + 
+			#bytearray(encodedImage) + b'\r\n')
 @app.route('/video_feed')
 def video_feed():
     return Response(gen(),
@@ -789,7 +787,7 @@ if __name__ == '__main__':
         #pset_pan_direct.start()
         #pset_tilt_direct.start()
         
-        app.run(host='0.00.0.0', port=5000, debug=False)
+        app.run(host='0.0.0.0', port=5000, debug=False)
 
         detect_process.join()
         ppid_pan.join()
