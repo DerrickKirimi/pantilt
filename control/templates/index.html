@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask Stream with Servo Control</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <h2>Flask Stream with Servo Control</h2>
+    <img id="video_feed" src="{{ url_for('video_feed') }}" alt="Video Feed">
+
+    <p>Slider <input type="range" min="1" max="12.5" id="slider" /> <span id="sliderValue">7.5</span></p>
+    
+    <script>
+        var slider = document.getElementById("slider");
+        var sliderValueDisplay = document.getElementById("sliderValue");
+
+        // Update the slider value display and send update to the server
+        slider.addEventListener("input", function() {
+            var sliderValue = slider.value;
+            sliderValueDisplay.innerText = sliderValue;
+
+            // Send the slider value to the server using AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/update", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("slider=" + sliderValue);
+        });
+    </script>
+</body>
+</html>
