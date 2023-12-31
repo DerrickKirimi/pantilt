@@ -234,15 +234,15 @@ def video_feed():
 @app.route("/update", methods=["POST"])
 def update():
     #while True:
-    global motor_lock
-    with motor_lock:
-        slider = request.form.get("slider")
-        p = GPIO.PWM(PAN_PIN, 50)
-        p.start(0)
-        p.ChangeDutyCycle(float(slider))
-        sleep(0.1)  # Add a small delay
-        p.ChangeDutyCycle(0)
-        return "OK"
+   # global motor_lock
+    #with motor_lock:
+    slider = request.form.get("slider")
+    p = GPIO.PWM(PAN_PIN, 50)
+    p.start(0)
+    p.ChangeDutyCycle(float(slider))
+    sleep(0.1)  # Add a small delay
+    p.ChangeDutyCycle(0)
+    return "OK"
 
 def run_detect(labels, interpreter, input_mean, input_std,
                 imW, imH, output_details,
