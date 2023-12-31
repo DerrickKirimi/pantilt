@@ -146,7 +146,7 @@ GPIO.setup(TILT_PIN, GPIO.OUT)
 
 # Global variables for frame_buffer and lock
 #frame_buffer = Array('B', 921600)  # Assuming the frame size is 640x480 and 3 channels (921600 = 640 * 480 * 3)
-frame_buffer = np.ctypeslib.as_array(Array(ctypes.c_uint8, SCREEN_HEIGHT * SCREEN_WIDTH * 3).get_obj()).reshape(SCREEN_HEIGHT, SCREEN_WIDTH, 3)
+#frame_buffer = np.ctypeslib.as_array(Array(ctypes.c_uint8, SCREEN_HEIGHT * SCREEN_WIDTH * 3).get_obj()).reshape(SCREEN_HEIGHT, SCREEN_WIDTH, 3)
 stopped = Value(ctypes.c_bool, False)
 
 #frame_buffer = None
@@ -193,10 +193,12 @@ def home():
 
 def gen():
     # Your video streaming code here
-    global frame_buffer, lock
+    #global frame_buffer, lock
+    global lock
     while True:
         with lock:
-            #frame_buffer = np.frombuffer(frame_buffer.get_obj(), dtype=np.uint8).reshape((480, 640, 3))
+            frame_buffer = frame_queue.get()
+            frame_buffer = np.frombuffer(frame_buffer.get_obj(), dtype=np.uint8).reshape((480, 640, 3))
             (flag, encodedImage) = cv2.imencode('.jpg', frame_buffer)
             if not flag:
                 continue
@@ -238,6 +240,11 @@ def update():
         sleep(0.1)  # Add a small delay
         p.ChangeDutyCycle(0)
         return "OK"
+
+def run_flask_app():
+    signal.signal(signal.SIGINT, signal_handler)
+
+    app.run(host='0.0.0.0', port=5000, debug=True, threaded=True, use_reloader=False)
 
 # Import TensorFlow libraries
 # If tflite_runtime is installed, import interpreter from tflite_runtime, else import from regular tensorflow
@@ -306,7 +313,9 @@ freq = cv2.getTickFrequency()
 
 def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter, input_mean, input_std, imW, imH, 
                 min_conf_threshold, output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position,
-                DutyCycleX, DutyCycleY, frame_buffer, lock):
+                DutyCycleX, DutyCycleY, lock, frame_queue): #frame_buffer
+    signal.signal(signal.SIGINT, signal_handler)
+
     videostream = VideoStream(src=CAMERA_PORT,resolution=(imW, imH), framerate=FRAMERATE).start()
     time.sleep(2.0)
     cv2.namedWindow('Object detector', cv2.WINDOW_NORMAL)
@@ -448,7 +457,8 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
 
     with lock: 
         #frame_buffer[:,:] = frame[:]
-        frame_buffer[:] = frame
+        #frame_buffer[:] = frame
+        frame_queue.put(frame)
 
     cv2.destroyAllWindows()
     videostream.stop()
@@ -744,10 +754,16 @@ if __name__ == '__main__':
         DutyCycleX = manager.Value('f', 0)
         DutyCycleY = manager.Value('f', 0)
 
+        #frame_buf = np.frombuffer(manager.Array('B', SCREEN_HEIGHT * SCREEN_WIDTH * 3).get_obj(), dtype=np.uint8).reshape(SCREEN_HEIGHT, SCREEN_WIDTH, 3)
+        #frame_buf = np.ctypeslib.as_array(manager.Array('B', SCREEN_HEIGHT * SCREEN_WIDTH * 3)).reshape(SCREEN_HEIGHT, SCREEN_WIDTH, 3)
+
+        frame_queue = manager.Queue()
+        
+
 
         detect_process = Process(target=run_detect,
                                   args=(crosshair_x, crosshair_y, frame_cx, frame_cy, labels, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, 
-                                  output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position, DutyCycleX, DutyCycleY, frame_buffer, lock))
+                                  output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position, DutyCycleX, DutyCycleY, lock, frame_queue))   #frame_buffer
 
         ppid_pan = Process(target=pan_pid,
                               args=(pan_output, pan_p, pan_i, pan_d, crosshair_x, frame_cx, 'pan'))
@@ -763,6 +779,10 @@ if __name__ == '__main__':
 
         ptest_pan = Process(target=servoTest)
 
+        flask_process = Process(target=run_flask_app)
+        
+        flask_process.start()
+
         detect_process.start()
         ppid_pan.start()
         pset_pan.start()
@@ -772,11 +792,13 @@ if __name__ == '__main__':
         #pset_pan_direct.start()
         #pset_tilt_direct.start()
         
-        #app.run(host='0.0.0.0', port=5000, debug=False)
-        thread_flask = Thread(target=app.run, kwargs=dict(host='0.0.0.0', port=5000, debug=False, threaded=True))  # threaded Werkzeug server
-        # thread_flask = Thread(target=socketio.run, args=(app,), kwargs=dict(debug=False, log_output=True))  # eventlet server
-        thread_flask.daemon = True
-        thread_flask.start()
+        ##app.run(host='0.0.0.0', port=5000, debug=False)
+        #thread_flask = Thread(target=app.run, kwargs=dict(host='0.0.0.0', port=5000, debug=False, threaded=True))  # threaded Werkzeug server
+        ## thread_flask = Thread(target=socketio.run, args=(app,), kwargs=dict(debug=False, log_output=True))  # eventlet server
+        #thread_flask.daemon = True
+        #thread_flask.start()
+
+        flask_process.join()
 
         detect_process.join()
         ppid_pan.join()
@@ -787,4 +809,5 @@ if __name__ == '__main__':
         #pset_pan_direct.join()
         #pset_tilt_direct.join()
         
+
 

@@ -16,6 +16,8 @@ import importlib.util
 import os
 import RPi.GPIO as GPIO
 import ctypes
+from flask_socketio import SocketIO, send, emit
+
 
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
@@ -193,38 +195,7 @@ lock = Lock()
 motor_lock = Lock()
 
 app = Flask(__name__)
-
-TPL = '''
-<html>
-    <head>
-        <title>Flask Stream with Servo Control</title>
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    </head>
-    <body>
-        <h2>Flask Stream with Servo Control</h2>
-        <img id="video_feed" src="{{ url_for('video_feed') }}" alt="Video Feed">
-
-        <p>Slider <input type="range" min="1" max="12.5" id="slider" /> <span id="sliderValue">7.5</span></p>
-        
-        <script>
-            var slider = document.getElementById("slider");
-            var sliderValueDisplay = document.getElementById("sliderValue");
-
-            // Update the slider value display and send update to the server
-            slider.addEventListener("input", function() {
-                var sliderValue = slider.value;
-                sliderValueDisplay.innerText = sliderValue;
-
-                // Send the slider value to the server using AJAX
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "/update", true);
-                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.send("slider=" + sliderValue);
-            });
-        </script>
-    </body>
-</html>
-'''
+socketio = SocketIO(app, async_mode=None)
 
 
 # Flask streaming code
@@ -369,7 +340,12 @@ if __name__ == "__main__":
     t.daemon = True
     t.start()
     
-    app.run(host='0.0.0.0', port=5000, debug=True, threaded=True, use_reloader=False)
+    #thread_flask = Thread(target=app.run, kwargs=dict(host='0.0.0.0', port=5000,debug=False, threaded=True))  # threaded Werkzeug server
+    thread_flask = Thread(target=socketio.run, args=(app,), kwargs=dict(host='0.0.0.0', port=5000,debug=False, log_output=True))  # eventlet server
+    thread_flask.daemon = True
+    thread_flask.start()
+
+    #app.run(host='0.0.0.0', port=5000, debug=True, threaded=True, use_reloader=False)
 
     # Release resources when Flask app is closed
     while True:
