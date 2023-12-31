@@ -4,13 +4,13 @@ import threading
 import cv2
 import numpy as np
 import logging
-from multiprocessing import Value, Process, Manager, Lock, Array
+from multiprocessing import Value, Process, Manager, Array #Lock
 import signal
 import sys
 import time
 from time import sleep
 from pid import PIDController
-from threading import Thread
+from threading import Thread, Lock
 import argparse
 import importlib.util
 import os
@@ -190,10 +190,6 @@ input_std = 127.5
 frame_rate_calc = 1
 freq = cv2.getTickFrequency()
 
-#frame_buffer = None
-lock = Lock()
-motor_lock = Lock()
-
 app = Flask(__name__)
 socketio = SocketIO(app, async_mode=None)
 
@@ -201,7 +197,11 @@ socketio = SocketIO(app, async_mode=None)
 # Flask streaming code
 outputFrame = None
 lock = threading.Lock()
+#frame_buffer = None
+#lock = Lock()
+motor_lock = threading.Lock()
 #app = Flask(__name__)
+
 
 # Streaming generator function
 def generate():
@@ -231,7 +231,18 @@ def index():
 def video_feed():
     #return Response(generate(), mimetype="multipart/x-mixed-replace; boundary=frame")
     return Response(genx(), mimetype="multipart/x-mixed-replace; boundary=frame")
-   
+@app.route("/update", methods=["POST"])
+def update():
+    #while True:
+    global motor_lock
+    with motor_lock:
+        slider = request.form.get("slider")
+        p = GPIO.PWM(PAN_PIN, 50)
+        p.start(0)
+        p.ChangeDutyCycle(float(slider))
+        sleep(0.1)  # Add a small delay
+        p.ChangeDutyCycle(0)
+        return "OK"
 
 def run_detect(labels, interpreter, input_mean, input_std,
                 imW, imH, output_details,
@@ -244,6 +255,12 @@ def run_detect(labels, interpreter, input_mean, input_std,
     freq = cv2.getTickFrequency()
     detect_start_time = time.time()
     fps_counter = 0
+
+    obj_cx = RESOLUTION[0]//2
+    obj_cy = RESOLUTION[1]//2
+
+    frame_cx = RESOLUTION[0] // 2
+    frame_cy = RESOLUTION[1] // 2
 
     while True:
         t1 = cv2.getTickCount()
@@ -267,7 +284,6 @@ def run_detect(labels, interpreter, input_mean, input_std,
         for i in range(len(scores)):
             if ((0 <= int(classes[i]) < len(labels)) and (scores[i] > MIN_CONF_THRESHOLD) and (scores[i] <= 1.0)):
                 
-                max_confidence = scores[i]
                 ymin = int(max(1,(boxes[i][0] * imH)))
                 xmin = int(max(1,(boxes[i][1] * imW)))
                 ymax = int(min(imH,(boxes[i][2] * imH)))
@@ -295,12 +311,12 @@ def run_detect(labels, interpreter, input_mean, input_std,
         timeofDetection = time.time() - detect_start_time
 
         info_label_1 = f'Detection time: {timeofDetection:.2f} seconds'
-       # info_label_2 = f'Frame center:   {frame_cx} X {frame_cy} Y'
+        info_label_2 = f'Frame center:   {frame_cx} X {frame_cy} Y'
         info_label_3 = f'Object Center:  {obj_cx} X {obj_cy} Y'
 
         
         cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
-        #cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
         cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
         
         cv2.imshow('Object detector', frame)
@@ -341,7 +357,7 @@ if __name__ == "__main__":
     t.start()
     
     #thread_flask = Thread(target=app.run, kwargs=dict(host='0.0.0.0', port=5000,debug=False, threaded=True))  # threaded Werkzeug server
-    thread_flask = Thread(target=socketio.run, args=(app,), kwargs=dict(host='0.0.0.0', port=5000,debug=False, log_output=True))  # eventlet server
+    thread_flask = Thread(target=socketio.run, args=(app,), kwargs=dict(host='0.0.0.0', port=5000,debug=True, log_output=True))  # eventlet server
     thread_flask.daemon = True
     thread_flask.start()
 
