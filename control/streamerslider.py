@@ -18,6 +18,7 @@ import RPi.GPIO as GPIO
 import ctypes
 from flask_socketio import SocketIO, send, emit
 
+slider = 0
 
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
@@ -233,20 +234,25 @@ def video_feed():
     return Response(genx(), mimetype="multipart/x-mixed-replace; boundary=frame")
 @app.route("/update", methods=["POST"])
 def update():
-    #while True:
-   # global motor_lock
-    #with motor_lock:
-    slider = request.form.get("slider")
-    p = GPIO.PWM(PAN_PIN, 50)
-    p.start(0)
-    p.ChangeDutyCycle(float(slider))
-    sleep(0.1)  # Add a small delay
-    p.ChangeDutyCycle(0)
-    return "OK"
+    # while True:
+    global motor_lock, slider
+    with motor_lock:
+        slider = request.form.get("slider")
+        try:
+            # Use your PWM logic here with proper synchronization
+            p = GPIO.PWM(PAN_PIN, 50)
+            p.start(0)
+            p.ChangeDutyCycle(float(slider))
+            sleep(0.1)  # Add a small delay
+            p.ChangeDutyCycle(0)
+            return "OK"
+        except Exception as e:
+            return f"Error: {str(e)}"
+
 
 def run_detect(labels, interpreter, input_mean, input_std,
                 imW, imH, output_details,
-                 frame_buffer, lock):
+                 frame_buffer, lock, slider):
     videostream = VideoStream(src=0).start()
     time.sleep(2.0)
     cv2.namedWindow('Object detector', cv2.WINDOW_NORMAL)
@@ -313,11 +319,13 @@ def run_detect(labels, interpreter, input_mean, input_std,
         info_label_1 = f'Detection time: {timeofDetection:.2f} seconds'
         info_label_2 = f'Frame center:   {frame_cx} X {frame_cy} Y'
         info_label_3 = f'Object Center:  {obj_cx} X {obj_cy} Y'
+        info_label_4 = f'Slider:  {slider} X'
 
         
         cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
         cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
         cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame, info_label_4, (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
         
         cv2.imshow('Object detector', frame)
 
