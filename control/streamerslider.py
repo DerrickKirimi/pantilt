@@ -356,8 +356,8 @@ if __name__ == "__main__":
     t.daemon = True
     t.start()
     
-    #thread_flask = Thread(target=app.run, kwargs=dict(host='0.0.0.0', port=5000,debug=False, threaded=True))  # threaded Werkzeug server
-    thread_flask = Thread(target=socketio.run, args=(app,), kwargs=dict(host='0.0.0.0', port=5000,debug=True, log_output=True))  # eventlet server
+    thread_flask = Thread(target=app.run, kwargs=dict(host='0.0.0.0', port=5000,debug=False, threaded=True))  # threaded Werkzeug server
+    #thread_flask = Thread(target=socketio.run, args=(app,), kwargs=dict(host='0.0.0.0', port=5000,debug=True, log_output=True))  # eventlet server
     thread_flask.daemon = True
     thread_flask.start()
 
