@@ -18,7 +18,6 @@ import RPi.GPIO as GPIO
 import ctypes
 from flask_socketio import SocketIO, send, emit
 
-slider = 0
 
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
@@ -235,7 +234,7 @@ def video_feed():
 @app.route("/update", methods=["POST"])
 def update():
     # while True:
-    global motor_lock, slider
+    global motor_lock
     with motor_lock:
         slider = request.form.get("slider")
         try:
@@ -252,7 +251,7 @@ def update():
 
 def run_detect(labels, interpreter, input_mean, input_std,
                 imW, imH, output_details,
-                 frame_buffer, lock, slider):
+                 frame_buffer, lock):
     videostream = VideoStream(src=0).start()
     time.sleep(2.0)
     cv2.namedWindow('Object detector', cv2.WINDOW_NORMAL)
@@ -319,13 +318,11 @@ def run_detect(labels, interpreter, input_mean, input_std,
         info_label_1 = f'Detection time: {timeofDetection:.2f} seconds'
         info_label_2 = f'Frame center:   {frame_cx} X {frame_cy} Y'
         info_label_3 = f'Object Center:  {obj_cx} X {obj_cy} Y'
-        info_label_4 = f'Slider:  {slider} X'
 
         
         cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
         cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
         cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
-        cv2.putText(frame, info_label_4, (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
         
         cv2.imshow('Object detector', frame)
 
