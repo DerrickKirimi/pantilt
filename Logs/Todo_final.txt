@@ -1,0 +1,7 @@
+//Response too sensitive
+1. Change ki, kd
+2. Use low pass filter for detection results
+3. Change to pigpio
+
+
+I want to plot the data out in a table in excel format with time, input and output, for all input ranges of error from -320 to 320 and all output ranges of angle from -90 to 90. Assume time increments of 0.5 seconds and angle increments of 30 degrees

@@ -585,9 +585,15 @@ if __name__ == '__main__':
         pan_position = manager.Value('i', 0)
         tilt_position = manager.Value('i', 0)
 
+        #pan_p = manager.Value('f', 0.15)
+        #pan_i = manager.Value('f', 0)
+        #pan_d = manager.Value('f', 0)
+
         pan_p = manager.Value('f', 0.15)
-        pan_i = manager.Value('f', 0)
+        pan_i = manager.Value('f', 0.2)
         pan_d = manager.Value('f', 0)
+        #pan_d = manager.Value('f', 0.002)
+
 
         tilt_p = manager.Value('f', 0.15)
         tilt_i = manager.Value('f', 0.2)
