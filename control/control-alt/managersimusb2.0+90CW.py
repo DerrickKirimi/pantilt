@@ -1,3 +1,4 @@
+#Camera turned 90Cw. Detection still noisy
 import logging
 from multiprocessing import Value, Process, Manager
 import signal
@@ -171,7 +172,7 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
     while True:
         t1 = cv2.getTickCount()
         frame1 = videostream.read()
-        frame1 = cv2.flip(frame1, 1)
+        frame1 = cv2.flip(frame1, 0)
         frame1 = cv2.rotate(frame1, cv2.ROTATE_90_COUNTERCLOCKWISE)
 
 

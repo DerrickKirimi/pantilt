@@ -1,4 +1,4 @@
-#Works well, doesn't include streaming yet. Lacks arguments
+#Noisy detection, improved in suffix 1p named files
 import logging
 from multiprocessing import Value, Process, Manager
 import signal
@@ -171,21 +171,15 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
 
     while True:
         t1 = cv2.getTickCount()
-        frame1 = videostream.read() 
-        #Set lateral inversion
-        #with the camera flipped 90 deg clockwise, flip around X(0)
-        #Else flip horizontally(around Y(1))
-        #frame1 = cv2.flip(frame1, 0)
+        frame1 = videostream.read()
+        frame1 = cv2.flip(frame1, 1)
         #frame1 = cv2.rotate(frame1, cv2.ROTATE_90_COUNTERCLOCKWISE)
 
-        frame1 = cv2.flip(frame1, 1)        
 
         # Acquire frame and resize to expected shape [1xHxWx3]
         frame = frame1.copy()
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         frame_resized = cv2.resize(frame_rgb, (width, height))
-        #frame_resized = cv2.resize(frame_rgb, (height, width))
-        #input_data = np.expand_dims(frame_resized, axis=0)
         input_data = np.expand_dims(frame_resized, axis=0)
 
     # Normalize pixel values if using a floating model (i.e. if model is non-quantized)
@@ -198,25 +192,12 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
         classes = interpreter.get_tensor(output_details[1]['index'])[0]
         scores = interpreter.get_tensor(output_details[2]['index'])[0]
 
-        max_confidence = min_conf_threshold
-        #person_coordinates = None
-
-        if len(boxes) == 0:
-            obj_cx = RESOLUTION[0] // 2
-            obj_cy = RESOLUTION[1] // 2
-            logging.info(f'No person found')
-
-
         for i in range(len(scores)):
-            if ((0 <= int(classes[i]) < len(labels)) and (scores[i] >= max_confidence) and (scores[i] <= 1.0)):
-                
-                max_confidence = scores[i]
+            if ((0 <= int(classes[i]) < len(labels)) and (scores[i] > min_conf_threshold) and (scores[i] <= 1.0)):
                 ymin = int(max(1,(boxes[i][0] * imH)))
                 xmin = int(max(1,(boxes[i][1] * imW)))
                 ymax = int(min(imH,(boxes[i][2] * imH)))
                 xmax = int(min(imW,(boxes[i][3] * imW)))
-
-                #person_coordinates = (xmin, ymin, xmax, ymax)
                 
                 cv2.rectangle(frame, (xmin, ymin), (xmax, ymax), (10, 255, 0), 2)
 
@@ -227,27 +208,24 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
                 cv2.rectangle(frame, (xmin, label_ymin - labelSize[1] - 10), (xmin + labelSize[0], label_ymin + baseLine - 10), (255, 255, 255), cv2.FILLED)
                 cv2.putText(frame, label, (xmin, label_ymin - 7), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2)
 
-                #if person_coordinates is not None:
-                #if len(labels) == 0:
-                    ### Draw circle in center
-                    #obj_cx = RESOLUTION[0] // 2
-                    #obj_cy = RESOLUTION[1] // 2
-                #else:
-                    #logging.info(f'No person found')
+                 # Draw circle in center
                 obj_cx = xmin + (int(round((xmax - xmin) / 2)))
                 obj_cy = ymin + (int(round((ymax - ymin) / 2)))
-
                 frame_cx = RESOLUTION[0] // 2
                 frame_cy = RESOLUTION[1] // 2
                 cv2.circle(frame, (obj_cx, obj_cy), 5, (0, 0, 255), thickness=-1)
                 #logging.info(f'DETECTOR OBJ_CENTER: {obj_cx}X {obj_cy}Y')
                 cv2.circle(frame,(frame_cx, frame_cy), 5, (0, 255, 0), thickness=-1)
                 #logging.info(f'DETECTOR FRAME_CENTER: {frame_cx}X {frame_cy}Y')
-                    
+
                 crosshair_x.value = obj_cx
                 crosshair_y.value = obj_cy
-                error_pan.value = frame_cx - crosshair_x.value
-                error_tilt.value = frame_cy - crosshair_y.value
+
+                ##logging.info(f'Detector Tracking {object_name} X {obj_cx} Y {obj_cy}')
+                #logging.info(f'Detector Tracking {object_name} X {obj_cx} Y {obj_cy}')
+
+                error_tilt.value = frame_cx - obj_cx
+                error_pan.value = frame_cy - obj_cy
 
 
 
@@ -265,7 +243,32 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
         info_label_7 = f'DutyCycle        {float(DutyCycleX.value):.2f} X {float(DutyCycleY.value):.1f} Y'
         info_label_5 = f'PID output:     {pan_output.value:.0f} X {tilt_output.value:.2f} Y'
         info_label_6 = f'Position:       {pan_position.value:.0f} X {tilt_position.value:.2f} Y'
-        
+
+        # Add labels to the frame 
+        #colour-coded
+##        cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+##        cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+##        cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (10, 255, 0), 2, cv2.LINE_AA)
+##        cv2.putText(frame, info_label_4, (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2, cv2.LINE_AA)
+##        cv2.putText(frame, info_label_5, (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
+##        cv2.putText(frame, info_label_6, (10,140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+#
+       # #Black
+       # cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
+       # cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
+       # cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
+       # cv2.putText(frame, info_label_4, (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
+       # cv2.putText(frame, info_label_5, (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
+       # cv2.putText(frame, info_label_6, (10,140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
+
+        ##Blue
+        #cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
+        #cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
+        #cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
+        #cv2.putText(frame, info_label_4, (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
+        #cv2.putText(frame, info_label_5, (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
+        #cv2.putText(frame, info_label_6, (10, 140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
+
         #Cyan
         cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
         cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
