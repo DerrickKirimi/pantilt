@@ -110,7 +110,7 @@ MODEL_NAME = args.modeldir
 CAMERA_PORT =  args.camera
 GRAPH_NAME = args.graph
 LABELMAP_NAME = args.labels
-MIN_CONF_THRESHOLD = float(args.threshold)
+#MIN_CONF_THRESHOLD = float(args.threshold)
 resW, resH = args.resolution.split('x')
 imW, imH = int(resW), int(resH)
 RESOLUTION = (imW, imH)
@@ -312,7 +312,7 @@ freq = cv2.getTickFrequency()
 
 
 def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter, input_mean, input_std, imW, imH, 
-                min_conf_threshold, output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position,
+                MIN_CONF_THRESHOLD, output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position,
                 DutyCycleX, DutyCycleY, lock, frame_queue): #frame_buffer
     signal.signal(signal.SIGINT, signal_handler)
 
@@ -352,7 +352,7 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
         classes = interpreter.get_tensor(output_details[1]['index'])[0]
         scores = interpreter.get_tensor(output_details[2]['index'])[0]
 
-        max_confidence = min_conf_threshold
+        max_confidence = MIN_CONF_THRESHOLD.value
         #person_coordinates = None
 
         if len(boxes) == 0:
@@ -731,6 +731,8 @@ if __name__ == '__main__':
         frame_cx.value = RESOLUTION[0] // 2
         frame_cy.value = RESOLUTION[1] // 2
 
+        MIN_CONF_THRESHOLD = manager.Value('f',args.threshold)
+
         crosshair_x = manager.Value('i', 0)
         crosshair_y = manager.Value('i', 0)
 
@@ -742,6 +744,7 @@ if __name__ == '__main__':
 
         pan_position = manager.Value('i', 0)
         tilt_position = manager.Value('i', 0)
+
 
         pan_p = manager.Value('f', args.pan_p)
         pan_i = manager.Value('f', args.pan_i)
