@@ -1,9 +1,10 @@
-#Works well, doesn't include streaming yet. Lacks arguments
 import logging
-from multiprocessing import Value, Process, Manager
+from flask import Flask, Response, render_template_string, request
+from multiprocessing import Value, Process, Manager, Lock, Array
 import signal
 import sys
 import time
+from time import sleep
 import cv2
 import numpy as np
 from pid import PIDController
@@ -13,7 +14,11 @@ import argparse
 import importlib.util
 import os
 import RPi.GPIO as GPIO
+import ctypes
+#from flask_socketio import SocketIO, send, emit
 
+SCREEN_WIDTH = 640
+SCREEN_HEIGHT = 480
 logging.basicConfig()
 logging.getLogger().setLevel(logging.DEBUG)
 LOGLEVEL = logging.getLogger().getEffectiveLevel()
@@ -34,25 +39,9 @@ root_logger.addHandler(console_handler)
 
 
 #RESOLUTION = (320, 320)
-RESOLUTION = (640, 480)
-
-#SERVO_MIN = 30
-#SERVO_MAX = 145
-
-CENTER = (
-    RESOLUTION[0] // 2,
-    RESOLUTION[1] // 2
-)
 
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
 
-pan_pin = 5
-tilt_pin = 13
-
-GPIO.setup(pan_pin, GPIO.OUT)
-GPIO.setup(tilt_pin, GPIO.OUT)
 
 #pan_servo = GPIO.PWM(pan_pin, 50)
 #tilt_servo = GPIO.PWM(tilt_pin, 50)
@@ -62,13 +51,18 @@ GPIO.setup(tilt_pin, GPIO.OUT)
 
 #servoRange = (130, 145)
 #servoRange = (40, 130)
-servoRange = (-90, 90)
+#pan_pin = 5
+#tilt_pin = 13
+#servoRange = (-90, 90)
+
+
 
 # Paths and parameters
 # Define and parse input arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('--modeldir', help='Folder the .tflite file is located in',
                     required=True)
+parser.add_argument('--camera', type=int, default=0, help='Camera index (default: 0')
 parser.add_argument('--graph', help='Name of the .tflite file, if different than detect.tflite',
                     default='detect.tflite')
 parser.add_argument('--labels', help='Name of the labelmap file, if different than labelmap.txt',
@@ -80,17 +74,177 @@ parser.add_argument('--resolution', help='Desired webcam resolution in WxH. If t
 parser.add_argument('--edgetpu', help='Use Coral Edge TPU Accelerator to speed up detection',
                     action='store_true')
 
+parser.add_argument('--pan_pin', type=int, default=5, help='Pan servo pin (default: 5)')
+parser.add_argument('--tilt_pin', type=int, default=13, help='Tilt servo pin (default: 13)')
+parser.add_argument('--servo_range', default='-90x90', help='Servo range in degrees. Default: -90,90')
+parser.add_argument('--framerate', type=int, default=30, help='Camera framerate')
+
+# Initialize default values
+default_pan_p = 0.15
+default_pan_i = 0.0
+default_pan_d = 0.0
+default_tilt_p = 0.15
+default_tilt_i = 0.2
+default_tilt_d = 0.0
+
+parser.add_argument('--pan_p', type=float, default=default_pan_p, help='Specify the pan P parameter')
+parser.add_argument('--pan_i', type=float, default=default_pan_i, help='Specify the pan I parameter')
+parser.add_argument('--pan_d', type=float, default=default_pan_d, help='Specify the pan D parameter')
+
+parser.add_argument('--tilt_p', type=float, default=default_tilt_p, help='Specify the tilt P parameter')
+parser.add_argument('--tilt_i', type=float, default=default_tilt_i, help='Specify the tilt I parameter')
+parser.add_argument('--tilt_d', type=float, default=default_tilt_d, help='Specify the tilt D parameter')
+
+
 args = parser.parse_args()
 
+PAN_PIN = args.pan_pin
+TILT_PIN = args.tilt_pin
+servo_min, servo_max = args.servo_range.split('x')
+servo_min = -1 * int(servo_min)
+servo_max = int(servo_max)
+SERVORANGE = (servo_min, servo_max)
+FRAMERATE = args.framerate
+
 MODEL_NAME = args.modeldir
+CAMERA_PORT =  args.camera
 GRAPH_NAME = args.graph
 LABELMAP_NAME = args.labels
-min_conf_threshold = float(args.threshold)
+#MIN_CONF_THRESHOLD = float(args.threshold)
 resW, resH = args.resolution.split('x')
 imW, imH = int(resW), int(resH)
+RESOLUTION = (imW, imH)
 use_TPU = args.edgetpu
 MIN_CONF_THRESHOLD = 0.5
 use_TPU = False
+
+print(args.camera)
+print(args.pan_pin)
+print(args.tilt_pin)
+print(args.servo_range)
+
+print(CAMERA_PORT)
+print(PAN_PIN)
+print(TILT_PIN)
+print(SERVORANGE)
+#RESOLUTION = (640, 480)
+
+#SERVO_MIN = 30
+#SERVO_MAX = 145
+
+CENTER = (
+    RESOLUTION[0] // 2,
+    RESOLUTION[1] // 2
+)
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+
+GPIO.setup(PAN_PIN, GPIO.OUT)
+GPIO.setup(TILT_PIN, GPIO.OUT)
+
+
+# Global variables for frame_buffer and lock
+#frame_buffer = Array('B', 921600)  # Assuming the frame size is 640x480 and 3 channels (921600 = 640 * 480 * 3)
+#frame_buffer = np.ctypeslib.as_array(Array(ctypes.c_uint8, SCREEN_HEIGHT * SCREEN_WIDTH * 3).get_obj()).reshape(SCREEN_HEIGHT, SCREEN_WIDTH, 3)
+stopped = Value(ctypes.c_bool, False)
+
+#frame_buffer = None
+lock = Lock()
+motor_lock = Lock()
+
+app = Flask(__name__)
+
+TPL = '''
+<html>
+    <head>
+        <title>Flask Stream with Servo Control</title>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    </head>
+    <body>
+        <h2>Flask Stream with Servo Control</h2>
+        <img id="video_feed" src="{{ url_for('video_feed') }}" alt="Video Feed">
+
+        <p>Slider <input type="range" min="1" max="12.5" id="slider" /> <span id="sliderValue">7.5</span></p>
+        
+        <script>
+            var slider = document.getElementById("slider");
+            var sliderValueDisplay = document.getElementById("sliderValue");
+
+            // Update the slider value display and send update to the server
+            slider.addEventListener("input", function() {
+                var sliderValue = slider.value;
+                sliderValueDisplay.innerText = sliderValue;
+
+                // Send the slider value to the server using AJAX
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/update", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.send("slider=" + sliderValue);
+            });
+        </script>
+    </body>
+</html>
+'''
+
+@app.route("/")
+def home():
+    return render_template_string(TPL)
+
+def gen():
+    # Your video streaming code here
+    #global frame_buffer, lock
+    global lock
+    while True:
+        with lock:
+            frame_buffer = frame_queue.get()
+            frame_buffer = np.frombuffer(frame_buffer.get_obj(), dtype=np.uint8).reshape((480, 640, 3))
+            (flag, encodedImage) = cv2.imencode('.jpg', frame_buffer)
+            if not flag:
+                continue
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + bytearray(encodedImage) + b'\r\n\r\n')
+#def gen():
+    ## grab global references to the output frame and lock variables
+	#global frame_buffer, lock
+	## loop over frames from the output stream
+	#while True:
+		## wait until the lock is acquired
+		#with lock:
+			## check if the output frame is available, otherwise skip
+			## the iteration of the loop
+			#if frame_buffer is None:
+				#continue
+			## encode the frame in JPEG format
+			#(flag, encodedImage) = cv2.imencode(".jpg", frame_buffer)
+			## ensure the frame was successfully encoded
+			#if not flag:
+				#continue
+		## yield the output frame in the byte format
+		#yield(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + 
+			#bytearray(encodedImage) + b'\r\n')
+@app.route('/video_feed')
+def video_feed():
+    return Response(gen(),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route("/update", methods=["POST"])
+def update():
+    #while True:
+    global motor_lock
+    with motor_lock:
+        slider = request.form.get("slider")
+        p = GPIO.PWM(PAN_PIN, 50)
+        p.start(0)
+        p.ChangeDutyCycle(float(slider))
+        sleep(0.1)  # Add a small delay
+        p.ChangeDutyCycle(0)
+        return "OK"
+
+def run_flask_app():
+    signal.signal(signal.SIGINT, signal_handler)
+
+    app.run(host='0.0.0.0', port=5000, debug=True, threaded=True, use_reloader=False)
 
 # Import TensorFlow libraries
 # If tflite_runtime is installed, import interpreter from tflite_runtime, else import from regular tensorflow
@@ -158,9 +312,11 @@ freq = cv2.getTickFrequency()
 
 
 def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter, input_mean, input_std, imW, imH, 
-                min_conf_threshold, output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position,
-                DutyCycleX, DutyCycleY):
-    videostream = VideoStream(resolution=(imW, imH), framerate=30).start()
+                MIN_CONF_THRESHOLD, output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position,
+                DutyCycleX, DutyCycleY, lock, frame_queue): #frame_buffer
+    signal.signal(signal.SIGINT, signal_handler)
+
+    videostream = VideoStream(src=CAMERA_PORT,resolution=(imW, imH), framerate=FRAMERATE).start()
     time.sleep(2.0)
     cv2.namedWindow('Object detector', cv2.WINDOW_NORMAL)
 
@@ -175,10 +331,8 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
         #Set lateral inversion
         #with the camera flipped 90 deg clockwise, flip around X(0)
         #Else flip horizontally(around Y(1))
-        #frame1 = cv2.flip(frame1, 0)
+        frame1 = cv2.flip(frame1, 1)
         #frame1 = cv2.rotate(frame1, cv2.ROTATE_90_COUNTERCLOCKWISE)
-
-        frame1 = cv2.flip(frame1, 1)        
 
         # Acquire frame and resize to expected shape [1xHxWx3]
         frame = frame1.copy()
@@ -198,7 +352,7 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
         classes = interpreter.get_tensor(output_details[1]['index'])[0]
         scores = interpreter.get_tensor(output_details[2]['index'])[0]
 
-        max_confidence = min_conf_threshold
+        max_confidence = MIN_CONF_THRESHOLD.value
         #person_coordinates = None
 
         if len(boxes) == 0:
@@ -208,7 +362,7 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
 
 
         for i in range(len(scores)):
-            if ((0 <= int(classes[i]) < len(labels)) and (scores[i] >= max_confidence) and (scores[i] <= 1.0)):
+            if ((0 <= int(classes[i]) < len(labels)) and (scores[i] > max_confidence) and (scores[i] <= 1.0)):
                 
                 max_confidence = scores[i]
                 ymin = int(max(1,(boxes[i][0] * imH)))
@@ -265,8 +419,9 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
         info_label_7 = f'DutyCycle        {float(DutyCycleX.value):.2f} X {float(DutyCycleY.value):.1f} Y'
         info_label_5 = f'PID output:     {pan_output.value:.0f} X {tilt_output.value:.2f} Y'
         info_label_6 = f'Position:       {pan_position.value:.0f} X {tilt_position.value:.2f} Y'
-        
-        #Cyan
+
+        # Add labels to the frame 
+               #Cyan
         cv2.putText(frame, info_label_1, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
         cv2.putText(frame, info_label_2, (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
         cv2.putText(frame, info_label_3, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2, cv2.LINE_AA)
@@ -300,6 +455,11 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
             timeofDetection = time.time() - detect_start_time
             logging.info(f"DETECTION TIME: {timeofDetection}")
 
+    with lock: 
+        #frame_buffer[:,:] = frame[:]
+        #frame_buffer[:] = frame
+        frame_queue.put(frame)
+
     cv2.destroyAllWindows()
     videostream.stop()
 
@@ -313,11 +473,11 @@ def signal_handler(sig, frame):
 def setServoAngle(servo, angle):
     servo = GPIO.PWM(servo, 50)
     servo.start(0)
-    if angle < servoRange[0]:
-        angle = servoRange[0]
+    if angle < SERVORANGE[0]:
+        angle = SERVORANGE[0]
         logging.debug ("[ERROR] Too far")
-    elif angle > servoRange[1]:
-        angle = servoRange[1]
+    elif angle > SERVORANGE[1]:
+        angle = SERVORANGE[1]
         logging.debug ("[ERROR] Too far")
     dutyCycle = angle / 18. + 8.
     logging.debug(f"Duty cycle: {dutyCycle}")
@@ -344,23 +504,21 @@ def set_servos(tlt, pan, pan_position, tilt_position):
         tilt_angle = tilt_position.value + tlt.value
 
 #filter out noisy angle changes lower than 5deg with a lowpass filter
-        pan_angle = limit_range(pan_angle, servoRange[0], servoRange[1])
-        setServoAngle(pan_pin, pan_angle)
+        pan_angle = limit_range(pan_angle, SERVORANGE[0], SERVORANGE[1])
+        setServoAngle(PAN_PIN, pan_angle)
 
         logging.info(f"Limited Pan angle is {pan_angle}")
         ##logging.info(f"Limited Pan angle is {pan_angle}")
 
-        tilt_angle = limit_range(tilt_angle, servoRange[0], servoRange[1])
-        setServoAngle(tilt_pin, tilt_angle)
+        tilt_angle = limit_range(tilt_angle, SERVORANGE[0], SERVORANGE[1])
+        setServoAngle(TILT_PIN, tilt_angle)
 
         logging.info(f"Limited Tilt angle is {tilt_angle}")
         ##logging.info(f"Limited Tilt angle is {tilt_angle}")
         pan_position.value = pan_angle
         tilt_position.value = tilt_angle
 
-#def set_pan ():
-#def set_tilt():
-#def pan_pid(output, p, i, d, obj_center, frame_center, action):
+
 
 def set_tilt(tilt, tilt_position):
     signal.signal(signal.SIGINT, signal_handler)
@@ -371,8 +529,8 @@ def set_tilt(tilt, tilt_position):
         #tilt_angle = tilt_position.value + tilt.value
         tilt_angle = tilt.value
         
-        if in_range(tilt_angle, servoRange[0], servoRange[1]):
-            setServoAngle(tilt_pin, tilt_angle)
+        if in_range(tilt_angle, SERVORANGE[0], SERVORANGE[1]):
+            setServoAngle(TILT_PIN, tilt_angle)
 
             logging.info(f" Tilt angle is {tilt_angle.value}Y")
             ##logging.info(f"Limited Tilt angle is {tilt_angle}")
@@ -395,8 +553,8 @@ def set_pan(pan, pan_position):
         pan_angle = -1 * pan.value
         
 #filter out noisy angle changes lower than 5deg with a lowpass filter
-        if in_range(pan_angle, servoRange[0], servoRange[1]):
-            setServoAngle(pan_pin, pan_angle)
+        if in_range(pan_angle, SERVORANGE[0], SERVORANGE[1]):
+            setServoAngle(PAN_PIN, pan_angle)
 
             logging.info(f"Pan angle is {pan_angle}")
             ##logging.info(f"Limited Pan angle is {pan_angle}")
@@ -475,15 +633,15 @@ def tilt_pid(output, p, i, d, obj_center, frame_center, action):
 
 def servoTest():
     for i in range (40, 130, 15):
-        setServoAngle(pan_pin, i)
-        setServoAngle(tilt_pin, i)
+        setServoAngle(PAN_PIN, i)
+        setServoAngle(TILT_PIN, i)
     
     for i in range (130, 40, -15):
-        setServoAngle(pan_pin, i)
-        setServoAngle(tilt_pin, i)
+        setServoAngle(PAN_PIN, i)
+        setServoAngle(TILT_PIN, i)
         
-    setServoAngle(pan_pin, 100)
-    setServoAngle(tilt_pin, 100)
+    setServoAngle(PAN_PIN, 100)
+    setServoAngle(TILT_PIN, 100)
 
 
 
@@ -527,7 +685,7 @@ def set_pan_direct(frame_center, obj_center, error, DutyCycle):
         error.value = frame_center.value - obj_center.value
         #if error.value >= abs(40):
         #if (abs(error_tilt.value)%2) == 0:
-        pan_servo = GPIO.PWM(pan_pin, 50)
+        pan_servo = GPIO.PWM(PAN_PIN, 50)
         start = DutyCycle.value
         pan_servo.start(8)
         DutyCycle.value = 7.5 + error.value/320. * 2.5
@@ -542,7 +700,7 @@ def set_tilt_direct (frame_center, obj_center, error_tilt, DutyCycle):
     while True:
         error_tilt.value = frame_center.value - obj_center.value
         if (abs(error_tilt.value)%2) == 0:
-            tilt_servo = GPIO.PWM(tilt_pin, 50)
+            tilt_servo = GPIO.PWM(TILT_PIN, 50)
             start = DutyCycle.value
             tilt_servo.start(8)
             DutyCycle.value = 6.5 + error_tilt.value/240. * 2.5
@@ -573,6 +731,8 @@ if __name__ == '__main__':
         frame_cx.value = RESOLUTION[0] // 2
         frame_cy.value = RESOLUTION[1] // 2
 
+        MIN_CONF_THRESHOLD = manager.Value('f',args.threshold)
+
         crosshair_x = manager.Value('i', 0)
         crosshair_y = manager.Value('i', 0)
 
@@ -585,21 +745,28 @@ if __name__ == '__main__':
         pan_position = manager.Value('i', 0)
         tilt_position = manager.Value('i', 0)
 
-        pan_p = manager.Value('f', 0.15)
-        pan_i = manager.Value('f', 0)
-        pan_d = manager.Value('f', 0)
 
-        tilt_p = manager.Value('f', 0.15)
-        tilt_i = manager.Value('f', 0.2)
-        tilt_d = manager.Value('f', 0)
+        pan_p = manager.Value('f', args.pan_p)
+        pan_i = manager.Value('f', args.pan_i)
+        pan_d = manager.Value('f', args.pan_d)
+
+        tilt_p = manager.Value('f', args.tilt_p)
+        tilt_i = manager.Value('f', args.tilt_i)
+        tilt_d = manager.Value('f', args.tilt_d)
 
         DutyCycleX = manager.Value('f', 0)
         DutyCycleY = manager.Value('f', 0)
 
+        #frame_buf = np.frombuffer(manager.Array('B', SCREEN_HEIGHT * SCREEN_WIDTH * 3).get_obj(), dtype=np.uint8).reshape(SCREEN_HEIGHT, SCREEN_WIDTH, 3)
+        #frame_buf = np.ctypeslib.as_array(manager.Array('B', SCREEN_HEIGHT * SCREEN_WIDTH * 3)).reshape(SCREEN_HEIGHT, SCREEN_WIDTH, 3)
+
+        frame_queue = manager.Queue()
+        
+
 
         detect_process = Process(target=run_detect,
                                   args=(crosshair_x, crosshair_y, frame_cx, frame_cy, labels, interpreter, input_mean, input_std, imW, imH, MIN_CONF_THRESHOLD, 
-                                  output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position, DutyCycleX, DutyCycleY))
+                                  output_details,error_pan, error_tilt, pan_output,tilt_output,pan_position, tilt_position, DutyCycleX, DutyCycleY, lock, frame_queue))   #frame_buffer
 
         ppid_pan = Process(target=pan_pid,
                               args=(pan_output, pan_p, pan_i, pan_d, crosshair_x, frame_cx, 'pan'))
@@ -615,6 +782,10 @@ if __name__ == '__main__':
 
         ptest_pan = Process(target=servoTest)
 
+        flask_process = Process(target=run_flask_app)
+        
+        flask_process.start()
+
         detect_process.start()
         ppid_pan.start()
         pset_pan.start()
@@ -624,6 +795,13 @@ if __name__ == '__main__':
         #pset_pan_direct.start()
         #pset_tilt_direct.start()
         
+        ##app.run(host='0.0.0.0', port=5000, debug=False)
+        #thread_flask = Thread(target=app.run, kwargs=dict(host='0.0.0.0', port=5000, debug=False, threaded=True))  # threaded Werkzeug server
+        ## thread_flask = Thread(target=socketio.run, args=(app,), kwargs=dict(debug=False, log_output=True))  # eventlet server
+        #thread_flask.daemon = True
+        #thread_flask.start()
+
+        flask_process.join()
 
         detect_process.join()
         ppid_pan.join()
@@ -634,4 +812,5 @@ if __name__ == '__main__':
         #pset_pan_direct.join()
         #pset_tilt_direct.join()
         
+
 
