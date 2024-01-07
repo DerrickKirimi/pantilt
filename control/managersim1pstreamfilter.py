@@ -365,21 +365,23 @@ def set_pan(pan, pan_position):
         logging.info("Inside set_pan loop")
         #sys.stdout.flush()
         #pan_angle = pan_position.value + pan.value
-        pan_angle = -1 * pan.value
-        #pan_angle = pan.value
+        #pan_angle = -1 * pan.value
+        pan_angle = pan.value
        
         angle_delta = pan_angle - angle_prev
-        angle_prev = pan_angle
+        #angle_prev = pan_angle
+        ##angle_prev = pan_position.value
 
         
 #filter out noisy angle changes lower than 5deg with a lowpass filter
-        if in_range(pan_angle, servoRange[0], servoRange[1]) and angle_delta >= 5:
+        if in_range(pan_angle, servoRange[0], servoRange[1]) and angle_delta >= 2:
             setServoAngle(pan_pin, pan_angle)
 
             logging.info(f"Pan angle is {pan_angle}")
             ##logging.info(f"Limited Pan angle is {pan_angle}")
 
             pan_position.value = pan_angle
+            angle_prev = pan_angle
 
             #logging.info(f"New Pan position is {pan_angle}")
 
@@ -474,8 +476,8 @@ if __name__ == '__main__':
         logging.info(f"Program started at: {start_time}")
 
         
-        frame_cx = manager.Value('i', 0)
-        frame_cy = manager.Value('i', 0)
+        frame_cx = manager.Value('i', 320)
+        frame_cy = manager.Value('i', 240)
 
         frame_cx.value = RESOLUTION[0] // 2
         frame_cy.value = RESOLUTION[1] // 2
