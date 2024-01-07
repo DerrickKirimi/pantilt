@@ -333,35 +333,6 @@ def in_range(val, start, end):
 	# determine the input value is in the supplied range
 	return (val >= start and val <= end)
 
-def set_servos(tlt, pan, pan_position, tilt_position):
-    signal.signal(signal.SIGINT, signal_handler)
-    #time.sleep(0.2)
-    logging.info("Inside set_servos function")
-    while True:
-        logging.info("Inside set_servos loop")
-        #sys.stdout.flush()
-        pan_angle = pan_position.value + pan.value
-        tilt_angle = tilt_position.value + tlt.value
-
-#filter out noisy angle changes lower than 5deg with a lowpass filter
-        pan_angle = limit_range(pan_angle, servoRange[0], servoRange[1])
-        setServoAngle(pan_pin, pan_angle)
-
-        logging.info(f"Limited Pan angle is {pan_angle}")
-        ##logging.info(f"Limited Pan angle is {pan_angle}")
-
-        tilt_angle = limit_range(tilt_angle, servoRange[0], servoRange[1])
-        setServoAngle(tilt_pin, tilt_angle)
-
-        logging.info(f"Limited Tilt angle is {tilt_angle}")
-        ##logging.info(f"Limited Tilt angle is {tilt_angle}")
-        pan_position.value = pan_angle
-        tilt_position.value = tilt_angle
-
-#def set_pan ():
-#def set_tilt():
-#def pan_pid(output, p, i, d, obj_center, frame_center, action):
-
 def set_tilt(tilt, tilt_position):
     signal.signal(signal.SIGINT, signal_handler)
     #time.sleep(0.2)
@@ -488,78 +459,7 @@ def servoTest():
         
     setServoAngle(pan_pin, 100)
     setServoAngle(tilt_pin, 100)
-
-
-
-
-def pantilt_pid(output, p, i, d, obj_center, frame_center, action):
-    signal.signal(signal.SIGINT, signal_handler)
-    
-    p = PIDController(p.value, i.value, d.value)
-    p.reset()
-
-    while True:
-        if action == 'pan':
-            logging.info("PAN:")
-            logging.info(f'PID OBJ_C: {obj_center.value}X')          
-            logging.info(f'PID FRAME_C: {frame_center.value}X')
-            ##logging.info(f'PID Tracking {obj_center.value}X From {frame_center.value}X')
-            logging.info(f'PID Tracking {obj_center.value}X From {frame_center.value}X')
-        elif action == 'tilt':
-            logging.info("TILT:")
-            logging.info(f'PID OBJ_C: {obj_center.value}Y')          
-            logging.info(f'PID FRAME_C: {frame_center.value}Y')
-            ##logging.info(f'PID Tracking {obj_center.value}Y From {frame_center.value}Y')
-            logging.info(f'PID Tracking {obj_center.value}Y From {frame_center.value}Y')
-        
-        ###logging.info(f'PID Tracking {obj_center.value} From {frame_center.value}')
-        #logging.info(f'PID Tracking {obj_center.value} From {frame_center.value}')
-
-        error = frame_center.value - obj_center.value
-
-        logging.info(f"Error is: {error}")
-
-        output.value = p.update(error)
-
-        logging.info(f"PID output is: {output.value}")
-
-        ###logging.info(f'{action} error {error} angle: {output.value}')
-
-def set_pan_direct(frame_center, obj_center, error, DutyCycle):
-    signal.signal(signal.SIGINT, signal_handler)
-    while True:
-        error.value = frame_center.value - obj_center.value
-        #if error.value >= abs(40):
-        #if (abs(error_tilt.value)%2) == 0:
-        pan_servo = GPIO.PWM(pan_pin, 50)
-        start = DutyCycle.value
-        pan_servo.start(8)
-        DutyCycle.value = 7.5 + error.value/320. * 2.5
-        dc = DutyCycle.value
-        pan_servo.ChangeDutyCycle(dc)
-        time.sleep(4)
-        pan_servo.stop()
-        #time.sleep(1)
-
-def set_tilt_direct (frame_center, obj_center, error_tilt, DutyCycle):
-    signal.signal(signal.SIGINT, signal_handler)
-    while True:
-        error_tilt.value = frame_center.value - obj_center.value
-        if (abs(error_tilt.value)%2) == 0:
-            tilt_servo = GPIO.PWM(tilt_pin, 50)
-            start = DutyCycle.value
-            tilt_servo.start(8)
-            DutyCycle.value = 6.5 + error_tilt.value/240. * 2.5
-            DutyCycleY.value = DutyCycle.value
-            dc = DutyCycle.value
-            tilt_servo.ChangeDutyCycle(dc)
-            time.sleep(6)
-            tilt_servo.stop()
-            #time.sleep(1)
-
-#def pantilt_process_manager(
-#):
-   
+ 
 if __name__ == '__main__':
     
     logging.info("[INFO] Moving servos to initial position")
@@ -619,9 +519,6 @@ if __name__ == '__main__':
 
         pset_pan = Process(target=set_pan, args=(pan_output, pan_position))
         pset_tilt = Process(target=set_tilt, args=(tilt_output, tilt_position))
-
-        pset_pan_direct = Process(target = set_pan_direct, args=(frame_cx, crosshair_x,error_pan, DutyCycleX ))
-        pset_tilt_direct = Process(target = set_tilt_direct, args=(frame_cy,crosshair_y,error_tilt, DutyCycleY ))
 
         ptest_pan = Process(target=servoTest)
 
