@@ -29,3 +29,6 @@ def set_pan(pan, pan_position):
         logging.debug(f"Error is: {crosshair_x.value - frame_cx.value}")
         logging.debug(f"PID PAN output: {pan_output.value}")
         logging.debug(f"PAN angle: {pan_position.value}")
+
+
+#original
