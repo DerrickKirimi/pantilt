@@ -589,9 +589,9 @@ if __name__ == '__main__':
         #pan_i = manager.Value('f', 0)
         #pan_d = manager.Value('f', 0)
 
-        pan_p = manager.Value('f', 0.15)
-        pan_i = manager.Value('f', 0.2)
-        pan_d = manager.Value('f', 0)
+        pan_p = manager.Value('f', 0.1)
+        pan_i = manager.Value('f', 0.01)
+        pan_d = manager.Value('f', 0.055555556)
         #pan_d = manager.Value('f', 0.002)
 
 
