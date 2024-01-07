@@ -366,7 +366,8 @@ def set_pan(pan, pan_position):
         #sys.stdout.flush()
         #pan_angle = pan_position.value + pan.value
         pan_angle = -1 * pan.value
-
+        #pan_angle = pan.value
+       
         angle_delta = pan_angle - angle_prev
         angle_prev = pan_angle
 
