@@ -370,7 +370,7 @@ def set_pan(pan, pan_position):
        
         angle_delta = pan_angle - angle_prev
         #angle_prev = pan_angle
-        ##angle_prev = pan_position.value
+        angle_prev = pan_position.value
 
         
 #filter out noisy angle changes lower than 5deg with a lowpass filter
@@ -381,8 +381,6 @@ def set_pan(pan, pan_position):
             ##logging.info(f"Limited Pan angle is {pan_angle}")
 
             pan_position.value = pan_angle
-            angle_prev = pan_angle
-
             #logging.info(f"New Pan position is {pan_angle}")
 
         logging.debug(f"Tracking {crosshair_x.value}X from {frame_cx.value} X")
