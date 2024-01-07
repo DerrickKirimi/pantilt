@@ -1,4 +1,3 @@
-#1
 import os
 import pandas as pd
 import numpy as np
@@ -42,29 +41,32 @@ kd = float(input("Enter the value for kd:"))
 object_centers_tuple = tuple(object_centers)
 
 # Specify the folder path
-folder_path = 'control/Sim/outputData/'  # Adjust the relative path as needed
+folder_path = 'control/sim/outputData/'  # Adjust the relative path as needed
 
 # Create the folder if it doesn't exist
 os.makedirs(folder_path, exist_ok=True)
 
-# Create a string to append to the file name
-param_string = f"_kp_{kp}_ki_{ki}_kd_{kd}"
+# Specify the filename for the combined results
+combined_filename = os.path.join(folder_path, 'combined_system_response_data.xlsx')
 
-# Using ProcessPoolExecutor for parallel execution
-with ProcessPoolExecutor() as executor:
-    # Simulate system response for user-specified PID parameters
-    futures = [executor.submit(simulate_system_response, kp, ki, kd, setpoint, object_centers_tuple)]
-    df_list = [future.result() for future in futures]
+# Check if the file already exists
+if os.path.exists(combined_filename):
+    # Load existing data from the file
+    existing_df = pd.read_excel(combined_filename)
 
-# Concatenate DataFrames from different processes
-df = pd.concat(df_list, ignore_index=True)
+    # Append the new data to the existing DataFrame
+    new_df = simulate_system_response(kp, ki, kd, setpoint, object_centers_tuple)
+    combined_df = pd.concat([existing_df, new_df], ignore_index=True)
 
-# Print the head of the DataFrame
-print("\nHead of the DataFrame:")
-print(df.head())
+else:
+    # Create a new DataFrame if the file doesn't exist
+    combined_df = simulate_system_response(kp, ki, kd, setpoint, object_centers_tuple)
 
-# Save the DataFrame to an Excel file in the specified folder
-excel_filename = os.path.join(folder_path, f'system_response_data{param_string}.xlsx')
-df.to_excel(excel_filename, index=False)
+# Print the head of the combined DataFrame
+print("\nHead of the Combined DataFrame:")
+print(combined_df.head())
 
-print(f'Data saved to {excel_filename}')
+# Save the combined DataFrame to the file
+combined_df.to_excel(combined_filename, index=False)
+
+print(f'Data saved to {combined_filename}')
