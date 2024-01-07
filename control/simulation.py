@@ -1,42 +1,69 @@
+import os
+import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-
-from pid import PIDController  
+from pid_sm import PIDController
+from concurrent.futures import ProcessPoolExecutor
+from functools import lru_cache
 
 # Function to simulate the system response using the PID controller
-def simulate_system_response(p, i, d, setpoint, object_centers):
-    angles = []
+@lru_cache(maxsize=None)  # None means the cache can grow without bound
+def simulate_system_response(kp, ki, kd, setpoint, object_centers):
+    pid = PIDController(kP=kp, kI=ki, kD=kd)
+    pid.reset()
+
+    data = {'Input': [], 'kP': [], 'kI': [], 'kD': [], 'Output': []}
 
     for object_center in object_centers:
-        pid = PIDController(p, i, d)
-        pid.reset()
-
         error = setpoint - object_center
         output = pid.update(error)
-        angles.append(output)
 
-    return angles
+        # Append values to the data dictionary
+        data['Input'].append(error)
+        data['kP'].append(kp)
+        data['kI'].append(ki)
+        data['kD'].append(kd)
+        data['Output'].append(output)
+
+    return pd.DataFrame(data)
 
 # Generate input values
 object_centers = np.arange(0, 641, 10)
 
-# PID controller parameters
-p = 1.5
-i = 0.1
-d = 0
-
 # Setpoint for all cases
 setpoint = 320
 
-# Simulate system response for all object center values
-angles_all = simulate_system_response(p, i, d, setpoint, object_centers)
+# Get user input for kp, ki, and kd values
+kp = float(input("Enter the value for kp: "))
+ki = float(input("Enter the value for ki: "))
+kd = float(input("Enter the value for kd:"))
 
-# Plot the results
-plt.figure(figsize=(10, 6))
-plt.plot(object_centers, angles_all, label='System Response')
-plt.title('PID Controller Output vs. Object Center')
-plt.xlabel('Object Center')
-plt.ylabel('PID Controller Output (Angle)')
-plt.legend()
-plt.grid(True)
-plt.show()
+# Convert numpy.ndarray to tuple for cacheability
+object_centers_tuple = tuple(object_centers)
+
+# Specify the folder path
+folder_path = '../outPutData/'  # Adjust the relative path as needed
+
+# Create the folder if it doesn't exist
+os.makedirs(folder_path, exist_ok=True)
+
+# Create a string to append to the file name
+param_string = f"_kp_{kp}_ki_{ki}_kd_{kd}"
+
+# Using ProcessPoolExecutor for parallel execution
+with ProcessPoolExecutor() as executor:
+    # Simulate system response for user-specified PID parameters
+    futures = [executor.submit(simulate_system_response, kp, ki, kd, setpoint, object_centers_tuple)]
+    df_list = [future.result() for future in futures]
+
+# Concatenate DataFrames from different processes
+df = pd.concat(df_list, ignore_index=True)
+
+# Print the head of the DataFrame
+print("\nHead of the DataFrame:")
+print(df.head())
+
+# Save the DataFrame to an Excel file in the specified folder
+excel_filename = os.path.join(folder_path, f'system_response_data{param_string}.xlsx')
+df.to_excel(excel_filename, index=False)
+
+print(f'Data saved to {excel_filename}')
