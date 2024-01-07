@@ -393,12 +393,10 @@ def pan_pid(output, p, i, d, obj_center, frame_center, action):
     pid = PIDController(p.value, i.value, d.value)
     pid.reset()
 
-    error_prev = 320
-    error = frame_center.value - obj_center.value
-    error_delta = error - error_prev
-
     while True:
-       if action == 'pan'and error_delta >= 10:       
+       if action == 'pan':
+            logging.info("PAN:")
+            logging.info(f'PID OBJ_X: {obj_center.value}X')          
             logging.info(f'PID FRAME_X: {frame_center.value}X')
             ##logging.info(f'PAN PID Tracking {obj_center.value}X From {frame_center.value}X')
             logging.info(f'PAN PID Tracking {obj_center.value}X From {frame_center.value}X')
@@ -411,8 +409,6 @@ def pan_pid(output, p, i, d, obj_center, frame_center, action):
             error = frame_center.value - obj_center.value
 
             error_pan.value = error
-
-            error_prev = error
 
             logging.info(f"Error is: {error} X")
 
