@@ -385,9 +385,12 @@ def set_tilt(tilt, tilt_position):
     while True:
         logging.info("Inside set_tilt loop")
         #tilt_angle = tilt_position.value + tilt.value
-        tilt_angle = tilt.value
+        tilt_angle = map_value(tilt_angle,-400,400,servoRange[0],servoRange[1])
         
-        if in_range(tilt_angle, servoRange[0], servoRange[1]):
+        angle_delta = tilt_angle - angle_prev
+        angle_prev = tilt_angle
+
+        if in_range(tilt_angle, servoRange[0], servoRange[1]) and angle_delta >=4:
             setServoAngle(tilt_pin, tilt_angle)
 
             logging.info(f" Tilt angle is {tilt_angle.value}Y")
