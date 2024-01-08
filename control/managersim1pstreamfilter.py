@@ -391,7 +391,7 @@ def set_tilt(tilt, tilt_position):
         angle_delta = tilt_angle - angle_prev
         angle_prev = tilt_angle
 
-        if in_range(tilt_angle, tiltRange[0],tiltRange[1]) and angle_delta >=4:
+        if in_range(tilt_angle, tiltRange[0],tiltRange[1]) and angle_delta >=20:
             setServoAngle(tilt_pin, tilt_angle)
 
             logging.info(f" Tilt angle is {tilt_angle.value}Y")
