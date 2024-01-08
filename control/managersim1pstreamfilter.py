@@ -62,7 +62,8 @@ GPIO.setup(tilt_pin, GPIO.OUT)
 
 #servoRange = (130, 145)
 #servoRange = (40, 130)
-servoRange = (-90, 90)
+servoRange = (-90, 50)
+#servoRange = (-90, 90)
 
 # Paths and parameters
 # Define and parse input arguments
@@ -319,7 +320,7 @@ def setServoAngle(servo, angle):
     elif angle > servoRange[1]:
         angle = servoRange[1]
         logging.debug ("[ERROR] Too far")
-    dutyCycle = angle / 18. + 8.
+    dutyCycle = angle / 18. + 6.
     logging.debug(f"Duty cycle: {dutyCycle}")
     servo.ChangeDutyCycle(dutyCycle)
     time.sleep(0.2)
@@ -365,16 +366,16 @@ def set_pan(pan, pan_position):
         logging.info("Inside set_pan loop")
         #sys.stdout.flush()
         #pan_angle = pan_position.value + pan.value
-        #pan_angle = -1 * pan.value
-        pan_angle = pan.value
+        pan_angle = -1 * pan.value
+        #pan_angle = pan.value
        
         angle_delta = pan_angle - angle_prev
-        #angle_prev = pan_angle
-        angle_prev = pan_position.value
+        angle_prev = pan_angle
+        #angle_prev = pan_position.value
 
         
 #filter out noisy angle changes lower than 5deg with a lowpass filter
-        if in_range(pan_angle, servoRange[0], servoRange[1]) and angle_delta >= 2:
+        if in_range(pan_angle, servoRange[0], servoRange[1]) and angle_delta >= 1:
             setServoAngle(pan_pin, pan_angle)
 
             logging.info(f"Pan angle is {pan_angle}")
@@ -492,14 +493,14 @@ if __name__ == '__main__':
         pan_position = manager.Value('i', 0)
         tilt_position = manager.Value('i', 0)
 
-        pan_p = manager.Value('f', 0.15)
+        pan_p = manager.Value('f', 10)
         pan_i = manager.Value('f', 0)
         pan_d = manager.Value('f', 0)
 
         #pan_p = manager.Value('f', 0.1)
         #pan_i = manager.Value('f', 0.01)
         #pan_d = manager.Value('f', 0.055555556)
-        ##pan_d = manager.Value('f', 0.002)
+        #pan_d = manager.Value('f', 0.002)
 
 
         tilt_p = manager.Value('f', 0.15)

@@ -62,6 +62,7 @@ df = pd.concat(df_list, ignore_index=True)
 # Print the head of the DataFrame
 print("\nHead of the DataFrame:")
 print(df.head())
+print(df.tail())
 
 # Save the DataFrame to an Excel file in the specified folder
 excel_filename = os.path.join(folder_path, f'system_response_data{param_string}.xlsx')
