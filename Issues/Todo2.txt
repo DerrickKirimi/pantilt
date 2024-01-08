@@ -17,6 +17,8 @@ Change dutyCycle calculation bias to 8.
     90/18 + 8 = 13%
 This is a closer approximation than a bias of 2 or 3.
 
+This bias produced overshooting so a bias of 6 was used with angle ranges -54 to 50
+
 This comes from the error calculation as:
     setPoint - actualValue = :
     framecenter - objectCenter
@@ -42,6 +44,9 @@ Next steps:
     
 
    // Evaluating servoRanges to use and how this propagates back from pid output angles to pid input as error from object
+
+   Motor has no encoders but it's output is still observable due to detection, which provides corrective feedback
+
     //location variation:
     Setting direction of pid reverse:
     (This wouldn't be the case if I used range 0-180, but then range -90 to 90 more accurately resembles/represents towerpro
@@ -55,10 +60,13 @@ Next steps:
     Notice that the above analysis is in reverse, with input as angle and output as pid output value, while these are the 
     same value in the current implementation, as no further mapping is required.
 
+    In the final implementation, error (-320 - 320) is directly proportional as pid output(ki, kd values are chosen that
+    adhere to this according to graphs for ki tuning) and pid output is scaled from (-480 -480) to (-54 - 50) then reversed (*-1)
+
     Analysing further using a process/system approach, the input is the error framecenter - objectCenter, and pid takes this into 
     update function which runs throught the values as:
     stepping through a sample calculation then Plotting variations of these input  values framecenter, objectcenter, error, 
-    prev_time, prev_error, deltatime, kp, ki, kd, pid output:
+    (prev_time, prev_error, deltatime), kp, ki, kd, pid output:
     //With the input as error and output as -90 to 90, and pid direction direction as forward throughout:
     //With pid as reverse between -90 to 0 and forward as 0 to 90:
     #out = pid_update(prev_time, prev_error, deltatime, kp, ki, kd, #pidoutput);

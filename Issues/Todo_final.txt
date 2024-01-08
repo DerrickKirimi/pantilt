@@ -1,7 +1,7 @@
 //Response too sensitive
-1. Change ki, kd - plotted but kp = 0.15 works fine
+1. Change ki, kd - plotted but kp = 0.15 works fine, ki = 0.01, kd = 0.001
 2. Use low pass filter for detection results --> fitted in set_pan
-3. Change to pigpio
+3. Change to pigpio -- not necessitated
 
 Done:
 I want to plot the data out in a table in excel format with time, input and output, 

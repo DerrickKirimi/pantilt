@@ -381,6 +381,7 @@ def set_tilt(tilt, tilt_position):
     signal.signal(signal.SIGINT, signal_handler)
     #time.sleep(0.2)
     logging.info("Inside set_tilt function")
+    angle_prev = 0
     while True:
         logging.info("Inside set_tilt loop")
         #tilt_angle = tilt_position.value + tilt.value

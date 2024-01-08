@@ -8,7 +8,6 @@ def smooth(object_cx, filter_val, smoothed_val):
 
     return int(smoothed_val)
 
-# Example usage and testing:
 filter_val = 0.001
 smoothed_val = 0.0
 

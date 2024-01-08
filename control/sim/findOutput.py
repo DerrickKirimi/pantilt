@@ -42,7 +42,7 @@ kd = float(input("Enter the value for kd:"))
 object_centers_tuple = tuple(object_centers)
 
 # Specify the folder path
-folder_path = 'control/sim/outputData/'  # Adjust the relative path as needed
+folder_path = 'control/sim/outputData/'  
 
 # Create the folder if it doesn't exist
 os.makedirs(folder_path, exist_ok=True)

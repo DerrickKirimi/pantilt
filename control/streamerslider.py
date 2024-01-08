@@ -146,7 +146,7 @@ else:
 
 # If using Edge TPU, assign filename for Edge TPU model
 if use_TPU:
-    # If user has specified the name of the .tflite file, use that name, otherwise use default 'edgetpu.tflite'
+    # If specified the name of the .tflite file, use that name, otherwise use default 'edgetpu.tflite'
     if (GRAPH_NAME == 'detect.tflite'):
         GRAPH_NAME = 'edgetpu.tflite'       
 
@@ -362,7 +362,7 @@ if __name__ == "__main__":
     t.start()
     
     thread_flask = Thread(target=app.run, kwargs=dict(host='0.0.0.0', port=5000,debug=False, threaded=True))  # threaded Werkzeug server
-    #thread_flask = Thread(target=socketio.run, args=(app,), kwargs=dict(host='0.0.0.0', port=5000,debug=True, log_output=True))  # eventlet server
+    #thread_flask = Thread(target=socketio.run, args=(app,), kwargs=dict(host='0.0.0.0', port=5000,debug=True))  # eventlet server
     thread_flask.daemon = True
     thread_flask.start()
 
