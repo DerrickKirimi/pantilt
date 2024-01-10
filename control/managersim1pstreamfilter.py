@@ -62,7 +62,8 @@ GPIO.setup(tilt_pin, GPIO.OUT)
 #servoRange = (130, 145)
 #servoRange = (-36, 18)
 #servoRange = (-54, 40)
-servoRange = (-54,54)
+servoRange = (-30, 30) # for Hitec HS
+#servoRange = (-54,54)
 #tiltRange = (85,110)
 tiltRange = (0,30)
 #servoRange = (-90, 90)
@@ -356,8 +357,9 @@ def set_pan(pan, pan_position):
         #pan_angle = map_value(pan.value,-480,480,servoRange[0], servoRange[1])
         
         #pan_angle = map_value(pan.value,-16,16,servoRange[0], servoRange[1])
-        #pan_angle = -1 * pan_angle
-        pan_angle = -1 * pan.value
+        pan_angle = map_value(pan.value,-12,12,servoRange[0], servoRange[1])       
+        pan_angle = -1 * pan_angle
+        #pan_angle = -1 * pan.value
 
         angle_delta = abs(pan_angle - angle_prev)
         angle_prev = pan_angle

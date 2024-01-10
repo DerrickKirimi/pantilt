@@ -8,6 +8,6 @@ def map_value(x, in_min, in_max, out_min, out_max):
     return mapped_value
 
 # Test with values ranging from -480 to 480 in steps of 100
-for x in range(-480, 481, 100):
-    mapped_output = map_value(x, -480, 480, -60, 60)
+for x in range(-12, 12, 4):
+    mapped_output = map_value(x, -12, 12, -30, 30)
     print(f"For input {x}, mapped output is {mapped_output}")
