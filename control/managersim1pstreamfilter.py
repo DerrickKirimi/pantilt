@@ -1,4 +1,3 @@
-#Works well, doesn't include streaming yet. Lacks arguments
 import logging
 from multiprocessing import Value, Process, Manager
 import signal
@@ -61,9 +60,11 @@ GPIO.setup(tilt_pin, GPIO.OUT)
 
 
 #servoRange = (130, 145)
-#servoRange = (40, 130)
-servoRange = (-54, 40)
-tiltRange = (85,110)
+#servoRange = (-36, 18)
+#servoRange = (-54, 40)
+servoRange = (-54,54)
+#tiltRange = (85,110)
+tiltRange = (0,30)
 #servoRange = (-90, 90)
 
 # Paths and parameters
@@ -239,17 +240,15 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
                 obj_cx = xmin + (int(round((xmax - xmin) / 2)))
                 obj_cy = ymin + (int(round((ymax - ymin) / 2)))
 
-                frame_cx = RESOLUTION[0] // 2
-                frame_cy = RESOLUTION[1] // 2
                 cv2.circle(frame, (obj_cx, obj_cy), 5, (0, 0, 255), thickness=-1)
                 #logging.info(f'DETECTOR OBJ_CENTER: {obj_cx}X {obj_cy}Y')
-                cv2.circle(frame,(frame_cx, frame_cy), 5, (0, 255, 0), thickness=-1)
-                #logging.info(f'DETECTOR FRAME_CENTER: {frame_cx}X {frame_cy}Y')
+                cv2.circle(frame,(frame_cx.value, frame_cy.value), 5, (0, 255, 0), thickness=-1)
+                #logging.info(f'DETECTOR FRAME_CENTER: {frame_cx.value}X {frame_cy.value}Y')
                     
                 crosshair_x.value = obj_cx
                 crosshair_y.value = obj_cy
-                error_pan.value = frame_cx - crosshair_x.value
-                error_tilt.value = frame_cy - crosshair_y.value
+                error_pan.value = frame_cx.value - crosshair_x.value
+                error_tilt.value = frame_cy.value - crosshair_y.value
 
 
 
@@ -261,7 +260,7 @@ def run_detect(crosshair_x, crosshair_y, frame_cx,frame_cy, labels, interpreter,
         timeofDetection = time.time() - detect_start_time
 
         info_label_1 = f'Detection time: {timeofDetection:.2f} seconds'
-        info_label_2 = f'Frame center:   {frame_cx} X {frame_cy} Y'
+        info_label_2 = f'Frame center:   {frame_cx.value} X {frame_cy.value} Y'
         info_label_3 = f'Object Center:  {crosshair_x.value} X {crosshair_y.value} Y'
         info_label_4 = f'Error:          {error_pan.value} X {error_tilt.value} Y'
         info_label_7 = f'DutyCycle        {float(DutyCycleX.value):.2f} X {float(DutyCycleY.value):.1f} Y'
@@ -354,15 +353,18 @@ def set_pan(pan, pan_position):
         logging.info("Inside set_pan loop")
         #sys.stdout.flush()
         #pan_angle = pan_position.value + pan.value
-        pan_angle = map_value(pan.value,-480,480,servoRange[0], servoRange[1])
-        pan_angle = -1 * pan_angle
+        #pan_angle = map_value(pan.value,-480,480,servoRange[0], servoRange[1])
+        
+        #pan_angle = map_value(pan.value,-16,16,servoRange[0], servoRange[1])
+        #pan_angle = -1 * pan_angle
+        pan_angle = -1 * pan.value
 
-        angle_delta = pan_angle - angle_prev
+        angle_delta = abs(pan_angle - angle_prev)
         angle_prev = pan_angle
 
         
 #filter out noisy angle changes lower than 5deg with a lowpass filter
-        if in_range(pan_angle, servoRange[0], servoRange[1]) and angle_delta >= 5:
+        if in_range(pan_angle, servoRange[0], servoRange[1]) and angle_delta >= 3:
             setServoAngle(pan_pin, pan_angle)
 
             logging.info(f"Pan angle is {pan_angle}")
@@ -388,7 +390,7 @@ def set_tilt(tilt, tilt_position):
         #tilt_angle = tilt_position.value + tilt.value
         tilt_angle = map_value(tilt_angle,-400,400,tiltRange[0],tiltRange[1])
         
-        angle_delta = tilt_angle - angle_prev
+        angle_delta = abs(tilt_angle - angle_prev)
         angle_prev = tilt_angle
 
         if in_range(tilt_angle, tiltRange[0],tiltRange[1]) and angle_delta >=20:
@@ -508,9 +510,9 @@ if __name__ == '__main__':
         pan_position = manager.Value('i', 0)
         tilt_position = manager.Value('i', 0)
 
-        pan_p = manager.Value('f', 1.5)
-        pan_i = manager.Value('f', 0.01)
-        pan_d = manager.Value('f', 0.001)
+        pan_p = manager.Value('f', 0.0375)
+        pan_i = manager.Value('f', 0.0)
+        pan_d = manager.Value('f', 0.0)
 
         #pan_p = manager.Value('f', 0.1)
         #pan_i = manager.Value('f', 0.01)
@@ -519,7 +521,7 @@ if __name__ == '__main__':
 
 
         tilt_p = manager.Value('f', 0.15)
-        tilt_i = manager.Value('f', 0.2)
+        tilt_i = manager.Value('f', 0.02)
         tilt_d = manager.Value('f', 0)
 
         DutyCycleX = manager.Value('f', 0)
@@ -544,8 +546,8 @@ if __name__ == '__main__':
         detect_process.start()
         ppid_pan.start()
         pset_pan.start()
-        #ppid_tilt.start()
-        #pset_tilt.start()
+        ppid_tilt.start()
+        pset_tilt.start()
         #ptest_pan.start()
         #pset_pan_direct.start()
         #pset_tilt_direct.start()
@@ -554,8 +556,8 @@ if __name__ == '__main__':
         detect_process.join()
         ppid_pan.join()
         pset_pan.join()
-        #ppid_tilt.join()
-        #pset_tilt.join()
+        ppid_tilt.join()
+        pset_tilt.join()
         #ptest_pan.join()
         #pset_pan_direct.join()
         #pset_tilt_direct.join()
