@@ -61,8 +61,8 @@ GPIO.setup(tilt_pin, GPIO.OUT)
 
 #servoRange = (130, 145)
 #servoRange = (-36, 18)
-#servoRange = (-54, 40)
-servoRange = (-30, 30) # for Hitec HS
+servoRange = (-40, 40)
+#servoRange = (-30, 30) # for Hitec HS
 #servoRange = (-54,54)
 #tiltRange = (85,110)
 tiltRange = (0,30)
@@ -546,6 +546,7 @@ if __name__ == '__main__':
         ptest_pan = Process(target=servoTest)
 
         detect_process.start()
+        time.sleep(5)
         ppid_pan.start()
         pset_pan.start()
         ppid_tilt.start()
