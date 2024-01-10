@@ -61,9 +61,9 @@ GPIO.setup(tilt_pin, GPIO.OUT)
 
 #servoRange = (130, 145)
 #servoRange = (-36, 18)
-servoRange = (-40, 40)
+#servoRange = (-40, 40)
 #servoRange = (-30, 30) # for Hitec HS
-#servoRange = (-54,54)
+servoRange = (-60,60)
 #tiltRange = (85,110)
 tiltRange = (0,30)
 #servoRange = (-90, 90)
@@ -390,12 +390,14 @@ def set_tilt(tilt, tilt_position):
     while True:
         logging.info("Inside set_tilt loop")
         #tilt_angle = tilt_position.value + tilt.value
-        tilt_angle = map_value(tilt_angle,-400,400,tiltRange[0],tiltRange[1])
+        tilt_angle = map_value(tilt,-12,12,tiltRange[0],tiltRange[1])
         
         angle_delta = abs(tilt_angle - angle_prev)
         angle_prev = tilt_angle
 
-        if in_range(tilt_angle, tiltRange[0],tiltRange[1]) and angle_delta >=20:
+        #if in_range(tilt_angle, tiltRange[0],tiltRange[1]) and angle_delta >=20:
+        if in_range(tilt_angle, tiltRange[0],tiltRange[1]) and angle_delta >=1:
+
             setServoAngle(tilt_pin, tilt_angle)
 
             logging.info(f" Tilt angle is {tilt_angle.value}Y")
@@ -522,8 +524,8 @@ if __name__ == '__main__':
         #pan_d = manager.Value('f', 0.002)
 
 
-        tilt_p = manager.Value('f', 0.15)
-        tilt_i = manager.Value('f', 0.02)
+        tilt_p = manager.Value('f', 0.0375)
+        tilt_i = manager.Value('f', 0.0)
         tilt_d = manager.Value('f', 0)
 
         DutyCycleX = manager.Value('f', 0)
